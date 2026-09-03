@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일상에차 — 바쁜 하루 속, <br> 잠시 차 한 잔의 쉼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    
+    <img class="brand-logo" src="images/logo1.png" alt="" onerror="this.style.display='none'">
+  </div>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="메뉴 열기" aria-controls="navMenu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="#intro">소개</a></li>
+    <li><a href="#ritual">다도</a></li>
+    <li><a href="#brew-guide">브루잉</a></li>
+    <li><a href="#menu-cards">메뉴</a></li>
+    <li><a href="#contact">오시는 곳</a></li>
+  </ul>
+</nav>
+
+<!-- ================= HERO (스크롤 시 영상이 오른쪽으로 이동 + 좌측 패널 펼침) ================= -->
+<div class="hero-pin" id="heroPin">
+  <div class="hero-sticky">
+
+    <div class="hero-media" id="heroMedia">
+      <section class="section" id="top">
+        <div class="hero-bg">
+          <div class="sky"></div>
+          <!-- 영상 삽입 경로: 아래 source의 src를 실제 영상 파일 경로로 교체하세요 (예: videos/hero.mp4) -->
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            webkit-playsinline
+            preload="metadata"
+          ></video>
+        </div>
+        <div class="hero-vignette"></div>
+        <div class="scroll-cue" id="scrollCue"><span>SCROLL</span><span class="bar"></span></div>
+      </section>
+    </div>
+
+    <!-- 스크롤하면 왼쪽에서 펼쳐지는 텍스트 패널 -->
+    <div class="hero-panel" id="heroPanel">
+      <div class="hero-panel-inner">
+        <p class="hp-line hp-1 mono" id="hp1">Daily tea</p>
+        <p class="hp-line hp-2 serif" id="hp2">바쁜 하루 속, <br> 잠시 차 한 잔의 쉼</p>
+        <p class="hp-line hp-3 serif" id="hp3">자연의 흐름에 맞추어 고요하게, 여유롭게</p>
+        <p class="hp-line hp-4" id="hp4">세상의 기준을 벗어난 가장 당신다운 삶의 여정으로 모든 순간</p>
+      </div>
+    </div>
+
+    <!-- 소개 섹션 위로 다시 아래에서 올라와 덮는 커튼(섹션2) — 좌측 텍스트 / 우측 이미지·영상 2분할 -->
+    <div class="soothe-curtain" id="sootheCurtain">
+      <div class="soothe-grid">
+        <div class="soothe-media">
+          <div class="soothe-cell">
+            <!-- 영상 삽입 경로: src를 실제 영상 파일 경로로 교체하세요 (예: videos/soothe-1.mp4). 이미지를 쓰려면 video 태그 대신 <img src="images/soothe-1.jpg"> 로 교체 -->
+            <video autoplay muted loop playsinline>
+              <source src="videos/soothe-1.mp4" type="video/mp4">
+            </video>
+            <div class="soothe-fallback soothe-fallback-1"></div>
+          </div>
+          <div class="soothe-cell">
+            <!-- 영상 삽입 경로: src를 실제 영상 파일 경로로 교체하세요 (예: videos/soothe-2.mp4). 이미지를 쓰려면 video 태그 대신 <img src="images/soothe-2.jpg"> 로 교체 -->
+            <video autoplay muted loop playsinline>
+              <source src="videos/soothe-2.mp4" type="video/mp4">
+            </video>
+            <div class="soothe-fallback soothe-fallback-2"></div>
+          </div>
+        </div>
+        <div class="soothe-text" id="sootheText">
+          <div class="hanzi-col stg-line" id="sg1">
+            <span>一</span>
+            <span>服 茶</span>
+          </div>
+          <div class="hanzi-read stg-line" id="sg2">일상에차</div>
+          <div class="soothe-rule stg-line" id="sg3"></div>
+          <div class="soothe-body">
+            <p class="stg-line" id="sg4">바쁘게 흘러가는 하루 속에서, 우리는 종종 멈추는 법을 잊습니다.<br>
+            <strong>일상에차</strong>는 그 짧은 멈춤에서 시작되었습니다 —<br>
+            잔에 담긴 온기, 천천히 우러나는 향, 그리고 온전히 나를 위한 몇 분.</p>
+            <p class="stg-line" id="sg5">우리는 차가 단순한 음료가 아니라, 하루를 다정하게 매듭짓는<br>
+            작은 의식이라 믿습니다. 오늘도 바쁨 속 어딘가에,<br>
+            당신을 위한 차 한 잔의 쉼이 있기를 바랍니다.</p>
+            <p class="soothe-lead stg-line" id="sg6">일상에차 드림</p>
+          </div>
+          <div class="soothe-rule stg-line" id="sg7"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 섹션3 위로, 오른쪽에서 왼쪽으로 들어오는 커튼(섹션4) — 블렌딩 상품 가로 슬라이더 -->
+    <div class="section4-curtain" id="section4Curtain">
+
+      <!-- 섹션4 전체 배경 이미지 삽입 경로: 아래 img의 src를 실제 이미지로 교체하세요 (예: images/section4-bg.jpg) -->
+      <div class="s4-bg">
+        <img src="images/bg4.png" alt="">
+      </div>
+      <div class="s4-scrim"></div>
+
+      <div class="s4-content">
+        <div class="s4-head">
+          <span class="mono">ILSANGECHA TEA BLENDING</span>
+          <h2 class="serif">일상에차 블렌딩</h2>
+          <p class="s4-intro">
+            <!-- 찻잎 본연의 결에 꽃과 과일, 허브를 더해 완성한 일상에차의 블렌드를 소개합니다. -->
+          </p><p></p>
+        </div>
+
+        <div class="p-slider" id="paletteSlider">
+
+          <div class="p-slide">
+            <div class="p-frame">
+              <div class="p-photo">
+                <!-- 슬라이드 이미지 삽입 경로: images/palette-1.jpg -->
+                <img src="images/sec2-t1.png" alt="첫잎 녹차 찻잎과 찻물" onerror="this.style.display='none'">
+              </div>
+              <div class="p-info">
+                <span class="p-category mono">MAIN TEA</span>
+                <div class="p-name">첫잎 녹차</div>
+                <dl class="p-blend-list">
+                  <div><dt class="mono">BASE</dt><dd>어린 녹차잎</dd></div>
+                  <div><dt class="mono">BLEND</dt><dd>찻잎 그대로</dd></div>
+                </dl>
+                <p class="p-desc">여린 찻잎의 맑은 향과 담백한 감칠맛, 은은하게 이어지는 단맛을 담았습니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-slide">
+            <div class="p-frame">
+              <div class="p-photo">
+                <!-- 슬라이드 이미지 삽입 경로: images/palette-2.jpg -->
+                <img src="images/sec2-t2.png" alt="꽃잎을 블렌딩한 정원 산책 차" onerror="this.style.display='none'">
+              </div>
+              <div class="p-info">
+                <span class="p-category mono">SIGNATURE BLEND</span>
+                <div class="p-name">정원 산책</div>
+                <dl class="p-blend-list">
+                  <div><dt class="mono">BASE</dt><dd>덖음 녹차</dd></div>
+                  <div><dt class="mono">BLEND</dt><dd>장미 · 콘플라워 · 금잔화</dd></div>
+                </dl>
+                <p class="p-desc">부드러운 녹차 위로 다채로운 꽃향이 차분하게 피어나는 산뜻한 플로럴 블렌드입니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-slide">
+            <div class="p-frame">
+              <div class="p-photo">
+                <!-- 슬라이드 이미지 삽입 경로: images/palette-3.jpg -->
+                <img src="images/sec2-t3.png" alt="캐모마일과 허브를 블렌딩한 햇살 캐모마일 차" onerror="this.style.display='none'">
+              </div>
+              <div class="p-info">
+                <span class="p-category mono">HERBAL BLEND</span>
+                <div class="p-name">햇살 캐모마일</div>
+                <dl class="p-blend-list">
+                  <div><dt class="mono">BASE</dt><dd>캐모마일</dd></div>
+                  <div><dt class="mono">BLEND</dt><dd>레몬그라스 · 허브</dd></div>
+                </dl>
+                <p class="p-desc">포근한 캐모마일에 싱그러운 허브 향을 더해 하루의 긴장을 부드럽게 내려놓게 합니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-slide">
+            <div class="p-frame">
+              <div class="p-photo">
+                <!-- 슬라이드 이미지 삽입 경로: images/palette-4.jpg -->
+                <img src="images/sec2-t4.png" alt="시트러스와 꽃잎을 블렌딩한 오후의 시트러스 차" onerror="this.style.display='none'">
+              </div>
+              <div class="p-info">
+                <span class="p-category mono">SIGNATURE BLEND</span>
+                <div class="p-name">오후의 시트러스</div>
+                <dl class="p-blend-list">
+                  <div><dt class="mono">BASE</dt><dd>녹차</dd></div>
+                  <div><dt class="mono">BLEND</dt><dd>오렌지필 · 콘플라워 · 장미</dd></div>
+                </dl>
+                <p class="p-desc">맑은 녹차에 상큼한 시트러스와 꽃향을 겹쳐 나른한 오후를 가볍게 깨우는 차입니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-slide">
+            <div class="p-frame">
+              <div class="p-photo">
+                <!-- 슬라이드 이미지 삽입 경로: images/palette-5.jpg -->
+                <img src="images/sec2-t5.png" alt="히비스커스와 용과를 블렌딩한 루비 가든 차" onerror="this.style.display='none'">
+              </div>
+              <div class="p-info">
+                <span class="p-category mono">FRUIT BLEND</span>
+                <div class="p-name">루비 가든</div>
+                <dl class="p-blend-list">
+                  <div><dt class="mono">BASE</dt><dd>히비스커스</dd></div>
+                  <div><dt class="mono">BLEND</dt><dd>용과 · 장미 · 과일 조각</dd></div>
+                </dl>
+                <p class="p-desc">새콤한 히비스커스와 달콤한 과일 향이 어우러져 선명하고 생기 있는 여운을 남깁니다.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="p-arrows">
+          <button class="p-arrow" id="palettePrev" aria-label="이전 슬라이드">←</button>
+          <button class="p-arrow" id="paletteNext" aria-label="다음 슬라이드">→</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- 상단 네비게이션 '소개' 클릭 시 커튼이 올라오는 지점으로 이동하기 위한 앵커 -->
+  <div id="intro" class="pin-anchor"></div>
+  <!-- 상단 네비게이션 '다도' 클릭 시 섹션3 커튼이 올라오는 지점으로 이동하기 위한 앵커 -->
+  <div id="ritual" class="pin-anchor"></div>
+</div>
+
+<!-- 블렌딩을 고정한 채 브루잉이 아래에서 올라온 뒤 6단계를 진행하는 구간 -->
+<div class="brew-menu-transition">
+
+<!-- ================= BREW GUIDE ================= -->
+<section class="section steps-section" id="brew-guide">
+  <div class="steps-head">
+    <span class="mono">A SIMPLE TEA BREWING GUIDE</span>
+    <h2 class="serif">여섯 걸음의 브루잉</h2>
+  </div>
+  <div class="brew-step-grid" aria-label="브루잉 6단계 일러스트">
+    <!-- 각 일러스트 파일 경로: images/brew01.gif ~ images/brew06.gif -->
+    <article class="brew-step">
+      <div class="brew-step-copy">
+        <span class="brew-step-number mono">STEP 01.</span>
+        <h3>찻잔 예열하기</h3>
+        <p>따뜻한 물로 찻잔과 다관을 데워요.</p>
+      </div>
+      <div class="brew-step-visual"><img src="images/brew01.gif" alt="찻잔 예열하기" onerror="this.style.display='none'"></div>
+    </article>
+    <article class="brew-step">
+      <div class="brew-step-copy">
+        <span class="brew-step-number mono">STEP 02.</span>
+        <h3>물 붓기</h3>
+        <p>90도의 물을 천천히 부어요.</p>
+      </div>
+      <div class="brew-step-visual"><img src="images/brew02.gif" alt="물 붓기" onerror="this.style.display='none'"></div>
+    </article>
+    <article class="brew-step">
+      <div class="brew-step-copy">
+        <span class="brew-step-number mono">STEP 03.</span>
+        <h3>찻잎 넣기</h3>
+        <p>티백 또는 찻잎을 넣어요.</p>
+      </div>
+      <div class="brew-step-visual"><img src="images/brew03.gif" alt="찻잎 넣기" onerror="this.style.display='none'"></div>
+    </article>
+    <article class="brew-step">
+      <div class="brew-step-copy">
+        <span class="brew-step-number mono">STEP 04.</span>
+        <h3>우리기</h3>
+        <p>2~3분간 잎이 우러나길 기다려요.</p>
+      </div>
+      <div class="brew-step-visual"><img src="images/brew04.gif" alt="우리기" onerror="this.style.display='none'"></div>
+    </article>
+    <article class="brew-step">
+      <div class="brew-step-copy">
+        <span class="brew-step-number mono">STEP 05.</span>
+        <h3>나누어 따르기</h3>
+        <p>작은 잔에 골고루 나누어 따라요.</p>
+      </div>
+      <div class="brew-step-visual"><img src="images/brew05.gif" alt="나누어 따르기" onerror="this.style.display='none'"></div>
+    </article>
+    <article class="brew-step">
+      <div class="brew-step-copy">
+        <span class="brew-step-number mono">STEP 06.</span>
+        <h3>마시고 즐기기</h3>
+        <p>향을 먼저, 그리고 천천히 한 모금.</p>
+      </div>
+      <div class="brew-step-visual"><img src="images/brew06.gif" alt="마시고 즐기기" onerror="this.style.display='none'"></div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= TEA MENU CARDS ================= -->
+<section class="section cards-section" id="menu-cards">
+
+  <!-- 섹션 전체 배경 이미지·영상 삽입 경로: 아래 video의 source src를 실제 영상으로 교체하세요 (예: videos/menu-bg.mp4). 이미지를 쓰려면 video 태그 대신 <img class="cards-bg-img" src="images/menu-bg.jpg"> 로 교체 -->
+  <div class="cards-bg">
+    <img src="./images/bg6.png" alt="0">
+    <div class="cards-bg-fallback"></div>
+    <div class="cards-bg-scrim"></div>
+  </div>
+
+  <div class="cards-head">
+    <span class="mono">CHOOSE YOUR PAUSE</span>
+    <h2 class="serif">오늘의 차</h2>
+  </div>
+  <div class="cards-grid">
+
+    <div class="tea-card reveal">
+      <!-- 카드 배경 영상 삽입 경로: 예) videos/tea-black.mp4. 이미지를 쓰려면 video 태그 대신 <img> 로 교체 -->
+      <div class="tea-card-media">
+        <video autoplay muted loop playsinline>
+          <source src="videos/today1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="tea-card-scrim"></div>
+      <div class="tea-card-content">
+        <svg class="icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <path d="M20 45 Q20 35 50 35 Q80 35 80 45 L76 72 Q76 82 50 82 Q24 82 24 72 Z"/>
+          <path d="M80 42 Q92 42 90 54 Q88 62 78 60"/>
+        </svg>
+        <span class="en mono" data-tea-en>BLACK TEA</span>
+        <h3 class="serif" data-tea-name>홍차</h3>
+        <dl>
+          <div class="row"><dt>우리는 시간</dt><dd data-tea-time>3 – 4분</dd></div>
+          <div class="row"><dt>물 온도</dt><dd data-tea-temp>95℃</dd></div>
+          <div class="row"><dt>방법</dt><dd data-tea-method>다관에 우려 나눠 따르기</dd></div>
+          <div class="row"><dt>효능</dt><dd data-tea-benefit>폴리페놀과 카페인이 일상에 활력을 더해줘요</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="tea-card reveal">
+      <!-- 카드 배경 영상 삽입 경로: 예) videos/tea-green.mp4. 이미지를 쓰려면 video 태그 대신 <img> 로 교체 -->
+      <div class="tea-card-media">
+        <video autoplay muted loop playsinline>
+          <source src="videos/today2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="tea-card-scrim"></div>
+      <div class="tea-card-content">
+        <svg class="icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <path d="M50 20 Q30 40 30 58 Q30 76 50 76 Q70 76 70 58 Q70 40 50 20Z"/>
+          <path d="M50 34 L50 62"/>
+        </svg>
+        <span class="en mono" data-tea-en>GREEN TEA</span>
+        <h3 class="serif" data-tea-name>녹차</h3>
+        <dl>
+          <div class="row"><dt>우리는 시간</dt><dd data-tea-time>1 – 2분</dd></div>
+          <div class="row"><dt>물 온도</dt><dd data-tea-temp>70℃</dd></div>
+          <div class="row"><dt>방법</dt><dd data-tea-method>낮은 온도로 짧고 은은하게</dd></div>
+          <div class="row"><dt>효능</dt><dd data-tea-benefit>카테킨과 은은한 카페인이 산뜻한 활력을 더해줘요</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="tea-card reveal">
+      <!-- 카드 배경 영상 삽입 경로: 예) videos/tea-herbal.mp4. 이미지를 쓰려면 video 태그 대신 <img> 로 교체 -->
+      <div class="tea-card-media">
+        <video autoplay muted loop playsinline>
+          <source src="videos/today3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="tea-card-scrim"></div>
+      <div class="tea-card-content">
+        <svg class="icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <circle cx="50" cy="52" r="26"/>
+          <path d="M42 44 Q50 40 58 44 Q54 52 58 60 Q50 64 42 60 Q46 52 42 44Z"/>
+        </svg>
+        <span class="en mono" data-tea-en>CHAMOMILE</span>
+        <h3 class="serif" data-tea-name>캐모마일</h3>
+        <dl>
+          <div class="row"><dt>우리는 시간</dt><dd data-tea-time>5 – 6분</dd></div>
+          <div class="row"><dt>물 온도</dt><dd data-tea-temp>95℃</dd></div>
+          <div class="row"><dt>방법</dt><dd data-tea-method>뚜껑을 덮고 포근한 향 충분히 우리기</dd></div>
+          <div class="row"><dt>효능</dt><dd data-tea-benefit>편안한 휴식과 잠들기 전 차분한 루틴에 잘 어울려요</dd></div>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 오늘의 차를 고정한 채 푸터가 아래에서 올라와 덮는 마지막 전환 -->
+<!-- ================= FOOTER ================= -->
+<footer class="footer" id="contact">
+  <div class="footer-grid">
+
+    <!-- 좌측 세로 이미지: 아코디언 메뉴를 누를 때마다 아래 img의 src가 각 메뉴의 data-image 경로로 바뀝니다 -->
+    <div class="footer-media">
+      <img id="footerImage" src="images/footer_bg1.png" alt="" onerror="this.onerror=null;this.src='images/footer_bg.png';">
+      <div class="footer-media-fallback"></div>
+    </div>
+
+    <div class="footer-panel">
+      <div class="h-accordion">
+
+        <!-- 좌측: 선택된 메뉴의 텍스트. 아래 제목/본문은 클릭해서 바로 수정할 수 있어요 -->
+        <div class="h-acc-content">
+          <div class="h-acc-title" id="footerTitle">문의 &amp; SNS</div>
+          <div class="h-acc-text" id="footerText">
+            <p>운영시간 내 언제든 편하게 연락해 주세요.<br>hello@ilsangecha.kr &nbsp;·&nbsp; 02-1234-5678</p>
+          </div>
+          <div class="acc-sns" id="footerSns">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2z" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Blog">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 우측: 4개 탭이 항상 하나로 붙어있는 그룹. 클릭하면 왼쪽 콘텐츠와 이미지가 바뀌어요 -->
+        <div class="h-acc-tabs" id="footerTabs">
+          <button class="h-acc-head active" data-index="0" data-image="images/footer_bg1.png" data-title="문의 &amp; SNS">
+            <span class="tab-plus">+</span>
+            <span class="tab-label">문의 &amp; SNS</span>
+          </button>
+          <button class="h-acc-head" data-index="1" data-image="images/footer_bg2.png" data-title="오프라인 스토어">
+            <span class="tab-plus">+</span>
+            <span class="tab-label">오프라인 스토어</span>
+          </button>
+          <button class="h-acc-head" data-index="2" data-image="images/footer_bg3.png" data-title="1:1 문의">
+            <span class="tab-plus">+</span>
+            <span class="tab-label">1:1 문의</span>
+          </button>
+          <button class="h-acc-head" data-index="3" data-image="images/footer_bg4.png" data-title="멤버십 혜택">
+            <span class="tab-plus">+</span>
+            <span class="tab-label">멤버십 혜택</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copy-bar mono">
+    <span>© 2026 ILSANGECHA. ALL RIGHTS RESERVED.</span>
+    <span>SEOUL, KOREA</span>
+  </div>
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
