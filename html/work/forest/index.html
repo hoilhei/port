@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="KO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>forest</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <header id="header">
+        <div class="headIn">
+          <h1 id="logo">
+            <a href="#"><img src="./images/logo.png" alt="logo" /></a>
+          </h1>
+          <nav id="nav">
+            <ul>
+              <li><a href="#slideWrap">About</a></li>
+              <li><a href="#product-title">product</a></li>
+              <li><a href="#content2">Story</a></li>
+              <li><a href="#footer">contact</a></li>
+            </ul>
+          </nav>
+          <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+      <div id="slideWrap" class="swiper slideWrap">
+        <ul class="slide swiper-wrapper">
+          <li class="swiper-slide">
+            <a href="#">
+              <!-- <img src="./images/s0.png" alt="0" /> -->
+              <div class="videoWrap">
+                <video class="video" src="./video/video.mp4" autoplay muted loop playsinline>
+                </video>
+              </div>
+              <div class="txt">
+                <span class="s_des">All-ganic body wash from nature</span>
+                <h3 class="s_tit">FOREST BODY WASH</h3>
+                <span class="s_date">12.7 fl. oz./375ml</span>
+              </div>
+              <div class="more">
+                <a href="#product-title" class="more_btn">
+                  <span>MORE VEIW</span>
+                </a>
+              </div>
+            </a>
+          </li>
+          <li class="swiper-slide">
+            <a href="#">
+              <!-- <img src="./images/s0.png" alt="0" /> -->
+              <div class="videoWrap">
+                <video class="video" src="./video/video1.mp4" autoplay muted loop playsinline>
+                </video>
+              </div>
+              <div class="txt">
+                <span class="s_des">All-ganic body wash from nature</span>
+                <h3 class="s_tit">FOREST BODY WASH</h3>
+                <span class="s_date">12.7 fl. oz./375ml</span>
+              </div>
+              <div class="more">
+                <a href="#product-title" class="more_btn">
+                  <span>MORE VEIW</span>
+                </a>
+              </div>
+            </a>
+          </li>
+          <!-- <li class="swiper-slide">
+            <a href="#">
+              <img src="./images/s1.png" alt="0" />
+              <div class="txt">
+                <span class="s_des">All-ganic body wash from nature</span>
+                <h4 class="s_tit">FOREST BODY WASH</h4>
+                <span class="s_date">12.7 fl. oz./375ml</span>
+              </div>
+              <div class="more">
+                <a href="#" class="more_btn">
+                  <span>MORE VEIW</span>
+                </a>
+              </div>
+            </a>
+          </li> -->
+        </ul>
+        <div class="more">
+          <a href="#product-title" class="more_btn">
+            <span>more</span>
+          </a>
+        </div>
+
+        <div class="swiper-pagination rolling"></div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+      <script>
+        var swiper = new Swiper(".slideWrap", {
+          spaceBetween: 0,
+          centeredSlides: true,
+          autoplay: {
+            delay: 7000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      </script>
+      <h2 id="product-title" class="product-section-title">PRODUCT BY FOREST</h2>
+      <section id="content1">
+        <div class="cont1">
+          <a href="#">
+            <div class="imgB">
+              <img src="./images/c1_0.jpg" alt="0" />
+            </div>
+            <div class="txtB">
+              <span>CREAM PRODUCT</span>
+              <span>FOREST INTENSIVE HAND CREAM</span>
+              <span>Wash focused on fragile skin</span>
+            </div>
+          </a>
+        </div>
+        <div class="cont2">
+          <a href="#">
+            <div class="imgB">
+              <img src="./images/c1_1.jpg" alt="0" />
+            </div>
+            <div class="txtB">
+              <span>OIL PRODUCT</span>
+              <span>FOREST INTENSIVE BODY OIL</span>
+              <span>Wash focused on fragile skin</span>
+            </div>
+          </a>
+        </div>
+        <div class="cont3">
+          <a href="#">
+            <div class="imgB">
+              <img src="./images/c1_2.jpg" alt="0" />
+            </div>
+            <div class="txtB">
+              <span>WASH PRODUCT</span>
+              <span>FOREST INTENSIVE HAND WASH</span>
+              <span>Wash focused on fragile skin</span>
+            </div>
+          </a>
+        </div>
+      </section>
+      <div class="product-slider-indicator" aria-hidden="true">
+        <span></span>
+      </div>
+      <section id="content2">
+        <div class="imgB">
+          <img src="./images/c2.jpg" alt="c2" />
+        </div>
+        <template>
+        <div class="story-extra-images" aria-label="FOREST story images">
+          <div class="story-extra-image">
+            <img src="./images/s0.jpg" alt="FOREST 제품을 사용하는 모습" />
+          </div>
+          <div class="story-extra-image">
+            <img src="./images/s1.jpg" alt="FOREST 제품을 사용하는 모습" />
+          </div>
+        </div>
+        </template>
+        <div class="txtB">
+          <span>FOREST STORY</span>
+          <span>FOREST 는 우리의 일상과 함께 합니다.</span>
+          <span>우리의 몸은 자연 속에 속했을 때 가장 편안합니다. <BR>자연은 드러나지 않지만 우리의 일상 속에 함께합니다.<br>주변을 돌아보면 자연은 우리를 감싸고 품고 있습니다. <BR>그 자연에 우리의 몸을 맡깁니다.</span>
+        </div>
+      </section>
+      <section id="content3">
+        <div class="cont3Wrap">
+          <p class="con3_tit">
+            <span>HOW TO USE PRODUCT</span>
+          </p>
+          <div class="c3_box1">
+            <a href="#">
+              <div class="imgB">
+                  <img src="./images/c3_0.png" alt="0" />
+              </div>
+              <div class="txtB">
+                <span>어디서나 수분 미스트</span>
+                <span>외부 환경으로로 인해 피부가 더욱 민감한 날에는 미스트를 용기에 넣어 사용해보세요.
+                손으로 도포시 느껴질 수 있는 아주 작은 자극감까지도 최소화 할 수 있어요.</span>
+              </div>
+            </a>
+          </div>
+          <div class="c3_box2">
+            <a href="#">
+              <div class="imgB">
+                <img src="./images/c3_1.png" alt="0" />
+              </div>
+              <div class="txtB">
+                <span>첫 단계 트리트먼트</span>
+                <span>세안 직후 스킨케어 첫 단계에서 적당량을 덜어 흡수시켜 주세요.
+                화장솜에 덜어 피부 결을 따라 흡수시켜 주면 피부 결 정돈에 도움이 됩니다.</span>
+              </div>
+            </a>
+          </div>
+          <div class="c3_box3">
+            <div class="imgB">
+              <img src="./images/c3_2.png" alt="0" />
+            </div>
+            <div class="txtB">
+              <span>레이어링 보습 up</span>
+              <span
+                >유달리 피부가 건조하고 푸석한 날에는 3번 레이어링 해보세요.
+덧바를수록 보습이 누적되어 더욱 더 촉촉하고 부드러운 피부를 선사합니다.</span
+              >
+            </div>
+          </div>
+          <div class="c3_box4">
+            <a href="#">
+              <div class="imgB">
+                <img src="./images/c3_3.png" alt="0" />
+              </div>
+              <div class="txtB">
+                <span>수분 진정 SOS</span>
+                <span>피부 진정이 필요하거나 더욱 깊은 수분 공급이 필요할 때는 화장솜에 충분히 적셔 3분간 팩처럼 올려주세요.</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <footer id="footer">
+        <div class="logo_b">
+          <a href="#"><img src="./images/logo_B.png" alt="logo"></a>
+        </div>
+        <div class="f_sns">
+          <ul>
+            <li>
+              <a href="#">
+                <span></span>
+                <span>INSTAGRAM</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span></span>
+                <span>FACEBOOK</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span></span>
+                <span>TWITTER</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span></span>
+                <span>YOUTUBUE</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span></span>
+                <span>NEWSLETTER</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="f_copy">
+          <p>14 Samcheong-ro, Jongno-gu, Seoul 03062 Korea</p>
+          <p>©  2026. Mala Creative Studio. Based in Rotterdam, Netherlands.</p>
+        </div>
+      </footer>
+    </div>
+    <script>
+      (function () {
+        var slider = document.getElementById("content1");
+        var indicator = document.querySelector(".product-slider-indicator");
+        var thumb = indicator && indicator.querySelector("span");
+        if (!slider || !indicator || !thumb) return;
+
+        function updateProductIndicator() {
+          var maxScroll = Math.max(0, slider.scrollWidth - slider.clientWidth);
+          var trackWidth = indicator.clientWidth;
+          var thumbWidth = maxScroll
+            ? Math.max(34, trackWidth * (slider.clientWidth / slider.scrollWidth))
+            : trackWidth;
+          var maxLeft = Math.max(0, trackWidth - thumbWidth);
+          var left = maxScroll ? (slider.scrollLeft / maxScroll) * maxLeft : 0;
+          thumb.style.width = thumbWidth + "px";
+          thumb.style.transform = "translateX(" + left + "px)";
+        }
+
+        slider.addEventListener("scroll", updateProductIndicator, { passive: true });
+        window.addEventListener("resize", updateProductIndicator);
+        updateProductIndicator();
+      })();
+
+      (function () {
+        var slider = document.getElementById("content1");
+        if (!slider || !window.matchMedia("(max-width: 767px)").matches) return;
+
+        var isDragging = false;
+        var startX = 0;
+        var startScrollLeft = 0;
+        var dragDistance = 0;
+
+        slider.addEventListener("pointerdown", function (event) {
+          if (event.pointerType === "mouse" && event.button !== 0) return;
+          isDragging = true;
+          dragDistance = 0;
+          startX = event.clientX;
+          startScrollLeft = slider.scrollLeft;
+          slider.classList.add("is-dragging");
+          slider.setPointerCapture(event.pointerId);
+        });
+
+        slider.addEventListener("pointermove", function (event) {
+          if (!isDragging) return;
+          dragDistance = Math.abs(event.clientX - startX);
+          slider.scrollLeft = startScrollLeft - (event.clientX - startX);
+        });
+
+        function stopDragging(event) {
+          if (!isDragging) return;
+          isDragging = false;
+          slider.classList.remove("is-dragging");
+          if (event && slider.hasPointerCapture(event.pointerId)) {
+            slider.releasePointerCapture(event.pointerId);
+          }
+        }
+
+        slider.addEventListener("pointerup", stopDragging);
+        slider.addEventListener("pointercancel", stopDragging);
+        slider.addEventListener("click", function (event) {
+          if (dragDistance < 8) return;
+          event.preventDefault();
+          event.stopPropagation();
+          dragDistance = 0;
+        }, true);
+      })();
+
+      (function () {
+        var header = document.getElementById("header");
+        var toggle = document.querySelector(".menu-toggle");
+        var nav = document.getElementById("nav");
+        if (!header || !toggle || !nav) return;
+
+        function setMenuState(isOpen) {
+          toggle.classList.toggle("is-open", isOpen);
+          nav.classList.toggle("is-open", isOpen);
+          toggle.setAttribute("aria-expanded", String(isOpen));
+          toggle.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+        }
+
+        toggle.addEventListener("click", function () {
+          setMenuState(!nav.classList.contains("is-open"));
+        });
+
+        nav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            setMenuState(false);
+          });
+        });
+
+        document.addEventListener("click", function (event) {
+          if (!nav.classList.contains("is-open") || header.contains(event.target)) return;
+          setMenuState(false);
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") setMenuState(false);
+        });
+      })();
+    </script>
+  </body>
+</html>
