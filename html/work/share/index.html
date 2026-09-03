@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>delibirdy | 사랑을 나눠요, 화분을 나눠요</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement-bar">
+      <p>🕊️ 사랑을 나눠요, 화분을 나눠요 | Delibirdy</p>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="nav-container">
+        <a href="#" class="logo" aria-label="딜리버디 홈">
+          <img class="logo-mark" src="./images/delibirdy-2.png" alt="h_logo" />
+          <span class="logo-copy">
+            <strong class="logo-title">딜리버디</strong>
+            <span class="logo-subtitle">사랑을 나눠요, 화분을 나눠요</span>
+          </span>
+        </a>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="메뉴 열기"
+          aria-controls="desktop-nav"
+          aria-expanded="false"
+        >
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M3 12h18M3 6h18M3 18h18"></path>
+          </svg>
+        </button>
+
+        <nav class="desktop-nav" id="desktop-nav">
+          <button
+            id="close-menu-btn"
+            class="close-menu-btn"
+            type="button"
+            aria-label="메뉴 닫기"
+          >
+            &times;
+          </button>
+          <a href="#story">BRAND</a>
+          <a href="#collection">SHOP</a>
+          <a href="#lookbook">LOOKBOOK</a>
+          <a href="#caring">GARDENING</a>
+          <a href="#review">REVIEW</a>
+        </nav>
+
+        <div class="header-utilities">
+          <button
+            class="cart-button"
+            id="cart-trigger"
+            type="button"
+            aria-label="장바구니 열기"
+          >
+            <span aria-hidden="true">🛒</span>
+            <span class="cart-count" id="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero-motto-transition" id="hero-motto-transition">
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-wrapper">
+        <div class="hero-slide">
+          <div class="slide-bg-overlay"></div>
+          <video
+            class="slide-media"
+            src="./video/simple.mp4"
+            loop
+            muted
+            playsinline
+            autoplay
+          ></video>
+          <div class="slide-content">
+            <span class="slide-badge">Share love, Share plant</span>
+            <h1 class="slide-title">사랑을 나눠요,<br />화분을 나눠요</h1>
+            <p class="slide-desc">
+              새가 소중한 씨앗을 떨어뜨리듯, 당신의 일상에 따스한 자연과 정갈한
+              미감을 배달합니다.
+            </p>
+            <div class="slide-actions">
+              <a href="#story" class="btn btn-primary">브랜드 스토리 읽기</a>
+              <a href="#collection" class="btn btn-secondary">화분 구경하기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOTTO -->
+    <div class="marquee-bar">
+      <div class="marquee-content">
+        <span>새가 소중한 씨앗을 떨어뜨리듯, 당신의 일상에 따스한 자연과 정갈한 미감을 배달합니다. • Deliverdy • </span>
+        <span>새가 소중한 씨앗을 떨어뜨리듯, 당신의 일상에 따스한 자연과 정갈한 미감을 배달합니다. • Deliverdy • </span>
+        <span>새가 소중한 씨앗을 떨어뜨리듯, 당신의 일상에 따스한 자연과 정갈한 미감을 배달합니다. • Deliverdy • </span>
+        <span>새가 소중한 씨앗을 떨어뜨리듯, 당신의 일상에 따스한 자연과 정갈한 미감을 배달합니다. • Deliverdy • </span>
+      </div>
+    </div>
+
+    <section class="motto-section" id="story">
+      <div class="forest-bg"></div>
+      <div class="motto-stage">
+        <div class="motto-title">
+          <span>DELIBIRDY MOTTO</span>
+          <h2>“사랑을 나눠요, 화분을 나눠요”</h2>
+          <p>
+            화분을 나누는 일은 우리 일상에서 위로와 사랑을 건네주는 선물같은 일입니다.<br />
+            Delibirdy(딜리버디)에서 새가 소중한 씨앗을 떨어뜨리듯<br />우리 일상에 소중하고 사랑스러운 화분을 더 자주 선물하고 나눠보세요.
+          </p>
+        </div>
+
+        <div class="motto-cards">
+          <div class="motto-card-grid">
+        <div class="motto-card card1" role="button" tabindex="0" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/logo_smail_03.jpg" alt="딜리버디 브랜드 콘셉트" />
+              <div class="card-front-title">
+                <h3>Delibirdy_<br />Delivery + Bird의 합성어</h3>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-content">
+                <h3>01. Delivery</h3>
+                <p>
+                  새가 소중한 씨앗을 떨어뜨리듯, 당신의 일상에 싹을
+                  틔웁니다. Delibirdy(딜리버디)는 그 신비로운 날갯짓에서 영감을
+                  얻어 출발하였습니다. 우리는 정제된 미감의 반려식물과 정성 깃든
+                  인테리어 오브제를 소중한 사람들의 집 앞으로 안전하게
+                  전해드립니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="motto-card card2" role="button" tabindex="0" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/logo_smail_07.png" alt="씨앗을 전하는 새" />
+              <div class="card-front-title">
+                <h3>
+                  Plant pot_<br />공간과 어울리는 화분
+                </h3>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-content">
+                <h3>02. My interior objet</h3>
+                <p>
+                  나의 공간에 어울리는 오브제를 찾듯 공간을 변화시키는 화분 오브제를 찾아보세요. 자기, 세라믹 등의 고급스러운 재질의 화분으로 지인에게 선물해보세요.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="motto-card card3" role="button" tabindex="0" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/logo_smail_09.png" alt="따스한 자연의 배달" />
+              <div class="card-front-title">
+                <h3>Gardening_<br />정밀한 개별 건강 진단</h3>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-content">
+                <h3>03. Slow Craftsmanship</h3>
+                <p>
+                  Delibirdy의 식물들은 경기도 포천의 고요한 가조 밀림에서 숙련된
+                  세라미스트와 식물학자들의 협업으로 보살펴집니다. 식물의 뿌리가
+                  숨쉴 수 있는 맞춤 전용 난초 흙배합과 배수 구조를 장인의 원칙으로
+                  고집하며, 출고 직전까지 정밀한 개별 건강 진단을 거칩니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="motto-card card4" role="button" tabindex="0" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/logo_smail_11.png" alt="사랑을 나누는 화분" />
+              <div class="card-front-title">
+                <h3>packaging_<br />친환경 에코 패키징</h3>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-content">
+                <h3>04. Secure & Eco-Friendly Packaging</h3>
+                <p>
+                  자연을 보호하기 위해 100% 생분해성 사탕수수 골판지와 한지 버퍼(Nest-Buffer)를 활용한 친환경 에코 패키징 특허 포장재를 사용합니다. 화분이 흔들리거나 다치지 않도록 요람처럼 단단히 고정되어 배달됩니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- COLLECTION -->
+    <section class="collection-section" id="collection">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-badge">Botanical Curations</span>
+          <h2>SHOP</h2>
+          <p>
+            사랑하고 아끼는 공간을 위해 세밀히 매칭한 화초 큐레이션 및 화분
+            오브제를 만나보세요.
+          </p>
+        </div>
+
+        <div class="slider-wrapper">
+          <button
+            class="slider-btn prev"
+            id="btn-prev"
+            type="button"
+            aria-label="이전 상품"
+          >
+            ❮
+          </button>
+          <div class="product-track" id="product-track"></div>
+          <button
+            class="slider-btn next"
+            id="btn-next"
+            type="button"
+            aria-label="다음 상품"
+          >
+            ❯
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOOKBOOK -->
+    <section class="deliverdy-lookbook" id="lookbook">
+      <div class="container" id="lookbook-header">
+        <div class="section-header">
+          <span class="sub-badge">공간을 디자인하는 플랜트</span>
+          <h2>LOOKBOOK</h2>
+          <p>
+            당신의 가구 위, 빈 벽면에서 부드럽게 빛나는 식물과 화분이 어우러지는
+            룩북을 감상해보세요.
+          </p>
+        </div>
+      </div>
+
+      <div class="lookbook-panels">
+        <a
+          class="lookbook-panel"
+          href="./detail.html?product=0"
+          data-lookbook-product="0"
+          style="background-image: url('./images/int-1.jpg')"
+          aria-label="자연스러운 휴식 관련 상품 보기"
+        >
+          <div class="panel-content">
+            <span class="subtitle">Living Room</span>
+            <h2>자연스러운 휴식</h2>
+            <span class="panel-link-label">관련 상품 보기 →</span>
+          </div>
+        </a>
+        <a
+          class="lookbook-panel"
+          href="./detail.html?product=1"
+          data-lookbook-product="1"
+          style="background-image: url('./images/int-2.jpg')"
+          aria-label="영감을 주는 공간 관련 상품 보기"
+        >
+          <div class="panel-content">
+            <span class="subtitle">Workspace</span>
+            <h2>영감을 주는 공간</h2>
+            <span class="panel-link-label">관련 상품 보기 →</span>
+          </div>
+        </a>
+        <a
+          class="lookbook-panel"
+          href="./detail.html?product=4"
+          data-lookbook-product="4"
+          style="background-image: url('./images/sto-2.jpg')"
+          aria-label="아늑한 밤의 무드 관련 상품 보기"
+        >
+          <div class="panel-content">
+            <span class="subtitle">Bedroom</span>
+            <h2>아늑한 밤의 무드</h2>
+            <span class="panel-link-label">관련 상품 보기 →</span>
+          </div>
+        </a>
+        <a
+          class="lookbook-panel"
+          href="./detail.html?product=2"
+          data-lookbook-product="2"
+          style="background-image: url('./images/main_2.jpg')"
+          aria-label="작은 실내 정원 관련 상품 보기"
+        >
+          <div class="panel-content">
+            <span class="subtitle">Balcony</span>
+            <h2>작은 실내 정원</h2>
+            <span class="panel-link-label">관련 상품 보기 →</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="lookbook-more-wrap" hidden>
+        <button
+          id="lookbook-more-btn"
+          class="lookbook-arrow-btn"
+          type="button"
+          aria-controls="lookbook"
+          aria-expanded="false"
+          aria-label="룩북 더 보기"
+        >
+          <span class="lookbook-arrow-mark" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- GARDENING PLANNER -->
+    <section class="caring-section" id="caring">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-badge">맞춤형 홈가드닝 플래너</span>
+          <h2>Gardening Planner</h2>
+          <p>
+            공간의 환경과 성향을 선택하시면 가장 조화로운 조형 식물을 제안해
+            드립니다.
+          </p>
+        </div>
+
+        <div class="planner-card-box">
+          <div>
+            <fieldset class="quiz-block">
+              <legend class="quiz-label">01. 거실 및 창가의 일조량은 어떤가요?</legend>
+              <div class="quiz-options" data-key="sunlight">
+                <button class="quiz-btn active" type="button" data-val="high">
+                  ☀️ 강한 직사광
+                </button>
+                <button class="quiz-btn" type="button" data-val="mid">
+                  ⛅ 은은한 간접광
+                </button>
+                <button class="quiz-btn" type="button" data-val="low">
+                  🌑 아늑한 반그늘
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset class="quiz-block">
+              <legend class="quiz-label">02. 가드닝 돌봄 성향은 어떠한가요?</legend>
+              <div class="quiz-options" data-key="care">
+                <button class="quiz-btn active" type="button" data-val="beginner">
+                  🌱 가끔 돌보는 무던한 성향
+                </button>
+                <button class="quiz-btn" type="button" data-val="expert">
+                  🌿 매일 가꾸는 정성 어린 성향
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset class="quiz-block">
+              <legend class="quiz-label">03. 함께 생활하는 반려동물이 있나요?</legend>
+              <div class="quiz-options" data-key="friendly">
+                <button class="quiz-btn active" type="button" data-val="yes">
+                  ☀️ 호기심 많은 강아지/고양이
+                </button>
+                <button class="quiz-btn" type="button" data-val="no">
+                  ⛅ 식물과만 공간을 공유
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset class="quiz-block">
+              <legend class="quiz-label">04. 식물이 차지할 공간의 크기는 어느 정도인가요?</legend>
+              <div class="quiz-options" data-key="scale">
+                <button class="quiz-btn active" type="button" data-val="large">
+                  🌳 바닥에 두는 풍성한 존재감
+                </button>
+                <button class="quiz-btn" type="button" data-val="small">
+                  🪴 선반 위 작은 포인트
+                </button>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="planner-result-display" id="planner-result-target"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="review-section" id="review">
+      <div class="container">
+        <div class="section-header review-section-header">
+          <span class="sub-badge">플랜터들의 일기</span>
+          <h2>REVIEW</h2>
+          <p>
+            딜리버디와 함께 싹튼 소중한 초록의 순간과 공간 이야기를
+            만나보세요.
+          </p>
+        </div>
+
+        <div class="reviews-display-grid" id="reviews-card-grid"></div>
+
+        <div
+          class="review-form-container"
+          id="review-form-wrapper"
+          aria-hidden="true"
+          inert
+        >
+          <form id="add-review-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="rev-author">작성자 성명</label>
+                <input
+                  type="text"
+                  id="rev-author"
+                  placeholder="예시: 윤설아"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="rev-product">분양받은 식물</label>
+                <select id="rev-product"></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rev-image-input">리뷰 이미지 첨부</label>
+              <input type="file" id="rev-image-input" accept="image/*" />
+            </div>
+
+            <div class="form-group">
+              <label for="rev-comment">의견 및 후기</label>
+              <textarea
+                id="rev-comment"
+                rows="4"
+                placeholder="식물 배송 상태 및 인테리어 팁을 공유해 주세요."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-submit">등록 완료</button>
+          </form>
+        </div>
+
+        <div class="review-action-wrap">
+          <button
+            class="btn-more-reviews"
+            id="review-more-btn"
+            type="button"
+            aria-controls="reviews-card-grid"
+            aria-expanded="false"
+            hidden
+          >
+            더보기
+          </button>
+          <button
+            class="btn-write-review"
+            id="form-toggle-btn"
+            type="button"
+            aria-controls="review-form-wrapper"
+            aria-expanded="false"
+          >
+            ✍️ 후기 남기기
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="container footer-grid">
+        <div class="footer-col info-col">
+          <h3 class="footer-logo">
+            <img src="./images/delibirdy-2.png" alt="f_logo" />
+            <span>딜리버디</span>
+          </h3>
+          <p class="footer-slogan">사랑을 나눠요, 화분을 나눠요.</p>
+          <p class="footer-desc">
+            배달(Delivery)과 새(Bird)의 섭리를 결합한 Delibirdy입니다.<br />
+            세련되면서도 따뜻한 예술적 가치를 품은 반려식물과 클래식 소품을
+            전해드립니다.
+          </p>
+          <div class="company-details">
+            <span>📍 경기도 포천시 소흘읍 수목원길 48</span>
+            <span>✉️ care@delibirdy.com</span>
+          </div>
+        </div>
+
+        <div class="footer-col newsletter-col">
+          <h4>초록 소식 받아보기 (룩북 구독하기)</h4>
+          <p>
+            시즌 한정 도자기 화분 소식과 계절 맞춤 분무 가이드를 신속히
+            보내드립니다.
+          </p>
+          <form class="footer-form" id="newsletter-form">
+            <input
+              type="email"
+              aria-label="이메일 주소"
+              placeholder="당신의 이메일 주소"
+              required
+            />
+            <button type="submit">구독</button>
+          </form>
+        </div>
+
+        <div class="footer-col tracker-col">
+          <h4>배송조회</h4>
+          <p>주문한 화분과 식물의 배송 현황을 조회해 보세요.</p>
+          <div class="tracker-input-box">
+            <input
+              type="text"
+              id="track-input"
+              aria-label="송장번호"
+              placeholder="송장번호 입력"
+            />
+            <button id="track-btn" type="button">조회</button>
+          </div>
+          <div
+            class="tracker-status-box"
+            id="tracker-status-display"
+            aria-live="polite"
+          ></div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © 2026 Delibirdy. All rights reserved. 사업자번호: 154-82-01994 |
+          대표자: 딜리 버디
+        </p>
+      </div>
+    </footer>
+
+    <div id="toast-container" class="toast" role="status" aria-live="polite">
+      <p id="toast-text">장바구니에 담겼습니다.</p>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

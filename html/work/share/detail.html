@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 상세 | delibirdy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body class="detail-body">
+    <div class="announcement-bar"><p>🕊️ 사랑을 나눠요, 화분을 나눠요 | Delibirdy</p></div>
+
+    <header class="main-header">
+      <div class="nav-container">
+        <a href="index.html" class="logo" aria-label="딜리버디 홈">
+          <img class="logo-mark" src="./images/delibirdy-2.png" alt="딜리버디 로고" />
+          <span class="logo-copy">
+            <strong class="logo-title">딜리버디</strong>
+            <span class="logo-subtitle">사랑을 나눠요, 화분을 나눠요</span>
+          </span>
+        </a>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="메뉴 열기"
+          aria-controls="desktop-nav"
+          aria-expanded="false"
+        >
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 12h18M3 6h18M3 18h18"></path>
+          </svg>
+        </button>
+
+        <nav class="desktop-nav" id="desktop-nav">
+          <button id="close-menu-btn" class="close-menu-btn" type="button" aria-label="메뉴 닫기">&times;</button>
+          <a href="index.html#story">BRAND</a>
+          <a href="index.html#collection">SHOP</a>
+          <a href="index.html#lookbook">LOOKBOOK</a>
+          <a href="index.html#caring">GARDENING</a>
+          <a href="index.html#review">REVIEW</a>
+        </nav>
+
+        <div class="header-utilities">
+          <button class="cart-button" id="cart-trigger" type="button" aria-label="장바구니 열기">
+            <span aria-hidden="true">🛒</span>
+            <span class="cart-count" id="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="detail-shell">
+        <div class="detail-breadcrumb"><a href="index.html">HOME</a><span>/</span><span>SHOP</span><span>/</span><strong id="breadcrumb-name">PRODUCT</strong></div>
+
+        <section class="product-hero" aria-labelledby="product-name">
+          <div class="product-gallery">
+            <div class="product-image-frame">
+              <img id="product-image" src="images/sub_02.jpg" alt="상품 이미지" />
+              <span id="product-tag" class="product-tag">SIGNATURE</span>
+              <span class="image-caption">DELIVERY 01 / 04</span>
+            </div>
+            <div class="gallery-thumbs" id="gallery-thumbs" aria-label="상품 이미지 선택"></div>
+          </div>
+
+          <div class="product-summary">
+            <p class="detail-eyebrow" id="product-category">SIGNATURE TREE</p>
+            <h1 id="product-name">올리브 트리 &amp; 테라코타 슬릿 팟</h1>
+            <p class="scientific-name" id="scientific-name">Olea europaea</p>
+            <div class="rating-line"><span class="stars" id="product-rating" aria-label="별점"></span><span id="review-count">4.9 · 124 Reviews</span></div>
+            <p class="product-description" id="product-description"></p>
+
+            <div class="price-row"><strong id="product-price"></strong><span>무료 배송</span></div>
+
+            <div class="product-accordions" id="product-accordions">
+              <div class="spec-accordion is-open">
+                <button class="spec-accordion-trigger" type="button" aria-expanded="true" aria-controls="spec-panel"><span><b>01</b> 식물 및 화분 명세 (Specifications)</span><i>⌃</i></button>
+                <div class="spec-accordion-panel" id="spec-panel">
+                  <dl class="spec-detail-grid">
+                    <div><dt>화분 소재</dt><dd id="spec-pot">Textured Terracotta</dd></div>
+                    <div><dt>사이즈 범위</dt><dd id="spec-size">Midi Dimension</dd></div>
+                    <div><dt>난이도</dt><dd id="spec-level">Easy Level</dd></div>
+                    <div><dt>조도 권장</dt><dd id="spec-light">밝은 간접광</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <div class="spec-accordion">
+                <button class="spec-accordion-trigger" type="button" aria-expanded="false" aria-controls="care-panel"><span><b>02</b> 세밀한 생육 관리법 (Care Guide)</span><i>⌄</i></button>
+                <div class="spec-accordion-panel" id="care-panel"><p id="accordion-care-copy"></p></div>
+              </div>
+              <div class="spec-accordion">
+                <button class="spec-accordion-trigger" type="button" aria-expanded="false" aria-controls="delivery-panel"><span><b>03</b> 특허 수평 포장 및 안전 배송</span><i>⌄</i></button>
+                <div class="spec-accordion-panel" id="delivery-panel"><p>식물이 흔들리지 않도록 네스트 패키징으로 고정하고, 출고 직전 개별 컨디션을 확인해 안전하게 보내드립니다.</p></div>
+              </div>
+            </div>
+
+            <dl class="quick-specs">
+              <div><dt>빛</dt><dd id="product-sunlight"></dd></div>
+              <div><dt>난이도</dt><dd id="product-difficulty"></dd></div>
+              <div><dt>사이즈</dt><dd id="product-size"></dd></div>
+            </dl>
+
+            <div class="purchase-box">
+              <div class="quantity-row"><span>수량</span><div class="quantity-control"><button id="quantity-minus" type="button" aria-label="수량 줄이기">−</button><strong id="quantity">1</strong><button id="quantity-plus" type="button" aria-label="수량 늘리기">＋</button></div></div>
+              <div class="total-row"><span>총 상품 금액</span><strong id="total-price"></strong></div>
+              <button id="add-cart" class="primary-button" type="button">장바구니에 담기 <span>→</span></button>
+              <button id="gift-button" class="secondary-button" type="button">🎁 선물 포장으로 보내기</button>
+            </div>
+            <p class="delivery-note">Share love. Share plant.</p>
+          </div>
+        </section>
+
+        <section class="trust-strip" aria-label="배송 안내">
+          <div><span>01</span><strong>안전한 네스트 포장</strong><p>식물이 흔들리지 않도록 요람처럼 고정합니다.</p></div>
+          <div><span>02</span><strong>식물 컨디션 케어</strong><p>출고 직전 잎과 뿌리 상태를 한 번 더 확인합니다.</p></div>
+          <div><span>03</span><strong>초록빛 안내서</strong><p>처음 만나는 날부터 필요한 관리법을 함께 보냅니다.</p></div>
+        </section>
+
+        <section class="detail-story-section">
+          <div class="story-image"><img id="story-image" src="images/re-2.jpg" alt="올리브 나뭇잎 디테일" /></div>
+          <div class="story-copy"><p class="detail-eyebrow">PLANT STORY</p><h2 id="story-title">유연한 초록이 줄기,<br />일상에 싱그러운 쉼표를 찍다</h2><p id="story-copy-text"></p></div>
+          <div class="story-side-image"><img id="story-side-image" src="images/sto-2.jpg" alt="화분의 질감 디테일" /></div>
+        </section>
+
+        <section class="care-section" aria-labelledby="care-title">
+          <div class="section-heading"><p class="detail-eyebrow">CARE GUIDE</p><h2 id="care-title" class="sr-only">식물 관리 가이드</h2></div>
+          <div class="care-layout">
+            <article class="care-card">
+              <div class="care-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-9 11-9 19a9 9 0 0 0 18 0c0-8-9-19-9-19Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M19 29c1.1 2.2 2.7 3.3 5 3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+              <span>WATER</span><h3>물 주기</h3><p id="care-water-text"></p>
+            </article>
+            <article class="care-card">
+              <div class="care-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="6.2" stroke="currentColor" stroke-width="1.7"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11.3 11.3l4.2 4.2M32.5 32.5l4.2 4.2M36.7 11.3l-4.2 4.2M15.5 32.5l-4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+              <span>LIGHT</span><h3>햇빛</h3><p id="care-light-text"></p>
+            </article>
+            <article class="care-card">
+              <div class="care-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 8a4 4 0 0 0-4 4v17.2a8 8 0 1 0 8 0V12a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M24 18v14M20.5 22h3M20.5 27h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="24" cy="37" r="3.2" fill="currentColor"/></svg></div>
+              <span>TEMP</span><h3>온도</h3><p id="care-soil-text"></p>
+            </article>
+          </div>
+        </section>
+
+        <section class="space-section" aria-labelledby="space-title">
+          <div class="space-section-inner">
+            <div class="space-intro">
+              <p class="detail-eyebrow">SPACE STYLING</p>
+              <p class="space-product-label" id="space-product-label">아우드리 고무나무는(는)</p>
+              <h2 id="space-title">어떤 공간에도<br />자연스럽게 어울립니다.</h2>
+              <p>다양한 공간에서<br />연출된 식물의 모습을<br />참고해보세요.</p>
+              <div class="space-controls"><button id="space-prev" type="button" aria-label="이전 공간 연출">←</button><button id="space-next" type="button" aria-label="다음 공간 연출">→</button></div>
+            </div>
+            <div class="space-track" id="space-track">
+              <article class="space-card">
+                <div class="space-card-image"><img src="images/re-6.jpg" alt="거실에 놓인 아우드리 고무나무" /><span>LIVING ROOM</span></div>
+                <div class="space-card-copy"><strong>01. 거실 연출</strong><p>따뜻한 크림빛 소파 옆, 햇살 가득한 거실에 식물을 배치해 편안하고 풍요로운 분위기를 연출합니다.</p></div>
+              </article>
+              <article class="space-card">
+                <div class="space-card-image"><img src="images/int-2.jpg" alt="침실에 놓인 식물" /><span>BEDROOM</span></div>
+                <div class="space-card-copy"><strong>02. 침실 연출</strong><p>하루를 포근하게 마무리하는 침실에 초록의 숨결을 얹어, 눈이 편안한 휴식처를 선사합니다.</p></div>
+              </article>
+              <article class="space-card">
+                <div class="space-card-image"><img src="images/main_2.jpg" alt="서재에 놓인 식물" /><span>STUDY ROOM</span></div>
+                <div class="space-card-copy"><strong>03. 서재 연출</strong><p>책과 나무 가구 사이에 놓인 식물이 집중하는 시간에 차분한 생기를 더해줍니다.</p></div>
+              </article>
+              <article class="space-card">
+                <div class="space-card-image"><img src="images/re-5.jpg" alt="선반에 놓인 식물" /><span>HALLWAY</span></div>
+                <div class="space-card-copy"><strong>04. 복도 연출</strong><p>비어 있는 벽면과 낮은 수납장 위에 자연스러운 높이와 리듬을 만들어줍니다.</p></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="spec-section" aria-labelledby="spec-title"><div class="section-heading left"><p class="detail-eyebrow">DETAILS</p><h2 id="spec-title">손끝에서 완성된 큐레이션</h2></div><div class="spec-grid"><div><span>Vessel material</span><strong id="pot-material"></strong></div><div><span>Plant name</span><strong id="botanical-name"></strong></div><div><span>Care level</span><strong id="care-level"></strong></div><div><span>Delivery</span><strong>Eco nest packaging</strong></div></div></section>
+
+        <section class="reviews-section" aria-labelledby="review-title"><div class="section-heading left"><p class="detail-eyebrow">CURATION REVIEWS</p><h2 id="review-title">함께 살아가는 사람들의 이야기</h2></div><div class="reviews-grid" id="reviews-grid"></div></section>
+
+        <section class="recommend-section" aria-labelledby="recommend-title"><div class="section-heading"><p class="detail-eyebrow">RECOMMENDATION</p><h2 id="recommend-title">이 식물과 어울리는 큐레이션</h2><p>함께 두면 더 아름다운 식물과 소품을 추천해드려요.</p></div><div class="recommend-wrap"><button class="recommend-arrow" id="recommend-prev" type="button" aria-label="이전 추천 상품">←</button><div class="recommend-grid" id="recommend-grid"></div><button class="recommend-arrow" id="recommend-next" type="button" aria-label="다음 추천 상품">→</button></div><p class="recommend-guide">← &nbsp; 드래그하여 더 많은 상품을 확인해보세요 &nbsp; →</p></section>
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container footer-grid">
+        <div class="footer-col info-col">
+          <h3 class="footer-logo"><img src="./images/delibirdy-2.png" alt="" /><span>딜리버디</span></h3>
+          <p class="footer-slogan">사랑을 나눠요, 화분을 나눠요.</p>
+          <p class="footer-desc">배달(Delivery)과 새(Bird)의 섭리를 결합한 Delibirdy입니다.<br />세련되면서도 따뜻한 예술적 가치를 품은 반려식물과 클래식 소품을 전해드립니다.</p>
+          <div class="company-details"><span>📍 경기도 포천시 소흘읍 수목원길 48</span><span>✉️ care@delibirdy.com</span></div>
+        </div>
+        <div class="footer-col newsletter-col">
+          <h4>초록 소식 받아보기 (룩북 구독하기)</h4>
+          <p>시즌 한정 도자기 화분 소식과 계절 맞춤 분무 가이드를 신속히 보내드립니다.</p>
+          <form class="footer-form" id="newsletter-form"><input type="email" aria-label="이메일 주소" placeholder="당신의 이메일 주소" required /><button type="submit">구독</button></form>
+        </div>
+        <div class="footer-col tracker-col">
+          <h4>배송조회</h4>
+          <p>주문한 화분과 식물의 배송 현황을 조회해 보세요.</p>
+          <div class="tracker-input-box"><input type="text" id="track-input" aria-label="송장번호" placeholder="송장번호 입력" /><button id="track-btn" type="button">조회</button></div>
+          <div class="tracker-status-box" id="tracker-status-display" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="container footer-bottom"><p>© 2026 Delibirdy. All rights reserved. 사업자번호: 154-82-01994 | 대표자: 딜리 버디</p></div>
+    </footer>
+    <div class="detail-toast" id="detail-toast" role="status" aria-live="polite"></div>
+    <script src="js/script.js"></script>
+    <script src="js/detail.js"></script>
+  </body>
+</html>
