@@ -1,0 +1,280 @@
+@charset "utf-8";
+
+/* CSS Reset 및 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 화윤 브랜드 컬러 팔레트 */
+    --bg-color: #F9F7F3;
+    --line-color: #D3CFC6;
+    --text-main: #3E3A35;
+    --text-light: #7A756D;
+    --point-color: #5C544A;
+    /* 폰트를 '아리따부리'로 통일 */
+    --font-serif: 'Aritaburi', serif;
+    --font-sans: 'Aritaburi', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* 메인 레이아웃 (헤더 겹침 방지를 위해 padding-top 추가) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* border-left: 1px solid var(--line-color);
+    border-right: 1px solid var(--line-color); */
+    padding-top: 100px; /* 헤더 높이만큼 띄워줌 */
+}
+
+/* 1. 상단 제품 정보 영역 (좌우 50:50) */
+.product-hero {
+    display: flex;
+    border-bottom: 1px solid var(--line-color);
+    flex-wrap: wrap;
+}
+
+.product-image {
+    width: 50%;
+    border-right: 1px solid var(--line-color);
+    margin: 67px 0 0 0; /* 주변 여백(패딩)을 없애서 영역에 꽉 차게 만듭니다 */
+    display: flex;
+    flex-direction: column;
+}
+
+.main-img {
+    width: 100%; /* 가로를 100%로 확장 */
+    height: 45%; /* 세로를 오른쪽 텍스트 영역 높이에 맞춰 가득 채움 */
+    min-height: 470px; /* 이미지가 없을 때도 시원한 비주얼을 유지하기 위한 최소 높이 */
+    background-color: #EFECE5; 
+    margin-bottom: 0; /* 썸네일이 삭제되었으므로 하단 여백 제거 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    overflow: hidden;
+}
+
+/* 추후 실제 <img> 태그가 삽입되었을 때 좌측 카드에 빈틈없이 꽉 차도록 처리 */
+.main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumbnail-wrap {
+    display: flex;
+    gap: 15px;
+}
+
+.thumb-img {
+    width: 60px;
+    height: 80px;
+    background-color: #EFECE5;
+    border: 1px solid var(--line-color);
+}
+
+.product-info {
+    width: 50%;
+    padding: 60px 80px;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.product-desc {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    font-family: var(--font-serif);
+}
+
+/* 옵션 및 수량 선택 */
+.options { margin-bottom: 30px; }
+.options label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.size-btns { display: flex; gap: 10px; margin-bottom: 20px;}
+.size-btn {
+    padding: 8px 20px;
+    border: 1px solid var(--line-color);
+    background: transparent;
+    border-radius: 20px;
+    color: var(--text-main);
+}
+.size-btn.active {
+    background-color: var(--text-main);
+    color: var(--bg-color);
+}
+
+.qty-wrap {
+    display: inline-flex;
+    border: 1px solid var(--line-color);
+    align-items: center;
+}
+.qty-btn {
+    background: transparent; border: none;
+    padding: 10px 15px; font-size: 1.2rem; color: var(--text-main);
+}
+.qty-input {
+    width: 40px; text-align: center; border: none;
+    background: transparent; font-size: 1rem; color: var(--text-main);
+}
+
+/* 버튼 */
+.btn-cart, .btn-buy {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+.btn-cart {
+    background: transparent;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+}
+.btn-cart:hover { background: var(--line-color); }
+
+.btn-buy {
+    background: var(--point-color);
+    border: 1px solid var(--point-color);
+    color: #fff;
+}
+
+/* 아코디언 메뉴 */
+.accordion-wrap { margin-top: 50px; border-top: 1px solid var(--line-color); }
+.accordion-item { border-bottom: 1px solid var(--line-color); }
+.accordion-title {
+    width: 100%; text-align: left; background: transparent;
+    border: none; padding: 15px 0; font-size: 0.85rem;
+    font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--text-main);
+}
+.accordion-content {
+    padding-bottom: 15px; font-size: 0.9rem; color: var(--text-light);
+    display: none;
+}
+
+/* 2. 중간 텍스트 영역 (좌우 분할) */
+.middle-text-section {
+    display: flex;
+    border-bottom: 1px solid var(--line-color);
+}
+.text-block {
+    width: 50%;
+    padding: 60px;
+}
+.text-block:first-child { border-right: 1px solid var(--line-color); }
+.text-block h3 { font-size: 1rem; margin-bottom: 15px; text-transform: uppercase; font-family: var(--font-sans); font-weight: 600; letter-spacing: 1px;}
+.text-block p { color: var(--text-light); font-size: 0.95rem; font-family: var(--font-serif);}
+
+/* 상세페이지 영역 */
+.detailed-content-area {
+    border-bottom: 1px solid var(--line-color);
+    /* padding: 100px 0; */
+    text-align: center;
+    background-color: #fff; 
+}
+
+/* 3. 하단 추천 상품 영역 (무한 롤링 슬라이드 적용) */
+.related-section {
+    padding: 180px 0 0 0;
+    text-align: center;
+    overflow: hidden; /* 슬라이드 영역 밖 가림 */
+}
+.related-section h2 {
+    font-size: 1.8rem; margin-bottom: 40px;
+}
+.product-slider-wrap {
+    border-top: 1px solid var(--line-color);
+    width: 100%;
+}
+.product-grid {
+    display: flex;
+    width: max-content;
+    animation: scrollProductsLeft 30s linear infinite; /* 좌측 스크롤 애니메이션 */
+}
+.product-grid:hover {
+    animation-play-state: paused; /* 마우스 오버시 멈춤 */
+}
+.grid-item {
+    width: 300px; /* 각 상품 카드 너비 고정 */
+    flex-shrink: 0;
+    border-right: 1px solid var(--line-color);
+    padding: 0; /* 사진이 꽉 차도록 기존 패딩(40px 20px) 제거 */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+.grid-img {
+    width: 100%; /* 80%에서 100%로 변경하여 가로를 꽉 채움 */
+    height: 350px; /* 이미지가 시원하게 보이도록 세로 높이 연장 */
+    background-color: #EFECE5; 
+    margin-bottom: 0; /* 이미지와 텍스트 사이 여백 제거 */
+    overflow: hidden;
+}
+/* 나중에 실제 <img> 태그를 넣었을 때 찌그러지지 않고 꽉 차게 덮도록 추가 */
+.grid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.grid-info {
+    width: 100%; 
+    background: #AF9D89; 
+    padding: 20px 25px; /* 텍스트 주변 여백 확보 */
+    text-align: left; 
+    color: #fff;
+    margin-bottom: 0; /* 이전의 네거티브 마진(-40px) 제거 */
+}
+.grid-info h4 { font-size: 0.9rem; font-family: var(--font-sans); margin-bottom: 8px; text-transform: uppercase;}
+.grid-info p { font-size: 0.8rem; opacity: 0.9;}
+
+@keyframes scrollProductsLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    .product-image, .product-info, .text-block { width: 100%; border-right: none; padding: 30px; }
+    .middle-text-section { flex-direction: column; }
+    .text-block:first-child { border-right: none; border-bottom: 1px solid var(--line-color); }
+}
+
+

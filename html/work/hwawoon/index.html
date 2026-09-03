@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>화윤 Hwawoon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top" class="mobile-nav-page">
+  <div class="site-shell">
+    
+    <header class="topbar">
+      <div class="topbar__row">
+        <div class="topbar__meta">한국어 / English</div>
+        <div class="brand">
+          <a href="#">Hwawoon</a>
+        </div>
+        <nav class="topbar__actions" aria-label="유틸리티 메뉴">
+          <a href="#products">매장찾기</a>
+          <a href="#products">구매하기</a>
+          <button class="icon-btn" type="button" aria-label="검색">
+            <span></span>
+          </button>
+          <button class="mobile-menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="main-nav" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+      <nav class="main-nav" id="main-nav" aria-label="주요 메뉴">
+        <a href="#about">소개</a>
+        <a href="#products">기프트</a>
+        <a href="#products">베스트 셀러</a>
+        <a href="#season">계절 추천</a>
+        <a href="#about">ABOUT 화윤</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="메인 배너">
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero-slide active">
+            <video class="hero__video" autoplay loop muted playsinline>
+              <source src="https://cdn.midjourney.com/video/0accb60b-c9b2-4a80-a4b7-e223e0963b52/0.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="hero-slide">
+            <img src="./images/main3.png" alt="배너 이미지 1">
+          </div>
+          <div class="hero-slide">
+            <img src="./images/main.jpg" alt="배너 이미지 2">
+          </div>
+        </div>
+
+        <div class="hero__frame">
+          <div class="hero__inner">
+            <div class="hero__copy">
+              <p class="eyebrow">2026 NEW COLLECTION</p>
+              <h1>결을 지키는 시간</h1>
+              <p>
+                자연에서 비롯된 지혜로
+                당신의 피부 본연의 아름다움을 완성합니다.
+              </p>
+              <div class="hero__cta">
+                <a class="btn btn--solid" href="#products">제품 보기</a>
+                <a class="btn btn--ghost" href="#about">브랜드 소개</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="editorial-products" id="products">
+        <div class="editorial-products__intro">
+          <h2>Echoes of Nature</h2>
+          <p>
+            자연에서 영감을 받은 순수한 원료로 피부 본연의 힘을 길러줍니다.<br>
+            시간이 빚어낸 화윤만의 시그니처 컬렉션을 만나보세요.
+          </p>
+        </div>
+        <div class="marquee-container">
+          <div class="marquee-track">
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/es.png" alt="청아 에센스 세럼" /></div>
+              <div class="marquee-text"><h4>청아 에센스 세럼</h4><span>45,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/sc.png" alt="청아 수분 크림" /></div>
+              <div class="marquee-text"><h4>청아 수분 크림</h4><span>52,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/sol_wash.png" alt="윤조 솔리드 워시" /></div>
+              <div class="marquee-text"><h4>윤조 솔리드 워시</h4><span>18,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/re.png" alt="리프레싱 바디 워시" /></div>
+              <div class="marquee-text"><h4>리프레싱 바디 워시</h4><span>34,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/es.png" alt="청아 에센스 세럼" /></div>
+              <div class="marquee-text"><h4>청아 에센스 세럼</h4><span>45,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/sc.png" alt="청아 수분 크림" /></div>
+              <div class="marquee-text"><h4>청아 수분 크림</h4><span>52,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/sol_wash.png" alt="솔리드 워시" /></div>
+              <div class="marquee-text"><h4>솔리드 워시</h4><span>18,000원</span></div>
+            </a>
+            <a href="product.html" class="marquee-item">
+              <div class="marquee-image"><img src="./images/re.png" alt="리프레싱 바디 워시" /></div>
+              <div class="marquee-text"><h4>리프레싱 바디 워시</h4><span>34,000원</span></div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="editorial-philosophy" id="ingredients">
+        <div class="ep-container">
+          
+          <div class="ep-text-main">
+            <h2>
+              화윤은 자연으로부터 온 원료 본연을 담아냈습니다.<br>
+              자연으로부터 온 우리의 피부와<br> 닮아있습니다.<br>
+              코스메틱 전문가들의 원료 추출<br>
+              기능을 더했습니다. <em>자연과의 연합을 더합니다.</em>
+            </h2>
+            <a href="#about" class="ep-link">OUR PHILOSOPHY</a>
+          </div>
+
+          <div class="ep-img-water">
+            <img src="./images/gal_4.png" alt="자연의 결" />
+          </div>
+
+          <div class="ep-img-skin">
+            <img src="./images/gal_5.png" alt="피부 본연의 텍스처" />
+          </div>
+
+          <div class="ep-bottom-right">
+            <div class="ep-text-small">
+              <p>
+                바람과 땅과 비의 향<br>
+                그 속에 담긴 자연의 힘<br>
+                내추럴한 영양이 우리의 피부속으로<br>
+                깊이 있게 피부를 회복시킵니다.<br>
+                자연의 회복력을 기대할 수 있습니다.
+              </p>
+            </div>
+            <div class="ep-img-shell">
+              <img src="./images/obj.png" alt="자연 오브제" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 계절 추천 섹션 -->
+      <section class="section" id="season">
+        <div class="season-header-wrap">
+          <div class="section__head">
+            <div>
+              <p class="eyebrow">SEASONAL PICKS</p>
+              <h2>화윤 계절 추천</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="season-grid">
+          
+          <!-- 카드 1 -->
+          <article class="season-card">
+            <div class="season-card__media">
+              <div class="season-card__inner">
+                <!-- 앞면: 상단 타이틀 + 하단 시리즈/설명 모두 표시 -->
+                <div class="season-card__face season-card__face--front">
+                  <img id="seasonImageA" alt="계절 추천 이미지 A" />
+                  <div class="season-card__text-top">
+                    <h3>에센셜 6종</h3>
+                  </div>
+                  <div class="season-card__text-bottom">
+                    <p class="season-card__series">화윤 "결"</p>
+                    <p class="season-card__desc">부드러운 텍스처와 안정적인 향으로 첫 케어 경험을 완성합니다.</p>
+                  </div>
+                </div>
+                <!-- 뒷면: 상단 타이틀 숨김, 하단 시리즈/설명만 표시 -->
+                <div class="season-card__face season-card__face--back">
+                  <img id="seasonImageABack" class="season-card__back-image" alt="" aria-hidden="true" />
+                  <div class="season-card__shade" aria-hidden="true"></div>
+                  <div class="season-card__text-bottom">
+                    <p class="season-card__series">자음생</p>
+                    <p class="season-card__desc">부드러운 텍스처와 안정적인 향으로 첫 케어 경험을 완성합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 카드 2 -->
+          <article class="season-card">
+            <div class="season-card__media">
+              <div class="season-card__inner">
+                <div class="season-card__face season-card__face--front">
+                  <img id="seasonImageB" alt="계절 추천 이미지 B" />
+                  <div class="season-card__text-top">
+                    <h3>산뜻한 여름용 스킨케어</h3>
+                  </div>
+                  <div class="season-card__text-bottom">
+                    <p class="season-card__series">윤조</p>
+                    <p class="season-card__desc">가벼운 사용감과 선명한 비주얼로 여름 시즌의 청량감을 담았습니다.</p>
+                  </div>
+                </div>
+                <div class="season-card__face season-card__face--back">
+                  <img id="seasonImageBBack" class="season-card__back-image" alt="" aria-hidden="true" />
+                  <div class="season-card__shade" aria-hidden="true"></div>
+                  <div class="season-card__text-bottom">
+                    <p class="season-card__series">윤조</p>
+                    <p class="season-card__desc">가벼운 사용감과 선명한 비주얼로 여름 시즌의 청량감을 담았습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 카드 3 -->
+          <article class="season-card">
+            <div class="season-card__media">
+              <div class="season-card__inner">
+                <div class="season-card__face season-card__face--front">
+                  <img id="seasonImageC" alt="계절 추천 이미지 C" />
+                  <div class="season-card__text-top">
+                    <h3>보습 크림 &amp; 선케어</h3>
+                  </div>
+                  <div class="season-card__text-bottom">
+                    <p class="season-card__series">자외선 케어</p>
+                    <p class="season-card__desc">계절 변화에도 흔들리지 않는 루틴을 한눈에 확인할 수 있습니다.</p>
+                  </div>
+                </div>
+                <div class="season-card__face season-card__face--back">
+                  <img id="seasonImageCBack" class="season-card__back-image" alt="" aria-hidden="true" />
+                  <div class="season-card__shade" aria-hidden="true"></div>
+                  <div class="season-card__text-bottom">
+                    <p class="season-card__series">자외선 케어</p>
+                    <p class="season-card__desc">계절 변화에도 흔들리지 않는 루틴을 한눈에 확인할 수 있습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="editorial-feature" id="about">
+        <div class="ef-container">
+          
+          <div class="ef-image">
+            <img id="featureImage" src="./images/foot1.png" alt="집중 케어 뷰티 화보" />
+          </div>
+
+          <div class="ef-content">
+            <div class="ef-vertical-text">OUR COMMITMENT</div>
+            
+            <div class="ef-text-wrap">
+              <h2>
+                하루의 리듬을 완성하는,<br>
+                <em>집중 케어</em>
+              </h2>
+              <p>
+                화윤의 균형감 있는 텍스처와 안정적인 톤을 바탕으로,<br>
+                제품의 이미지를 더 선명하게 전달하는 비주얼 구조를 적용했습니다.<br>
+                본연의 빛을 잃지 않도록 가장 필요한 것만 담았습니다.
+              </p>
+              
+              <a href="#products" class="ef-link-arrow">
+                자세히 보기
+                <svg width="24" height="9" viewBox="0 0 24 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 4.5H22.5M22.5 4.5L19.5 1.5M22.5 4.5L19.5 7.5" stroke="currentColor" stroke-width="1"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+    </main>
+
+    <!-- How I Can Help 아코디언 및 Copyright 푸터 섹션 -->
+      <section class="editorial-help" id="help">
+        <div class="eh-container">
+          
+          <!-- 왼쪽: 타이틀 및 콜 투 액션 버튼 -->
+          <div class="eh-left">
+            <h2>Hwawoon Therapy item</h2><p>화윤 토탈리 테라피 샵</p>
+            <!-- 👇 EH-BTN 안의 텍스트를 원하시는 문구로 수정하실 수 있습니다 -->
+            <a href="#top" class="eh-btn">CANTACT</a>
+          </div>
+
+          <!-- 오른쪽: 아코디언 리스트 (텍스트 및 내용 수정 가능) -->
+          <div class="eh-right">
+            <div class="accordion">
+              
+              <!-- 아코디언 아이템 1 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button">
+                  <span>Holistic Therapy / 치유력의 회복</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>몸과 마음, 정신의 균형을 맞추며 본연의 치유력을 회복하도록 돕는 전체론적 테라피 세션입니다.</p>
+                </div>
+              </div>
+
+              <!-- 아코디언 아이템 2 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button">
+                  <span>Trauma Healing / 트라우마 해소</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>내면의 깊은 상처와 트라우마를 안전한 환경에서 마주하고 부드럽게 해소해 나가는 과정입니다.</p>
+                </div>
+              </div>
+
+              <!-- 아코디언 아이템 3 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button">
+                  <span>Anxiety &amp; Stress Management / 일상의 평온</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>일상의 과도한 긴장과 불안을 조절하고 마음의 평온을 되찾는 실천적 방법을 안내합니다.</p>
+                </div>
+              </div>
+
+              <!-- 아코디언 아이템 4 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button">
+                  <span>Couple Therapy / 커플 테라피</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>서로 간의 깊은 소통을 회복하고 관계 속에서 온전한 신뢰와 유대감을 다지는 세션입니다.</p>
+                </div>
+              </div>
+
+              <!-- 아코디언 아이템 5 -->
+              <div class="accordion-item">
+                <button class="accordion-header" type="button">
+                  <span>Self-Discovery &amp; Personal Growth / 퍼스널 리듬</span>
+                  <span class="icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>진정한 자신의 모습을 발견하고 삶의 새로운 리듬과 성장을 마주하는 여정입니다.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4. 섹션 하단 Copyright 바 (푸터) -->
+        <div class="eh-copyright-bar">
+          <div class="eh-copyright-inner">
+            <div class="eh-footer-links">
+              <a href="#top">회사소개</a>
+              <a href="#top">이용약관</a>
+              <a href="#top">개인정보처리방침</a>
+              <a href="#top">고객센터</a>
+            </div>
+            <p>© HWAWOON CORPORATION. All rights reserved.</p>
+          </div>
+        </div>
+      </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
