@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lehnen — 몸에 기대는 가구</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-menu">
+      <a href="#trackContent">브랜드</a>
+      <a href="#trackContent">컬렉션</a>
+      <a href="#trackContent">제작 과정</a>
+      <a href="#question">문의</a>
+    </div>
+    <div class="nav-logo">
+      <span class="logo-word">lehnen</span>
+      <span class="logo-sub">Fit Furniture Atelier</span>
+    </div>
+  </nav>
+
+  <div class="fitline" id="fitline">
+    <span>fit</span>
+    <div class="fit-track">
+      <div class="thumb" id="fitThumb"></div>
+    </div>
+    <span>100</span>
+  </div>
+
+  <!-- ===================== SECTION 1 : HERO ===================== -->
+  <section class="s1" id="s1">
+    <!-- <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=2400&q=80" alt="원목 가구 쇼룸">
+    </div> -->
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="video/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-scrim"></div>
+    <div class="hero-caption">
+      <div class="en">Custom-fit Wood Furniture</div>
+      <div class="script">나에게 꼭 맞는 가구에, 몸을 기대다</div>
+    </div>
+    <div class="scrolldown"></div>
+  </section>
+
+  <!-- ===================== MERGED PINNED CONTENT : BRAND → COLLECTION I → COLLECTION II → PROCESS ===================== -->
+  <!-- The panel arrives once, sliding over the hero. After that, every element   -->
+  <!-- below flies in from the left and later flies back out to the left on its   -->
+  <!-- own — the section itself never moves again.                                -->
+  <div class="scroll-track" id="trackContent">
+    <div class="panel-content">
+      <div class="panel-shadow"></div>
+      <div class="content-stage">
+
+        <!-- BRAND -->
+        <div class="s2-text" id="mBrandText">
+          <div class="eyebrow">About lehnen</div>
+          <h2>기대다, 독일어로<br>&nbsp;&nbsp;몸을 맡긴다는 뜻</h2>
+          <p>lehnen은 <span class="word">몸이 온전히 기댈 수 있는</span> 가구를 만듭니다. 사람마다 다른 체형과 자세, 생활의 리듬을 세심히 측정하여 각자의 몸에 정확히 들어맞는 한 점의 가구로 완성합니다.</p>
+          <p>원목이 지닌 결과 온도를 그대로 살리고, 하늘을 닮은 옅은 청색을 더해 공간에 숨 쉴 자리를 남겨둡니다. 기능과 정서, 두 가지 모두를 함께 짜 맞추는 것이 lehnen의 방식입니다.</p>
+        </div>
+        <div class="s2-img" id="mBrandPhoto">
+          <img src="images/brand.png" alt="원목 소파와 하늘색 쿠션">
+          <div class="frame-tag">Studio, Seoul</div>
+        </div>
+
+        <!-- COLLECTION TITLES -->
+        <div class="titles-area">
+          <div class="col-text" id="c1Title">
+            <div class="row">
+              <div>
+                <div class="eyebrow">Collection</div>
+                <h2>몸을 받치는 자세, 체어 &amp; 소파</h2>
+              </div>
+              <div class="count">01 — 03</div>
+            </div>
+            <div class="desc">
+              <p>같은 도면이라도 앉는 사람의 골반 너비와 등의 곡선에 따라 목재의 각도는 매번 새로 계산됩니다.</p>
+              <a class="subpage-link" href="#">컬렉션 전체 보기 <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLLECTION IMAGE CARDS : each flies in / out on its own -->
+        <div class="cards-area">
+
+          <div class="c1w1">
+            <div class="fly-card" style="top:3%; left:3%; width:32%; height:58%;">
+              <div class="fc-photo"><img src="images/col01.png" alt="그린소파"></div>
+            </div>
+            <div class="fly-card" style="top:34%; left:43%; width:36%; height:56%;">
+              <div class="fc-photo"><img src="images/col02.png" alt="맞춤가죽체어"></div>
+            </div>
+            <div class="fly-card" style="top:8%; left:77%; width:20%; height:40%;">
+              <div class="fc-photo"><img src="images/col06.jpeg" alt="원목 라운지 디테일"></div>
+            </div>
+          </div>
+
+          <div class="c1w2">
+            <div class="fly-card" style="top:2%; left:3%; width:30%; height:56%;">
+              <div class="fc-photo"><img src="images/col03.png" alt="라운지체어"></div>
+            </div>
+            <div class="fly-card" style="top:7%; left:43%; width:34%; height:58%;">
+              <div class="fc-photo"><img src="images/col04.png" alt="가죽쿠션체어"></div>
+            </div>
+            <div class="fly-card accent" style="top:56%; left:74%; width:22%; height:32%;">
+              <div class="fc-photo"><img src="images/col05.jpeg" alt="수납 스툴"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PROCESS -->
+        <div class="proc-bg" id="procBg"></div>
+        <div class="s5-text" id="mProcText">
+          <div class="eyebrow">The Process</div>
+          <h2>도면을 그리기 전에,<br>먼저 당신의 몸을 잽니다</h2>
+          <p><span class="num">01 —</span> 앉거나 눕는 자세를 관찰하고 신체 치수를 기록합니다.</p>
+          <p><span class="num">02 —</span> 원목을 고르고, 결의 방향을 몸의 하중에 맞춰 설계합니다.</p>
+          <p><span class="num">03 —</span> 장인의 손끝에서 마지막 마감까지, 오차 없이 짜 맞춥니다.</p>
+        </div>
+        <div class="s5-imgcol" id="mProcPhoto">
+          <div class="s5-stack" id="s5stack">
+            <div class="ph h1"><img src="images/pro01.png" alt="목재 재단 작업"></div>
+            <div class="ph h2"><img src="images/pro02.png" alt="가구 제작 공방"></div>
+            <div class="ph h3"><img src="images/pro03.png" alt="완성된 원목 가구"></div>
+            <div class="ph h4"><img src="images/pro04.png" alt="마감 디테일 작업"></div>
+            <div class="ph h5"><img src="images/pro05.png" alt="완성된 라운지 체어"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== VIDEO SECTION ===================== -->
+  <!-- <section class="video-section" id="video-section">
+    <video id="craftVideo" class="video-el" autoplay muted loop playsinline
+      poster="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&w=1600&q=80">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+    </video>
+    <div class="video-scrim"></div>
+    <button class="video-play" id="videoPlayBtn" aria-label="재생/일시정지">
+      <svg id="iconPlay" viewBox="0 0 24 24" width="22" height="22"><polygon points="6,4 20,12 6,20" fill="currentColor"/></svg>
+      <svg id="iconPause" viewBox="0 0 24 24" width="22" height="22" style="display:none"><rect x="5" y="4" width="5" height="16" fill="currentColor"/><rect x="14" y="4" width="5" height="16" fill="currentColor"/></svg>
+    </button>
+    <div class="video-caption">
+      <div class="eyebrow">In Motion</div>
+      <h2>손끝에서 완성되는 순간</h2>
+    </div>
+  </section> -->
+
+  <!-- ===================== QUESTION / REQUEST SECTION ===================== -->
+  <section class="question-section" id="question">
+    <div class="q-image">
+      <img src="https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80" alt="원목 가구 쇼룸 전경">
+    </div>
+    <div class="q-content">
+      <div class="q-top">
+        <div class="q-text">
+          <div class="eyebrow">Request</div>
+          <h2>궁금한 점이<br>있으신가요?</h2>
+          <p class="q-sub">무료 상담을 남겨주시면<br>담당 디자이너가 확인 후 연락드립니다.</p>
+        </div>
+        <div class="q-thumb">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80" alt="원목 가구 디테일">
+        </div>
+      </div>
+      <form class="q-form" onsubmit="return false;">
+        <div class="q-form-grid">
+          <div class="q-field">
+            <label for="qName">이름</label>
+            <input id="qName" type="text" placeholder="성함을 입력해주세요" autocomplete="name" required>
+          </div>
+          <div class="q-field">
+            <label for="qPhone">연락처</label>
+            <input id="qPhone" type="tel" placeholder="010-0000-0000" autocomplete="tel" required>
+          </div>
+          <div class="q-field">
+            <label for="qEmail">E-mail</label>
+            <input id="qEmail" type="email" placeholder="이메일을 입력해주세요" autocomplete="email" required>
+          </div>
+          <div class="q-field">
+            <label for="qFurniture">상담 가구</label>
+            <select id="qFurniture" required>
+              <option value="" selected disabled>가구 종류를 선택해주세요</option>
+              <option>체어</option>
+              <option>소파</option>
+              <option>테이블</option>
+              <option>수납 가구</option>
+              <option>기타 맞춤 가구</option>
+            </select>
+          </div>
+          <div class="q-field">
+            <label for="qSize">설치 공간 / 크기</label>
+            <input id="qSize" type="text" placeholder="예: 거실, 2400 × 900mm">
+          </div>
+          <div class="q-field">
+            <label for="qBudget">예상 예산</label>
+            <select id="qBudget">
+              <option value="" selected disabled>예산 범위를 선택해주세요</option>
+              <option>100만원 이하</option>
+              <option>100–300만원</option>
+              <option>300–500만원</option>
+              <option>500만원 이상</option>
+              <option>상담 후 결정</option>
+            </select>
+          </div>
+          <div class="q-field full">
+            <label for="qMessage">상담 내용</label>
+            <textarea id="qMessage" rows="4" placeholder="원하는 형태, 소재, 사용 목적을 자유롭게 적어주세요"></textarea>
+          </div>
+        </div>
+        <label class="q-consent">
+          <input type="checkbox" required>
+          <span>상담을 위한 개인정보 수집 및 이용에 동의합니다.</span>
+        </label>
+        <button type="submit" class="q-submit">문의 남기기 <span class="arrow">→</span></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 6 : FOOTER ===================== -->
+  <footer id="s6">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo-word">lehnen</div>
+        <p>당신의 몸에, 편안히</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Studio</h4>
+          <p>서울시 성동구 성수이로 12길 8</p>
+          <p>화–토 11:00–19:00 (일·월 휴무)</p>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@lehnen.kr">hello@lehnen.kr</a>
+          <a href="tel:0223451234">02-2345-1234</a>
+        </div>
+        <div class="foot-col">
+          <h4>Follow</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="#">Newsletter</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 lehnen atelier. All rights reserved.</span>
+      <div class="to-top">
+        <span class="circ">↑</span> Top
+      </div>
+    </div>
+  </footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
