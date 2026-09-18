@@ -11,12 +11,13 @@
   function clamp(value, min, max){ return Math.max(min, Math.min(max, value)); }
   function smoothstep(value){ return value * value * (3 - 2 * value); }
   function updateIntroScene(){
+    if(document.documentElement.classList.contains('lightbox-open')) return;
     var y = window.scrollY || window.pageYOffset || 0;
     if(hero){
       var scrollRange = Math.max(hero.offsetHeight - window.innerHeight, 1);
       var heroProgress = clamp((y - hero.offsetTop) / scrollRange, 0, 1);
-      // Resolve hero6 during the first half of the pinned scene, then hold it.
-      var fadeProgress = smoothstep(clamp((heroProgress - .03) / .44, 0, 1));
+      // Fade across most of the pinned scene, then hold the completed image.
+      var fadeProgress = smoothstep(clamp((heroProgress - .03) / .72, 0, 1));
       if(heroBase) heroBase.style.opacity = String(1 - fadeProgress);
       if(heroNext) heroNext.style.opacity = String(fadeProgress);
       if(titlePrimary) titlePrimary.style.opacity = String(1 - fadeProgress);
@@ -262,14 +263,18 @@
       }
       items.forEach(place);
 
-      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-        projectSection.classList.add('is-static');
-        items.forEach(function(item){
-          item.card.style.opacity = '1';
-          item.card.style.transform = 'translateY(' + (item.row * item.card.offsetHeight) + 'px)';
+      // Recompute columns when resizing across the mobile breakpoint.
+      window.addEventListener('resize', function(){
+        isMobileProject = window.matchMedia('(max-width:767px)').matches;
+        columnCount = isMobileProject ? 1 : 2;
+        items.forEach(function(item, i){
+          item.column = i % columnCount;
+          item.row = Math.floor(i / columnCount);
+          place(item);
         });
-        return;
-      }
+      });
+
+      var reduceProjectMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       var speed = isMobileProject ? 30 : 38;
       var elapsed = 0;
@@ -336,6 +341,7 @@
       stage.addEventListener('pointercancel', endServiceDrag);
 
       function renderServiceCards(){
+        if(document.documentElement.classList.contains('lightbox-open')) return false;
         var rect = projectSection.getBoundingClientRect();
         var isVisible = rect.bottom > 0 && rect.top < window.innerHeight;
         // Reveal the project cards when the section top reaches the first-third
@@ -371,7 +377,7 @@
         if(previousTime === null) previousTime = now;
         var delta = Math.min(50, now - previousTime) / 1000;
         previousTime = now;
-        if(!document.hidden && renderServiceCards() && !isPaused && !isDragging) elapsed += delta;
+        if(!document.hidden && renderServiceCards() && !reduceProjectMotion && !isPaused && !isDragging) elapsed += delta;
         window.requestAnimationFrame(animateServiceCards);
       }
 
@@ -446,7 +452,9 @@
     document.body.style.removeProperty('top');
     document.body.style.removeProperty('left');
     document.body.style.removeProperty('width');
-    window.scrollTo(0, lightboxPageScrollY);
+    // Override the document's smooth scrolling when restoring the locked page.
+    window.scrollTo({top:lightboxPageScrollY, left:0, behavior:'instant'});
+    updateIntroScene();
   }
   function resetBannerLightboxSize(){
     lightboxPanel.style.removeProperty('width');
@@ -654,6 +662,17 @@
   // About file tabs
   var aboutTabBtns = document.querySelectorAll('.about-file-tab');
   var aboutTabPanels = document.querySelectorAll('.about-tab-panel');
+  // Always initialize the file folder on ABOUT ME.
+  aboutTabBtns.forEach(function(tab){
+    var isActive = tab.getAttribute('data-about-tab') === 'story';
+    tab.classList.toggle('is-active', isActive);
+    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+  aboutTabPanels.forEach(function(panel){
+    var isActive = panel.getAttribute('data-about-panel') === 'story';
+    panel.classList.toggle('is-active', isActive);
+    panel.hidden = !isActive;
+  });
   aboutTabBtns.forEach(function(btn){
     btn.addEventListener('click', function(){
       var target = btn.getAttribute('data-about-tab');
