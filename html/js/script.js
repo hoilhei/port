@@ -61,173 +61,112 @@
     });
   });
 
-  // Work carousel — center-focused slide with peeking neighbors, infinite seamless loop
+  // Project summaries and case-study copy share one source of truth.
+  var projectStories = [
+    {name:'DELIBIRDY', category:'Personal Brand Project',
+      summary:'식물을 고르는 경험과 브랜드 스토리를 연결한 반응형 웹사이트입니다.',
+      role:'UI Design · Responsive Publishing',
+      concept:'식물과 사람의 일상을 중심으로 브랜드의 이야기를 전달합니다. 캠페인 이미지와 상품 정보를 연결해 브랜드를 이해하고 식물을 탐색하는 흐름을 구성했습니다.',
+      screens:'PC의 넓은 캠페인 화면과 모바일의 상품 탐색 화면을 함께 구성했습니다. 대표 목업에서 두 화면의 정보 배치와 시각적 위계를 확인할 수 있습니다.',
+      focus:'브랜드 스토리, 상품 탐색, 가드닝 콘텐츠가 하나의 경험으로 이어지도록 화면을 설계했습니다.',
+      process:['반응형 웹 리서치와 콘텐츠 기획','브랜드 방향을 반영한 UI 디자인','HTML·CSS를 활용한 화면 구현']},
+    {name:'DAILY TEA', category:'Personal Brand Project',
+      summary:'일상 속 차 한 잔의 휴식을 담은 브랜드 웹사이트입니다.',
+      role:'Brand Design · UI Design · Content Production',
+      concept:'차를 마시는 일상의 휴식을 브랜드 경험으로 표현합니다. 웹 화면과 로고, 패키지의 시각적 방향을 연결하는 데 집중했습니다.',
+      screens:'대표 목업에 담긴 PC·모바일 화면을 통해 브랜드 콘텐츠의 배치와 화면별 구성을 확인할 수 있습니다.',
+      focus:'브랜드 이미지와 AI 영상을 활용해 일상의 휴식을 시각적으로 전달합니다.',
+      process:['휴식을 주제로 브랜드 방향 정리','로고·패키지 및 UI/UX 디자인','AI 영상 제작과 웹 화면 구성']},
+    {name:'FOREST', category:'Personal Brand Project',
+      summary:'바디 제품의 첫인상을 전달하는 런칭 랜딩페이지입니다.',
+      role:'Landing Page Design · Responsive Publishing',
+      concept:'제품 런칭에 필요한 브랜드 이미지와 제품 정보를 하나의 랜딩페이지에 담았습니다. 제품의 분위기를 전달하는 비주얼을 중심으로 구성했습니다.',
+      screens:'대표 목업에서 제품 중심의 랜딩 화면 구성과 콘텐츠의 배치 방향을 확인할 수 있습니다.',
+      focus:'AI 영상과 웹 퍼블리싱을 함께 활용해 제품의 인상을 전달하는 화면을 작업했습니다.',
+      process:['제품 런칭 화면 방향 정리','비주얼과 AI 영상 제작','랜딩페이지 퍼블리싱']},
+    {name:'HWAWOON', category:'Personal Brand Project',
+      summary:'이미지와 영상으로 브랜드의 이야기를 전달하는 소개 웹사이트입니다.',
+      role:'Brand Design · Responsive Publishing',
+      concept:'화장품 브랜드의 소개를 이미지와 영상 중심으로 풀어냈습니다. 브랜드의 분위기와 정보를 함께 전달하는 화면을 구성했습니다.',
+      screens:'대표 목업에서 브랜드 소개 화면과 주요 비주얼의 구성을 확인할 수 있습니다.',
+      focus:'브랜드 이미지와 영상 콘텐츠를 연결해 브랜드가 가진 인상을 전달합니다.',
+      process:['브랜드 소개 콘텐츠 정리','이미지·영상 중심의 화면 디자인','HTML·CSS 웹 화면 구현']},
+    {name:'Lehnen', category:'Personal Brand Project · In Progress',
+      summary:'내 몸에 꼭 맞는 나만의 의자를 소개하는 가구 웹사이트를 제작하고 있습니다.',
+      role:'Web Design · Responsive Publishing',
+      concept:'의자를 선택하는 경험을 중심으로 가구 브랜드의 웹 화면을 구상하고 있습니다.',
+      screens:'현재 제작 중인 화면의 목업입니다. 최종 화면과 구성은 작업 과정에서 변경될 수 있습니다.',
+      focus:'제품의 특징과 브랜드 이미지를 전달하는 화면을 작업 중입니다.',
+      process:['브랜드와 제품 방향 정리','화면 디자인 진행','웹 퍼블리싱 진행']}
+  ];
+
+  // One selected project: large mockup, independent summary, explicit actions.
   (function(){
-   try{
     var root = document.getElementById('workCarousel');
     if(!root) return;
-    var viewport = root.querySelector('.carousel-viewport');
-    var track = document.getElementById('carouselTrack');
-    var realSlides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
-    var realCount = realSlides.length;
-    var dotsWrap = document.getElementById('carDots');
-    var prevBtn = document.getElementById('carPrev');
-    var nextBtn = document.getElementById('carNext');
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var autoplayTimer = null;
-
-    // Two clones on each side keep the infinite carousel seamless.
-    var prependClones = [realSlides[realCount - 2].cloneNode(true), realSlides[realCount - 1].cloneNode(true)];
-    var appendClones = [realSlides[0].cloneNode(true), realSlides[1].cloneNode(true)];
-    prependClones.concat(appendClones).forEach(function(c){ c.setAttribute('aria-hidden', 'true'); });
-    prependClones.forEach(function(c){ track.insertBefore(c, realSlides[0]); });
-    appendClones.forEach(function(c){ track.appendChild(c); });
-
-    var slides = Array.prototype.slice.call(track.children);
-    var realStart = 2, realEnd = realStart + realCount - 1;
-    var activeIndex = realStart;
-
-    realSlides.forEach(function(_, i){
-      var dot = document.createElement('button');
-      dot.className = 'car-dot';
-      dot.setAttribute('aria-label', (i + 1) + '번째 프로젝트로 이동');
-      dot.addEventListener('click', function(){ goTo(realStart + i); restartAutoplay(); });
-      dotsWrap.appendChild(dot);
+    var slides = Array.from(root.querySelectorAll('.slide'));
+    var tabs = document.getElementById('carDots');
+    var selected = 0;
+    slides.forEach(function(slide, i){
+      var story = projectStories[i];
+      if(!story) return;
+      var panel = slide.querySelector('.slide-panel');
+      var button = slide.querySelector('.lightbox-trigger');
+      button.dataset.storyIndex = String(i);
+      button.className = 'project-detail-btn lightbox-trigger';
+      button.textContent = '프로젝트 자세히 보기';
+      button.setAttribute('aria-label', story.name + ' 프로젝트 자세히 보기');
+      button.setAttribute('aria-haspopup', 'dialog');
+      panel.querySelector('h4').textContent = story.name;
+      panel.querySelector('.slide-cat').textContent = story.category;
+      panel.querySelector('.slide-desc').textContent = story.summary;
+      var indexLabel = panel.querySelector('.slide-index');
+      if(indexLabel) indexLabel.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+      var role = document.createElement('p');
+      role.className = 'project-role';
+      role.textContent = story.role;
+      panel.appendChild(role);
+      var actions = document.createElement('div');
+      actions.className = 'project-actions';
+      actions.appendChild(button);
+      var site = button.getAttribute('data-popup-project');
+      if(site){
+        var link = document.createElement('a');
+        link.className = 'project-site-link';
+        link.href = site;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = '사이트 보기 ↗';
+        actions.appendChild(link);
+      } else {
+        var status = document.createElement('span');
+        status.className = 'project-site-pending';
+        status.textContent = '사이트 제작 중';
+        actions.appendChild(status);
+      }
+      panel.appendChild(actions);
+      var tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'car-dot';
+      tab.textContent = story.name;
+      tab.setAttribute('aria-label', story.name + ' 프로젝트 선택');
+      tab.addEventListener('click', function(){ selectProject(i); });
+      tabs.appendChild(tab);
     });
-    var dots = Array.prototype.slice.call(dotsWrap.children);
-
-    var currentX = 0;
-    function getFocusX(vw){
-      var focusPercent = parseFloat(getComputedStyle(viewport).getPropertyValue('--carousel-focus-x'));
-      if(!Number.isFinite(focusPercent)) focusPercent = 50;
-      return vw * Math.max(0, Math.min(100, focusPercent)) / 100;
+    function selectProject(index){
+      selected = (index + slides.length) % slides.length;
+      slides.forEach(function(slide, i){
+        slide.hidden = i !== selected;
+        slide.classList.toggle('is-active', i === selected);
+      });
+      Array.from(tabs.children).forEach(function(tab, i){
+        tab.classList.toggle('is-active', i === selected);
+        tab.setAttribute('aria-pressed', String(i === selected));
+      });
     }
-    function render(instant, extraFreezeEls){
-      var active = slides[activeIndex];
-      if(!active) return; // defensive guard — never crash on an out-of-range index
-      var vw = viewport.clientWidth;
-      var center = active.offsetLeft + active.offsetWidth / 2;
-      currentX = getFocusX(vw) - center;
-      var frozen = [];
-      if(instant){
-        // Suppress transitions during resize and clone-boundary correction.
-        var mediaEls = slides.map(function(slide){ return slide.querySelector('.slide-media'); }).filter(Boolean);
-        frozen = [track].concat(mediaEls, extraFreezeEls || []);
-        frozen.forEach(function(el){ el.style.transition = 'none'; });
-      }
-      track.style.transform = 'translateX(' + currentX + 'px)';
-      slides.forEach(function(s, i){ s.classList.toggle('is-active', i === activeIndex); });
-      var realIdx = ((activeIndex - realStart) % realCount + realCount) % realCount;
-      dots.forEach(function(d, i){ d.classList.toggle('is-active', i === realIdx); });
-      if(instant){
-        void track.offsetWidth; // force a reflow while the swapped elements' transitions are suppressed
-        frozen.forEach(function(el){ el.style.transition = ''; });
-      }
-    }
-    function goTo(i){
-      if(cloneCheckTimer){
-        clearTimeout(cloneCheckTimer);
-        cloneCheckTimer = null;
-      }
-      if(i > realEnd + 1){
-        activeIndex = realStart;
-        render(true);
-        return;
-      }
-      if(i < realStart - 1){
-        activeIndex = realEnd;
-        render(true);
-        return;
-      }
-      activeIndex = i;
-      render();
-      if(activeIndex === realStart - 1 || activeIndex === realEnd + 1){
-        scheduleCloneCheck();
-      }
-    }
-    function next(){ goTo(activeIndex + 1); }
-    function prev(){ goTo(activeIndex - 1); }
-
-    // Silently replace a boundary clone with its matching real slide.
-    function correctClonePosition(){
-      cloneCheckTimer = null;
-      var nextIndex = null;
-      if(activeIndex === realStart - 1) nextIndex = realEnd;
-      else if(activeIndex === realEnd + 1) nextIndex = realStart;
-      if(nextIndex === null) return;
-      activeIndex = nextIndex;
-      var incomingPanel = slides[activeIndex].querySelector('.slide-panel');
-      render(true, incomingPanel ? [incomingPanel] : []);
-    }
-    var cloneCheckTimer = null;
-    function getCloneCorrectionDelay(){
-      var rawDuration = getComputedStyle(track).getPropertyValue('--carousel-transition-duration').trim();
-      var duration = parseFloat(rawDuration);
-      if(!Number.isFinite(duration)) return 930;
-      var durationMs = /ms$/i.test(rawDuration) ? duration : duration * 1000;
-      return durationMs + 80;
-    }
-    function scheduleCloneCheck(){
-      if(cloneCheckTimer) clearTimeout(cloneCheckTimer);
-      cloneCheckTimer = setTimeout(correctClonePosition, getCloneCorrectionDelay());
-    }
-
-    function startAutoplay(){
-      if(reduceMotion) return;
-      stopAutoplay();
-      autoplayTimer = setInterval(next, 4500);
-    }
-    function stopAutoplay(){ if(autoplayTimer){ clearInterval(autoplayTimer); autoplayTimer = null; } }
-    function restartAutoplay(){ startAutoplay(); }
-
-    prevBtn.addEventListener('click', function(){ prev(); restartAutoplay(); });
-    nextBtn.addEventListener('click', function(){ next(); restartAutoplay(); });
-    window.addEventListener('resize', function(){ render(true); });
-
-    // Drag / swipe support
-    var isDragging = false, dragStartX = 0, dragDelta = 0;
-    track.style.cursor = 'grab';
-    function dragStart(x){
-      isDragging = true; dragStartX = x; dragDelta = 0;
-      track.style.transition = 'none';
-      track.style.cursor = 'grabbing';
-      stopAutoplay();
-    }
-    function dragMove(x){
-      if(!isDragging) return;
-      dragDelta = x - dragStartX;
-      track.style.transform = 'translateX(' + (currentX + dragDelta) + 'px)';
-    }
-    function dragEnd(){
-      if(!isDragging) return;
-      isDragging = false;
-      track.style.transition = '';
-      track.style.cursor = 'grab';
-      var threshold = 60;
-      if(dragDelta <= -threshold){ next(); }
-      else if(dragDelta >= threshold){ prev(); }
-      else { render(); }
-      restartAutoplay();
-    }
-    track.addEventListener('pointerdown', function(e){
-      if(e.button !== 0) return;
-      // Keep the web popup arrow from being captured as a carousel drag.
-      if(e.target.closest('.lightbox-trigger')) return;
-      dragStart(e.clientX);
-      track.setPointerCapture && track.setPointerCapture(e.pointerId);
-    });
-    track.addEventListener('pointermove', function(e){ dragMove(e.clientX); });
-    track.addEventListener('pointerup', dragEnd);
-    track.addEventListener('pointercancel', dragEnd);
-    track.addEventListener('dragstart', function(e){ e.preventDefault(); }); // stop native image/link drag ghosting
-
-    render(true);
-    if(reduceMotion){
-      if(playBtn) playBtn.style.display = 'none';
-    } else {
-      startAutoplay();
-    }
-   } catch(e){ console.error('Work carousel init failed:', e); }
+    document.getElementById('carPrev').addEventListener('click', function(){ selectProject(selected - 1); });
+    document.getElementById('carNext').addEventListener('click', function(){ selectProject(selected + 1); });
+    selectProject(0);
   })();
 
   // Project cards — endless vertical slider with two desktop columns and one mobile column.
@@ -577,6 +516,7 @@
     var isProjectPopup = btn.getAttribute('data-lightbox-kind') === 'project';
     var isBannerPopup = btn.getAttribute('data-lightbox-kind') === 'banner';
     var isWebPopup = btn.getAttribute('data-lightbox-kind') === 'web' || !!btn.closest('#web');
+    lightboxPanel.classList.toggle('case-study', isWebPopup);
     var popupTitle = getPopupTitle(btn).toUpperCase();
     lightboxPanel.classList.toggle('is-project-only', isProjectPopup);
     lightboxPanel.classList.toggle('is-banner-popup', isBannerPopup);
@@ -595,7 +535,7 @@
     } else {
       lightboxImg.src = mediaSrc;
     }
-    lightboxImg.alt = btn.getAttribute('data-lightbox-title') || '';
+    lightboxImg.alt = btn.getAttribute('data-popup-alt') || btn.getAttribute('data-lightbox-alt') || btn.getAttribute('data-lightbox-title') || '';
     lightboxTitle.textContent = btn.getAttribute('data-lightbox-title') || '';
     var popupStatus = btn.getAttribute('data-popup-status') || '';
     if(popupStatus){
@@ -608,8 +548,11 @@
     if(lightboxPeriod) lightboxPeriod.textContent = btn.getAttribute('data-popup-period') || '—';
     renderLightboxTools(btn.getAttribute('data-popup-tools') || '');
     updateWebLightboxLinks(btn);
+    renderProjectStudy(btn, isWebPopup);
     lockLightboxPage();
     lightbox.classList.add('is-open');
+    lightboxReturnFocus = btn;
+    lightboxClose.focus({preventScroll:true});
     if(!isVideo && lightboxImg.complete) window.requestAnimationFrame(fitBannerLightbox);
   }
   function closeLightbox(){
@@ -617,6 +560,47 @@
     unlockLightboxPage();
     lightboxVideo.pause();
     lightboxScroll.scrollTop = 0;
+    if(lightboxReturnFocus && lightboxReturnFocus.isConnected) lightboxReturnFocus.focus({preventScroll:true});
+  }
+  var lightboxReturnFocus = null;
+  function renderProjectStudy(btn, enabled){
+    lightboxScroll.querySelectorAll('.case-study-body').forEach(function(el){ el.remove(); });
+    lightbox.querySelectorAll('.case-study-role').forEach(function(el){ el.remove(); });
+    if(!enabled) return;
+    var story = projectStories[Number(btn.dataset.storyIndex)];
+    if(!story) return;
+    lightboxTitle.textContent = story.name;
+    lightboxDesc.textContent = story.summary;
+    var role = document.createElement('p');
+    role.className = 'case-study-role';
+    role.textContent = '담당 범위 · ' + story.role;
+    lightboxDesc.after(role);
+    lightbox.querySelectorAll('.web-lightbox-action').forEach(function(link){ link.textContent = '사이트 방문 ↗'; });
+    var body = document.createElement('div');
+    body.className = 'case-study-body';
+    function section(title, copy){
+      var section = document.createElement('section');
+      var heading = document.createElement('h4');
+      heading.textContent = title;
+      var paragraph = document.createElement('p');
+      paragraph.textContent = copy;
+      section.append(heading, paragraph);
+      body.appendChild(section);
+      return section;
+    }
+    section('01 / 프로젝트 개요', btn.getAttribute('data-lightbox-desc') || story.summary);
+    section('02 / 디자인 콘셉트', story.concept);
+    section('03 / 화면 구성', story.screens);
+    section('04 / 주요 UI · 콘텐츠', story.focus);
+    var process = section('05 / 작업 과정', '기획에서 디자인, 구현까지의 작업 범위');
+    var list = document.createElement('ol');
+    story.process.forEach(function(copy){
+      var item = document.createElement('li');
+      item.textContent = copy;
+      list.appendChild(item);
+    });
+    process.appendChild(list);
+    lightboxScroll.appendChild(body);
   }
   // Each project card opens its own image and text in the lightbox.
   // The arrow owns its popup data directly, so SVG clicks and hover state cannot break it.
@@ -625,11 +609,14 @@
     function openProjectCard(card, button){
       var image = card.querySelector('.card-photo img');
       var title = card.querySelector('h3');
-      var desc = card.querySelector('.card-body p');
+      var desc = button.getAttribute('data-popup-description') || '';
+      var fallbackDesc = card.querySelector('.card-detail');
+      if(!desc && fallbackDesc) desc = fallbackDesc.textContent.trim();
       if(!image) return;
       button.setAttribute('data-lightbox-src', button.getAttribute('data-popup-image') || image.getAttribute('src'));
       button.setAttribute('data-lightbox-title', button.getAttribute('data-popup-title') || (title ? title.textContent.trim() : image.alt));
-      button.setAttribute('data-lightbox-desc', desc ? desc.textContent.trim() : '');
+      button.setAttribute('data-lightbox-alt', button.getAttribute('data-popup-alt') || image.alt);
+      button.setAttribute('data-lightbox-desc', desc);
       button.setAttribute('data-lightbox-kind', 'project');
       openLightbox(button);
     }
@@ -659,35 +646,6 @@
     });
   });
 
-  // About file tabs
-  var aboutTabBtns = document.querySelectorAll('.about-file-tab');
-  var aboutTabPanels = document.querySelectorAll('.about-tab-panel');
-  // Always initialize the file folder on ABOUT ME.
-  aboutTabBtns.forEach(function(tab){
-    var isActive = tab.getAttribute('data-about-tab') === 'story';
-    tab.classList.toggle('is-active', isActive);
-    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-  });
-  aboutTabPanels.forEach(function(panel){
-    var isActive = panel.getAttribute('data-about-panel') === 'story';
-    panel.classList.toggle('is-active', isActive);
-    panel.hidden = !isActive;
-  });
-  aboutTabBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var target = btn.getAttribute('data-about-tab');
-      aboutTabBtns.forEach(function(tab){
-        var isActive = tab === btn;
-        tab.classList.toggle('is-active', isActive);
-        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-      aboutTabPanels.forEach(function(panel){
-        var isActive = panel.getAttribute('data-about-panel') === target;
-        panel.classList.toggle('is-active', isActive);
-        panel.hidden = !isActive;
-      });
-    });
-  });
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
   if(lightboxPrev) lightboxPrev.addEventListener('click', function(){ moveWebPopup(-1); });
@@ -695,6 +653,14 @@
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape') closeLightbox();
     if(!lightbox.classList.contains('is-open')) return;
+    if(e.key === 'Tab'){
+      var focusable = Array.from(lightbox.querySelectorAll('button, a[href], video[controls]')).filter(function(el){
+        return !el.hidden && el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden' && getComputedStyle(el).opacity !== '0';
+      });
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
     if(e.key === 'ArrowLeft') moveWebPopup(-1);
     if(e.key === 'ArrowRight') moveWebPopup(1);
   });
@@ -717,34 +683,51 @@
       var currentLabel = document.getElementById('journalSliderCurrent');
       var totalLabel = document.getElementById('journalSliderTotal');
       var cards = Array.prototype.slice.call(scroller.querySelectorAll('.journal-card'));
-      var isDown = false, startX = 0, startScroll = 0, moved = false;
+      var isDown = false, startX = 0, startScroll = 0, moved = false, suppressClickUntil = 0;
+
+      function openJournalCard(card){
+        if(!card) return;
+        var image = card.querySelector('.journal-photo img');
+        if(!image) return;
+        var title = card.querySelector('.journal-body h4');
+        var desc = card.querySelector('.journal-description') || card.querySelector('.journal-body p');
+        card.setAttribute('data-lightbox-src', image.currentSrc || image.getAttribute('src') || image.src);
+        card.setAttribute('data-lightbox-title', title ? title.textContent.trim() : image.alt);
+        card.setAttribute('data-lightbox-alt', image.alt);
+        card.setAttribute('data-lightbox-desc', desc ? desc.textContent.trim() : '');
+        card.setAttribute('data-lightbox-kind', 'banner');
+        openLightbox(card);
+      }
 
       cards.forEach(function(card){
         var image = card.querySelector('.journal-photo img');
         if(!image) return;
         var title = card.querySelector('.journal-body h4');
-        var desc = card.querySelector('.journal-body p');
         card.setAttribute('tabindex', '0');
         card.setAttribute('role', 'button');
+        card.setAttribute('aria-haspopup', 'dialog');
         card.setAttribute('aria-label', (title ? title.textContent.trim() : image.alt) + ' 크게 보기');
 
-        function openJournalCard(){
-          card.setAttribute('data-lightbox-src', image.currentSrc || image.src);
-          card.setAttribute('data-lightbox-title', title ? title.textContent.trim() : image.alt);
-          card.setAttribute('data-lightbox-desc', desc ? desc.textContent.trim() : '');
-          card.setAttribute('data-lightbox-kind', 'banner');
-          openLightbox(card);
-        }
-
-        card.addEventListener('click', function(){
-          if(moved) return;
-          openJournalCard();
-        });
         card.addEventListener('keydown', function(e){
           if(e.key !== 'Enter' && e.key !== ' ') return;
           e.preventDefault();
-          openJournalCard();
+          openJournalCard(card);
         });
+      });
+
+      // Delegate clicks from the scroller so image/text descendants all open
+      // the same card popup. A completed drag is filtered out below.
+      scroller.addEventListener('click', function(e){
+        if(moved || Date.now() < suppressClickUntil){
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+          return;
+        }
+        var card = e.target.closest('.journal-card');
+        if(!card || !scroller.contains(card)) return;
+        e.preventDefault();
+        openJournalCard(card);
       });
 
       function updateJournalSlider(){
@@ -778,12 +761,11 @@
       window.addEventListener('resize', updateJournalSlider);
       updateJournalSlider();
       scroller.addEventListener('pointerdown', function(e){
-        if(e.pointerType === 'touch') return; // let touch use native scrolling
+        if(e.pointerType === 'touch' || e.button !== 0) return; // let touch use native scrolling
         isDown = true; moved = false;
         startX = e.clientX;
         startScroll = scroller.scrollLeft;
         scroller.classList.add('is-dragging');
-        scroller.setPointerCapture && scroller.setPointerCapture(e.pointerId);
       });
       scroller.addEventListener('pointermove', function(e){
         if(!isDown) return;
@@ -793,19 +775,16 @@
         scroller.scrollLeft = startScroll - delta;
       });
       function endDrag(){
+        var completedDrag = moved;
         isDown = false;
         scroller.classList.remove('is-dragging');
+        // Suppress only the synthetic click immediately following a drag.
+        if(completedDrag) suppressClickUntil = Date.now() + 250;
+        moved = false;
       }
       scroller.addEventListener('pointerup', endDrag);
       scroller.addEventListener('pointercancel', endDrag);
       scroller.addEventListener('pointerleave', endDrag);
-      // prevent the drag from being interpreted as a click on a card link
-      scroller.addEventListener('click', function(e){
-        if(!moved) return;
-        e.preventDefault();
-        e.stopPropagation();
-        moved = false;
-      }, true);
     } catch(e){ console.error('Journal drag init failed:', e); }
   })();
 
