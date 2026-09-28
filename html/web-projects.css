@@ -23,10 +23,23 @@
 #project .section-subtitle{margin:14px 0 0; color:var(--ink); font-family:'Reperipoint',sans-serif; font-size:15px; font-style:normal; font-weight:600; line-height:1.4; letter-spacing:.1em; text-transform:uppercase;}
 #project .section-description{color:rgba(16,44,53,.72);}
 #web #workCarousel{display:block; transform:none; height:auto;}
-#web .carousel-viewport{display:block; height:auto; width:100%; max-width:none; margin:0; padding:0; overflow:visible;}
+#web .carousel-viewport{display:block; height:auto; width:100%; max-width:none; margin:0; padding:0; overflow:visible; touch-action:pan-y; cursor:grab;}
 #web .carousel-track{display:block; height:auto; transform:none; cursor:default; touch-action:auto; user-select:auto;}
 #web .slide{display:grid; grid-template-columns:minmax(0,44fr) minmax(340px,36fr); align-items:start; gap:clamp(70px,6vw,96px); height:auto; width:100%; max-width:none; aspect-ratio:auto;}
 #web .slide[hidden]{display:none;}
+#web .slide.is-active{animation:brand-project-slide-next .72s cubic-bezier(.22,.72,.24,1) both;}
+#web #workCarousel[data-slide-direction="previous"] .slide.is-active{animation-name:brand-project-slide-previous;}
+#web #workCarousel.is-dragging .carousel-viewport{cursor:grabbing; user-select:none;}
+#web #workCarousel.is-dragging .slide.is-active,
+#web #workCarousel.is-settling .slide.is-active{animation:none;}
+@keyframes brand-project-slide-next{
+  from{opacity:0; transform:translateX(42px);}
+  to{opacity:1; transform:translateX(0);}
+}
+@keyframes brand-project-slide-previous{
+  from{opacity:0; transform:translateX(-42px);}
+  to{opacity:1; transform:translateX(0);}
+}
 #web .slide .slide-media{position:relative; inset:auto; height:auto; width:100%; aspect-ratio:4/3; opacity:1; transform:none; filter:none; border-radius:0; transition:none;}
 #web .slide-media::before{display:none;}
 #web .slide-media img{width:100%; height:100%; object-fit:contain;}
@@ -146,11 +159,14 @@
   #web .slide-cat{font-size:12px; margin-bottom:14px;}
   #web .slide-desc{font-size:15px;}
   #web .project-role{margin:20px 0;}
-  #web .carousel-controls{gap:10px; flex-wrap:wrap; margin-top:10px; padding-top:14px;}
-  #web .car-dots{flex:1 1 100%; order:-1; gap:8px 18px;}
+  #web .carousel-controls{justify-content:center; gap:10px; flex-wrap:nowrap; margin-top:10px; padding-top:14px;}
+  #web .car-dots{display:none;}
   .lightbox.is-web-popup.case-study{width:calc(100vw - 32px); max-height:calc(100dvh - 32px); border-radius:10px;}
   .lightbox.is-web-popup.case-study.is-delibirdy{width:calc(100vw - 24px); max-height:calc(100dvh - 24px);}
   .lightbox.case-study .lightbox-scroll{grid-template-columns:1fr; gap:24px; padding:64px 22px 28px; max-height:none;}
   .lightbox.case-study .lightbox-info h3{font-size:28px;}
   .lightbox.case-study .case-study-body{grid-template-columns:1fr; gap:24px;}
+}
+@media(prefers-reduced-motion:reduce){
+  #web .slide.is-active{animation:none;}
 }

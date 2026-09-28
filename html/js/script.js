@@ -105,8 +105,19 @@
     var root = document.getElementById('workCarousel');
     if(!root) return;
     var slides = Array.from(root.querySelectorAll('.slide'));
+    var viewport = root.querySelector('.carousel-viewport');
     var tabs = document.getElementById('carDots');
+    var previousButton = document.getElementById('carPrev');
+    var nextButton = document.getElementById('carNext');
     var selected = 0;
+    var autoplayDelay = 3000;
+    var autoplayTimer = null;
+    var carouselInView = typeof window === 'undefined' || !('IntersectionObserver' in window);
+    var pointerPaused = false;
+    var focusPaused = false;
+    var reduceCarouselMotion = typeof window !== 'undefined' && window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : null;
     slides.forEach(function(slide, i){
       var story = projectStories[i];
       if(!story) return;
@@ -150,23 +161,146 @@
       tab.className = 'car-dot';
       tab.textContent = story.name;
       tab.setAttribute('aria-label', story.name + ' 프로젝트 선택');
-      tab.addEventListener('click', function(){ selectProject(i); });
+      tab.addEventListener('click', function(){ selectProject(i, i < selected ? 'previous' : 'next'); });
       tabs.appendChild(tab);
     });
-    function selectProject(index){
+    function stopAutoplay(){
+      if(autoplayTimer !== null && typeof window !== 'undefined') window.clearTimeout(autoplayTimer);
+      autoplayTimer = null;
+    }
+    function canAutoplay(){
+      return typeof window !== 'undefined' &&
+        !document.hidden &&
+        carouselInView &&
+        !pointerPaused &&
+        !focusPaused &&
+        !(reduceCarouselMotion && reduceCarouselMotion.matches);
+    }
+    function queueAutoplay(){
+      stopAutoplay();
+      if(!canAutoplay()) return;
+      autoplayTimer = window.setTimeout(function(){
+        selectProject(selected + 1, 'next');
+      }, autoplayDelay);
+    }
+    function selectProject(index, direction){
+      var previousSelected = selected;
       selected = (index + slides.length) % slides.length;
+      root.dataset.slideDirection = direction || (selected < previousSelected ? 'previous' : 'next');
       slides.forEach(function(slide, i){
         slide.hidden = i !== selected;
         slide.classList.toggle('is-active', i === selected);
+        slide.setAttribute('aria-hidden', String(i !== selected));
       });
       Array.from(tabs.children).forEach(function(tab, i){
         tab.classList.toggle('is-active', i === selected);
         tab.setAttribute('aria-pressed', String(i === selected));
       });
+      queueAutoplay();
     }
-    document.getElementById('carPrev').addEventListener('click', function(){ selectProject(selected - 1); });
-    document.getElementById('carNext').addEventListener('click', function(){ selectProject(selected + 1); });
-    selectProject(0);
+    previousButton.addEventListener('click', function(){ selectProject(selected - 1, 'previous'); });
+    nextButton.addEventListener('click', function(){ selectProject(selected + 1, 'next'); });
+
+    if(typeof window !== 'undefined'){
+      root.addEventListener('mouseenter', function(){ pointerPaused = true; stopAutoplay(); });
+      root.addEventListener('mouseleave', function(){ pointerPaused = false; queueAutoplay(); });
+      root.addEventListener('focusin', function(){ focusPaused = true; stopAutoplay(); });
+      root.addEventListener('focusout', function(e){
+        if(e.relatedTarget && root.contains(e.relatedTarget)) return;
+        focusPaused = false;
+        queueAutoplay();
+      });
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden) stopAutoplay();
+        else queueAutoplay();
+      });
+      if(reduceCarouselMotion && reduceCarouselMotion.addEventListener){
+        reduceCarouselMotion.addEventListener('change', queueAutoplay);
+      }
+      if('IntersectionObserver' in window){
+        var carouselObserver = new IntersectionObserver(function(entries){
+          carouselInView = entries[0].isIntersecting;
+          if(carouselInView) queueAutoplay();
+          else stopAutoplay();
+        }, {threshold:.25});
+        carouselObserver.observe(root);
+      }
+
+      if(viewport){
+        var dragActive = false;
+        var dragHorizontal = false;
+        var dragDirectionLocked = false;
+        var dragStartX = 0;
+        var dragStartY = 0;
+        var dragDeltaX = 0;
+
+        viewport.addEventListener('pointerdown', function(e){
+          if(e.pointerType === 'mouse' && e.button !== 0) return;
+          if(e.target.closest('a, button')) return;
+          dragActive = true;
+          dragHorizontal = false;
+          dragDirectionLocked = false;
+          dragStartX = e.clientX;
+          dragStartY = e.clientY;
+          dragDeltaX = 0;
+          stopAutoplay();
+          if(viewport.setPointerCapture) viewport.setPointerCapture(e.pointerId);
+        });
+
+        viewport.addEventListener('pointermove', function(e){
+          if(!dragActive) return;
+          var deltaX = e.clientX - dragStartX;
+          var deltaY = e.clientY - dragStartY;
+          if(!dragDirectionLocked && Math.max(Math.abs(deltaX), Math.abs(deltaY)) > 6){
+            dragDirectionLocked = true;
+            dragHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
+          }
+          if(!dragHorizontal) return;
+          dragDeltaX = deltaX;
+          root.classList.add('is-dragging');
+          var activeSlide = slides[selected];
+          activeSlide.style.transform = 'translateX(' + (dragDeltaX * .82) + 'px)';
+          activeSlide.style.opacity = String(Math.max(.68, 1 - Math.abs(dragDeltaX) / 500));
+          e.preventDefault();
+        });
+
+        function finishProjectDrag(e){
+          if(!dragActive) return;
+          dragActive = false;
+          var activeSlide = slides[selected];
+          var threshold = Math.min(90, Math.max(45, viewport.clientWidth * .12));
+          var shouldChange = dragHorizontal && Math.abs(dragDeltaX) >= threshold;
+          root.classList.remove('is-dragging');
+          activeSlide.style.transform = '';
+          activeSlide.style.opacity = '';
+
+          if(shouldChange){
+            selectProject(selected + (dragDeltaX < 0 ? 1 : -1), dragDeltaX < 0 ? 'next' : 'previous');
+          } else {
+            root.classList.add('is-settling');
+            activeSlide.style.transition = 'transform .22s ease, opacity .22s ease';
+            activeSlide.style.transform = 'translateX(0)';
+            activeSlide.style.opacity = '1';
+            window.setTimeout(function(){
+              root.classList.remove('is-settling');
+              activeSlide.style.transition = '';
+              activeSlide.style.transform = '';
+              activeSlide.style.opacity = '';
+            }, 230);
+            queueAutoplay();
+          }
+          if(viewport.releasePointerCapture && e && viewport.hasPointerCapture && viewport.hasPointerCapture(e.pointerId)){
+            viewport.releasePointerCapture(e.pointerId);
+          }
+          dragHorizontal = false;
+          dragDirectionLocked = false;
+          dragDeltaX = 0;
+        }
+        viewport.addEventListener('pointerup', finishProjectDrag);
+        viewport.addEventListener('pointercancel', finishProjectDrag);
+      }
+    }
+    selectProject(0, 'next');
   })();
 
   // Project cards — endless vertical slider with two desktop columns and one mobile column.
@@ -416,8 +550,17 @@
     lightboxPanel.style.width = Math.round(lightboxImg.naturalWidth * scale) + 'px';
     lightboxPanel.style.height = Math.round(lightboxImg.naturalHeight * scale) + 'px';
   }
+  function sizeScrollBannerLightbox(){
+    if(!lightboxPanel.classList.contains('is-scroll-banner-popup')) return;
+    var overlayStyle = getComputedStyle(lightbox);
+    var horizontalPadding = parseFloat(overlayStyle.paddingLeft) + parseFloat(overlayStyle.paddingRight);
+    var verticalPadding = parseFloat(overlayStyle.paddingTop) + parseFloat(overlayStyle.paddingBottom);
+    lightboxPanel.style.width = Math.min(700, Math.max(1, window.innerWidth - horizontalPadding)) + 'px';
+    lightboxPanel.style.height = Math.min(500, Math.max(1, window.innerHeight - verticalPadding)) + 'px';
+  }
   lightboxImg.addEventListener('load', fitBannerLightbox);
   window.addEventListener('resize', fitBannerLightbox);
+  window.addEventListener('resize', sizeScrollBannerLightbox);
   function getToolMark(tool){
     var name = tool.toLowerCase();
     if(/^ai\s*\(/i.test(name)) return '✦';
@@ -515,12 +658,15 @@
     var isVideo = !!videoSrc || /\.(mp4|webm|ogg)(\?.*)?$/i.test(videoSrc || mediaSrc);
     var isProjectPopup = btn.getAttribute('data-lightbox-kind') === 'project';
     var isBannerPopup = btn.getAttribute('data-lightbox-kind') === 'banner';
+    var isScrollBannerPopup = btn.getAttribute('data-lightbox-kind') === 'banner-scroll';
     var isWebPopup = btn.getAttribute('data-lightbox-kind') === 'web' || !!btn.closest('#web');
     lightboxPanel.classList.toggle('case-study', isWebPopup);
     var popupTitle = getPopupTitle(btn).toUpperCase();
     lightboxPanel.classList.toggle('is-project-only', isProjectPopup);
     lightboxPanel.classList.toggle('is-banner-popup', isBannerPopup);
+    lightboxPanel.classList.toggle('is-scroll-banner-popup', isScrollBannerPopup);
     lightboxPanel.classList.toggle('is-web-popup', isWebPopup);
+    sizeScrollBannerLightbox();
     updateLightboxNavigation(btn);
     lightboxPanel.classList.toggle('is-delibirdy', isWebPopup && popupTitle.indexOf('DELIBIRDY') !== -1);
     lightboxPanel.classList.toggle('is-daily-tea', isWebPopup && popupTitle.indexOf('DAILY TEA') !== -1);
@@ -695,7 +841,7 @@
         card.setAttribute('data-lightbox-title', title ? title.textContent.trim() : image.alt);
         card.setAttribute('data-lightbox-alt', image.alt);
         card.setAttribute('data-lightbox-desc', desc ? desc.textContent.trim() : '');
-        card.setAttribute('data-lightbox-kind', 'banner');
+        card.setAttribute('data-lightbox-kind', card.getAttribute('data-scroll-popup') === 'true' ? 'banner-scroll' : 'banner');
         openLightbox(card);
       }
 

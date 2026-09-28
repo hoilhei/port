@@ -6,8 +6,15 @@ const vm = require('node:vm');
 class Element {
   constructor(tag = 'div') {
     this.tagName = tag; this.children = []; this.attrs = {}; this.dataset = {};
-    this.handlers = {}; this.nodes = {}; this.textContent = '';
-    this.classList = { toggle() {} };
+    this.handlers = {}; this.nodes = {}; this.textContent = ''; this.style = {};
+    this.clientWidth = 800;
+    this.classes = new Set();
+    this.classList = {
+      toggle: (name, force) => force ? this.classes.add(name) : this.classes.delete(name),
+      add: name => this.classes.add(name),
+      remove: name => this.classes.delete(name),
+      contains: name => this.classes.has(name)
+    };
   }
   setAttribute(k, v) { this.attrs[k] = v; }
   getAttribute(k) { return this.attrs[k] || null; }
@@ -26,6 +33,12 @@ class Element {
     ]);
   }
   addEventListener(event, fn) { this.handlers[event] = fn; }
+  setPointerCapture() {}
+  hasPointerCapture() { return false; }
+  releasePointerCapture() {}
+  contains(el) {
+    return this === el || this.children.some(child => child.contains(el));
+  }
   click() { this.handlers.click(); }
 }
 
@@ -44,6 +57,8 @@ const slides = [...html.matchAll(/<article class="slide">([\s\S]*?)<\/article>/g
 });
 const root = new Element();
 root.nodes['.slide'] = slides;
+const viewport = new Element();
+root.nodes['.carousel-viewport'] = viewport;
 const ids = {workCarousel:root, carDots:new Element(), carPrev:new Element(), carNext:new Element()};
 const lightbox = new Element();
 const scroll = new Element();
@@ -55,8 +70,21 @@ const desc = new Element('p');
 info.append(title, desc);
 const site = new Element('a');
 lightbox.nodes['.web-lightbox-action'] = [site];
+let nextTimerId = 1;
+const timers = new Map();
+const fakeWindow = {
+  setTimeout(fn, delay) { const id = nextTimerId++; timers.set(id, {fn, delay}); return id; },
+  clearTimeout(id) { timers.delete(id); },
+  matchMedia() { return {matches:false, addEventListener() {}}; }
+};
 const context = vm.createContext({
-  document:{getElementById:id => ids[id], createElement:tag => new Element(tag)},
+  window:fakeWindow,
+  document:{
+    hidden:false,
+    getElementById:id => ids[id],
+    createElement:tag => new Element(tag),
+    addEventListener() {}
+  },
   lightbox, lightboxScroll:scroll, lightboxTitle:title, lightboxDesc:desc
 });
 vm.runInContext(source.slice(source.indexOf('  // Project summaries'), source.indexOf('  // Project cards')), context);
@@ -70,6 +98,14 @@ ids.carPrev.click();
 assert.equal(slides[4].hidden, false);
 ids.carDots.children[2].click();
 assert.equal(slides[2].hidden, false);
+assert.equal(timers.size, 1);
+assert.equal(timers.values().next().value.delay, 3000);
+timers.values().next().value.fn();
+assert.equal(slides[3].hidden, false);
+viewport.handlers.pointerdown({pointerType:'touch', button:0, clientX:200, clientY:100, pointerId:1, target:{closest:() => null}});
+viewport.handlers.pointermove({clientX:100, clientY:102, preventDefault() {}});
+viewport.handlers.pointerup({pointerId:1});
+assert.equal(slides[4].hidden, false);
 slides.forEach((slide, i) => {
   const button = slide.nodes['.lightbox-trigger'];
   assert.equal(button.textContent, '프로젝트 자세히 보기');
@@ -90,4 +126,4 @@ slides.forEach(slide => {
 context.renderProjectStudy(slides[0].nodes['.lightbox-trigger'], false);
 assert.equal(scroll.querySelectorAll('.case-study-body').length, 0);
 assert.equal(lightbox.querySelectorAll('.case-study-role').length, 0);
-console.log('PASS: five projects, selection/wrapping, detail/site actions, case-study replacement and cleanup');
+console.log('PASS: five projects, automatic/manual/drag selection, wrapping, detail/site actions, case-study replacement and cleanup');
