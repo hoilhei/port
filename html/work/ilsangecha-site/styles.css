@@ -12,7 +12,7 @@
     --steel:#B9BEC2;
     --content-max:1400px;
     --hero-phase-track:660vh;
-    --blend-brew-overlap:100vh;
+    --blend-brew-overlap:0vh;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -218,6 +218,7 @@
     background:#2c180d;
     color:var(--cream);
   }
+  .steps-section[hidden]{display:none;}
   .steps-head{
     padding:clamp(56px,13vh,120px) 6vw 0;
     margin-bottom:clamp(44px,15vh,120px);
