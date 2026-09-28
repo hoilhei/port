@@ -54,7 +54,7 @@ button { cursor: pointer; font-family: inherit; }
 .product-image {
     width: 50%;
     border-right: 1px solid var(--line-color);
-    margin: 67px 0 0 0; /* 주변 여백(패딩)을 없애서 영역에 꽉 차게 만듭니다 */
+    margin: 40px 0 0 0;
     display: flex;
     flex-direction: column;
 }
@@ -112,7 +112,6 @@ button { cursor: pointer; font-family: inherit; }
     color: var(--text-light);
     font-size: 0.95rem;
     margin-bottom: 40px;
-    font-family: var(--font-serif);
 }
 
 /* 옵션 및 수량 선택 */
@@ -175,8 +174,9 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* 아코디언 메뉴 */
-.accordion-wrap { margin-top: 50px; border-top: 1px solid var(--line-color); }
-.accordion-item { border-bottom: 1px solid var(--line-color); }
+.accordion-wrap { margin-top: 50px; }
+.accordion-wrap .accordion-item { border-top: 0; border-bottom: 1px solid var(--line-color); }
+.accordion-wrap .accordion-item:last-child { border-bottom: 0; }
 .accordion-title {
     width: 100%; text-align: left; background: transparent;
     border: none; padding: 15px 0; font-size: 0.85rem;
@@ -189,18 +189,29 @@ button { cursor: pointer; font-family: inherit; }
     display: none;
 }
 
+.options label,
+.options button,
+.qty-input,
+.btn-cart,
+.btn-buy,
+.accordion-title,
+.accordion-content {
+    font-family: 'AritaDotum', sans-serif;
+}
+
 /* 2. 중간 텍스트 영역 (좌우 분할) */
 .middle-text-section {
     display: flex;
-    border-bottom: 1px solid var(--line-color);
 }
 .text-block {
     width: 50%;
     padding: 60px;
 }
-.text-block:first-child { border-right: 1px solid var(--line-color); }
 .text-block h3 { font-size: 1rem; margin-bottom: 15px; text-transform: uppercase; font-family: var(--font-sans); font-weight: 600; letter-spacing: 1px;}
-.text-block p { color: var(--text-light); font-size: 0.95rem; font-family: var(--font-serif);}
+.text-block p { color: var(--text-light); font-size: 0.95rem; }
+.middle-text-section .text-block { width: 100%; }
+.middle-text-section .text-block p,
+.low-irritation-note p { max-width: 70ch; }
 
 /* 상세페이지 영역 */
 .detailed-content-area {
@@ -209,15 +220,18 @@ button { cursor: pointer; font-family: inherit; }
     text-align: center;
     background-color: #fff; 
 }
+.detailed-content-area picture { display: block; }
+.detailed-content-area picture img { width: 100%; height: auto; }
+.product-page .low-irritation-note { width: 100%; padding: 48px 60px 0; background: transparent; text-align: left; }
 
 /* 3. 하단 추천 상품 영역 (무한 롤링 슬라이드 적용) */
 .related-section {
-    padding: 180px 0 0 0;
+    padding: 64px 0 0 0;
     text-align: center;
     overflow: hidden; /* 슬라이드 영역 밖 가림 */
 }
 .related-section h2 {
-    font-size: 1.8rem; margin-bottom: 40px;
+    font-size: 1.6rem; margin-bottom: 40px;
 }
 .product-slider-wrap {
     border-top: 1px solid var(--line-color);
@@ -262,8 +276,8 @@ button { cursor: pointer; font-family: inherit; }
     color: #fff;
     margin-bottom: 0; /* 이전의 네거티브 마진(-40px) 제거 */
 }
-.grid-info h4 { font-size: 0.9rem; font-family: var(--font-sans); margin-bottom: 8px; text-transform: uppercase;}
-.grid-info p { font-size: 0.8rem; opacity: 0.9;}
+.grid-info h4 { font-size: 1.1rem; font-family: 'AritaDotum', sans-serif; margin-bottom: 8px; text-transform: uppercase;}
+.grid-info p { font-size: 1rem; font-family: 'AritaDotum', sans-serif; opacity: 0.9;}
 
 @keyframes scrollProductsLeft {
     0% { transform: translateX(0); }
@@ -273,8 +287,11 @@ button { cursor: pointer; font-family: inherit; }
 /* 반응형 처리 */
 @media (max-width: 768px) {
     .product-image, .product-info, .text-block { width: 100%; border-right: none; padding: 30px; }
+    .product-page .low-irritation-note { padding: 30px 30px 0; }
     .middle-text-section { flex-direction: column; }
-    .text-block:first-child { border-right: none; border-bottom: 1px solid var(--line-color); }
 }
 
-
+@media (max-width: 720px) {
+    .container { padding-top: 80px; }
+    .product-image { margin-top: 0; padding-top: 0; }
+}

@@ -13,14 +13,11 @@
     
     <header class="topbar">
       <div class="topbar__row">
-        <div class="topbar__meta">한국어 / English</div>
         <div class="brand">
           <a href="#">Hwawoon</a>
         </div>
         <nav class="topbar__actions" aria-label="유틸리티 메뉴">
-          <a href="#products">매장찾기</a>
-          <a href="#products">구매하기</a>
-          <button class="icon-btn" type="button" aria-label="검색">
+          <button class="icon-btn" type="button" aria-label="상품 검색 열기" aria-controls="product-search-panel" aria-expanded="false">
             <span></span>
           </button>
           <button class="mobile-menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="main-nav" aria-expanded="false">
@@ -31,12 +28,23 @@
         </nav>
       </div>
       <nav class="main-nav" id="main-nav" aria-label="주요 메뉴">
-        <a href="#about">소개</a>
-        <a href="#products">기프트</a>
+        <a href="about.html">ABOUT 화윤</a>
         <a href="#products">베스트 셀러</a>
         <a href="#season">계절 추천</a>
-        <a href="#about">ABOUT 화윤</a>
+        <a href="#help">테라피샵</a>
       </nav>
+      <div class="search-panel" id="product-search-panel" role="region" aria-label="상품 검색">
+        <div class="search-panel__inner">
+          <form class="product-search-form" role="search">
+            <label for="product-search-input">상품 검색</label>
+            <div class="product-search-form__controls">
+              <input id="product-search-input" name="q" type="search" placeholder="상품명을 입력해 주세요" autocomplete="off" />
+              <button type="submit">검색</button>
+            </div>
+          </form>
+          <div class="search-results" aria-live="polite"></div>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -51,7 +59,7 @@
             <img src="./images/main3.png" alt="배너 이미지 1">
           </div>
           <div class="hero-slide">
-            <img src="./images/main.jpg" alt="배너 이미지 2">
+            <img class="hero-slide__main-image" src="./images/main.jpg" alt="배너 이미지 2">
           </div>
         </div>
 
@@ -66,7 +74,7 @@
               </p>
               <div class="hero__cta">
                 <a class="btn btn--solid" href="#products">제품 보기</a>
-                <a class="btn btn--ghost" href="#about">브랜드 소개</a>
+                <a class="btn btn--ghost" href="about.html">브랜드 소개</a>
               </div>
             </div>
           </div>
@@ -119,42 +127,35 @@
         </div>
       </section>
 
-      <section class="editorial-philosophy" id="ingredients">
-        <div class="ep-container">
+      <section class="editorial-feature" id="about">
+        <div class="ef-container">
           
-          <div class="ep-text-main">
-            <h2>
-              화윤은 자연으로부터 온 원료 본연을 담아냈습니다.<br>
-              자연으로부터 온 우리의 피부와<br> 닮아있습니다.<br>
-              코스메틱 전문가들의 원료 추출<br>
-              기능을 더했습니다. <em>자연과의 연합을 더합니다.</em>
-            </h2>
-            <a href="#about" class="ep-link">OUR PHILOSOPHY</a>
+          <div class="ef-image">
+            <img id="featureImage" src="./images/foot1.png" alt="집중 케어 뷰티 화보" />
           </div>
 
-          <div class="ep-img-water">
-            <img src="./images/gal_4.png" alt="자연의 결" />
-          </div>
-
-          <div class="ep-img-skin">
-            <img src="./images/gal_5.png" alt="피부 본연의 텍스처" />
-          </div>
-
-          <div class="ep-bottom-right">
-            <div class="ep-text-small">
+          <div class="ef-content">
+            <div class="ef-vertical-text">OUR COMMITMENT</div>
+            
+            <div class="ef-text-wrap">
+              <h2>
+                하루의 리듬을 완성하는, <br>집중 케어
+              </h2>
               <p>
-                바람과 땅과 비의 향<br>
-                그 속에 담긴 자연의 힘<br>
-                내추럴한 영양이 우리의 피부속으로<br>
-                깊이 있게 피부를 회복시킵니다.<br>
-                자연의 회복력을 기대할 수 있습니다.
+                화윤의 균형감 있는 텍스처와 안정적인 톤을 바탕으로,<br>
+                제품의 이미지를 더 선명하게 전달하는 비주얼 구조를 적용했습니다.
+                본연의 빛을 잃지 않도록 가장 필요한 것만 담았습니다.
               </p>
-            </div>
-            <div class="ep-img-shell">
-              <img src="./images/obj.png" alt="자연 오브제" />
+              
+              <a href="#products" class="ef-link-arrow">
+                자세히 보기
+                <svg width="24" height="9" viewBox="0 0 24 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 4.5H22.5M22.5 4.5L19.5 1.5M22.5 4.5L19.5 7.5" stroke="currentColor" stroke-width="1"/>
+                </svg>
+              </a>
             </div>
           </div>
-
+          
         </div>
       </section>
 
@@ -254,38 +255,6 @@
         </div>
       </section>
 
-      <section class="editorial-feature" id="about">
-        <div class="ef-container">
-          
-          <div class="ef-image">
-            <img id="featureImage" src="./images/foot1.png" alt="집중 케어 뷰티 화보" />
-          </div>
-
-          <div class="ef-content">
-            <div class="ef-vertical-text">OUR COMMITMENT</div>
-            
-            <div class="ef-text-wrap">
-              <h2>
-                하루의 리듬을 완성하는,<br>
-                <em>집중 케어</em>
-              </h2>
-              <p>
-                화윤의 균형감 있는 텍스처와 안정적인 톤을 바탕으로,<br>
-                제품의 이미지를 더 선명하게 전달하는 비주얼 구조를 적용했습니다.<br>
-                본연의 빛을 잃지 않도록 가장 필요한 것만 담았습니다.
-              </p>
-              
-              <a href="#products" class="ef-link-arrow">
-                자세히 보기
-                <svg width="24" height="9" viewBox="0 0 24 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 4.5H22.5M22.5 4.5L19.5 1.5M22.5 4.5L19.5 7.5" stroke="currentColor" stroke-width="1"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-          
-        </div>
-      </section>
       
     </main>
 
@@ -368,7 +337,7 @@
         <div class="eh-copyright-bar">
           <div class="eh-copyright-inner">
             <div class="eh-footer-links">
-              <a href="#top">회사소개</a>
+              <a href="about.html">회사소개</a>
               <a href="#top">이용약관</a>
               <a href="#top">개인정보처리방침</a>
               <a href="#top">고객센터</a>

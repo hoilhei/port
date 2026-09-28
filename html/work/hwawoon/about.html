@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABOUT 화윤 | Hwawoon</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top" class="mobile-nav-page about-page">
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="topbar__row">
+        <div class="brand">
+          <a href="index.html">Hwawoon</a>
+        </div>
+        <nav class="topbar__actions" aria-label="유틸리티 메뉴">
+          <button class="icon-btn" type="button" aria-label="상품 검색 열기" aria-controls="product-search-panel" aria-expanded="false">
+            <span></span>
+          </button>
+          <button class="mobile-menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="main-nav" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+      <nav class="main-nav" id="main-nav" aria-label="주요 메뉴">
+        <a href="about.html" aria-current="page">ABOUT 화윤</a>
+        <a href="index.html#products">베스트 셀러</a>
+        <a href="index.html#season">계절 추천</a>
+        <a href="index.html#help">테라피샵</a>
+      </nav>
+      <div class="search-panel" id="product-search-panel" role="region" aria-label="상품 검색">
+        <div class="search-panel__inner">
+          <form class="product-search-form" role="search">
+            <label for="product-search-input">상품 검색</label>
+            <div class="product-search-form__controls">
+              <input id="product-search-input" name="q" type="search" placeholder="상품명을 입력해 주세요" autocomplete="off" />
+              <button type="submit">검색</button>
+            </div>
+          </form>
+          <div class="search-results" aria-live="polite"></div>
+        </div>
+      </div>
+    </header>
+    <main class="about-main">
+      <div class="about-page-heading">
+        <h1>ABOUT 화윤</h1>
+      </div>
+      <section class="editorial-philosophy" id="ingredients">
+        <div class="ep-container">
+          
+          <div class="ep-text-main">
+            <h2>
+              화윤은 자연으로부터 온 원료 본연을 담아냈습니다.<br>
+              자연으로부터 온 우리의 피부와<br> 닮아있습니다.<br>
+              코스메틱 전문가들의 원료 추출<br>
+              기능을 더했습니다. <em>자연과의 연합을 더합니다.</em>
+            </h2>
+            <p class="about-philosophy-label">OUR PHILOSOPHY</p>
+          </div>
+
+          <div class="ep-img-water">
+            <img src="./images/gal_4.png" alt="자연의 결" />
+          </div>
+
+          <div class="ep-img-skin">
+            <img src="./images/gal_5.png" alt="피부 본연의 텍스처" />
+          </div>
+
+          <div class="ep-bottom-right">
+            <div class="ep-text-small">
+              <p>
+                바람과 땅과 비의 향,<br>
+                그 속에 담긴 자연의 힘과 내추럴한<br>
+                영양이 우리의 피부속으로<br>
+                깊이 있게 피부를 회복시킵니다.<br>
+                자연의 회복력으로 피부 본연의 <br>힘을 되찾습니다.
+              </p>
+            </div>
+            <div class="ep-img-shell">
+              <img src="./images/obj.png" alt="자연 오브제" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+        <div class="eh-copyright-bar">
+          <div class="eh-copyright-inner">
+            <div class="eh-footer-links">
+              <a href="about.html">회사소개</a>
+              <a href="#top">이용약관</a>
+              <a href="#top">개인정보처리방침</a>
+              <a href="#top">고객센터</a>
+            </div>
+            <p>© HWAWOON CORPORATION. All rights reserved.</p>
+          </div>
+        </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
