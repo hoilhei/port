@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>일상에차 — 바쁜 하루 속, <br> 잠시 차 한 잔의 쉼</title>
+<title>일상에차 — 바쁜 하루 속, 잠시 차 한 잔의 쉼</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,10 +12,9 @@
 <body>
 
 <nav class="top-nav">
-  <div class="brand">
-    
-    <img class="brand-logo" src="images/logo1.png" alt="" onerror="this.style.display='none'">
-  </div>
+  <a class="brand" href="#heroPin" aria-label="일상에차 첫 페이지로 이동">
+    <img class="brand-logo" src="images/logo1.png" alt="일상에차" onerror="this.style.display='none'">
+  </a>
   <button class="nav-toggle" id="navToggle" type="button" aria-label="메뉴 열기" aria-controls="navMenu" aria-expanded="false">
     <span></span>
     <span></span>
@@ -24,10 +23,16 @@
   <ul id="navMenu">
     <li><a href="#intro">소개</a></li>
     <li><a href="#ritual">다도</a></li>
-    <li><a href="#menu-cards">메뉴</a></li>
+    <li><a href="#blending">메뉴</a></li>
     <li><a href="#contact">오시는 곳</a></li>
   </ul>
 </nav>
+
+<div class="scroll-cue" id="scrollCue">
+  <span class="scroll-cue-label">SCROLL</span>
+  <span>스크롤해 주세요</span>
+  <span class="scroll-cue-arrow" aria-hidden="true">↓</span>
+</div>
 
 <!-- ================= HERO (스크롤 시 영상이 오른쪽으로 이동 + 좌측 패널 펼침) ================= -->
 <div class="hero-pin" id="heroPin">
@@ -49,7 +54,6 @@
           ></video>
         </div>
         <div class="hero-vignette"></div>
-        <div class="scroll-cue" id="scrollCue"><span>SCROLL</span><span class="bar"></span></div>
       </section>
     </div>
 
@@ -103,7 +107,7 @@
       </div>
     </div>
 
-    <!-- 섹션3 위로, 오른쪽에서 왼쪽으로 들어오는 커튼(섹션4) — 블렌딩 상품 가로 슬라이더 -->
+    <!-- 소개 섹션을 덮으며 아래에서 위로 올라오는 블렌딩 상품 섹션 -->
     <div class="section4-curtain" id="section4Curtain">
 
       <!-- 섹션4 전체 배경 이미지 삽입 경로: 아래 img의 src를 실제 이미지로 교체하세요 (예: images/section4-bg.jpg) -->
@@ -124,7 +128,7 @@
         <div class="p-slider" id="paletteSlider">
 
           <div class="p-slide">
-            <div class="p-frame">
+            <a class="p-frame" href="product.html?tea=first-leaf" aria-label="첫잎 녹차 상품 상세보기" draggable="false">
               <div class="p-photo">
                 <!-- 슬라이드 이미지 삽입 경로: images/palette-1.jpg -->
                 <img src="images/sec2-t1.png" alt="첫잎 녹차 찻잎과 찻물" onerror="this.style.display='none'">
@@ -138,11 +142,11 @@
                 </dl>
                 <p class="p-desc">여린 찻잎의 맑은 향과 담백한 감칠맛, 은은하게 이어지는 단맛을 담았습니다.</p>
               </div>
-            </div>
+            </a>
           </div>
 
           <div class="p-slide">
-            <div class="p-frame">
+            <a class="p-frame" href="product.html?tea=garden-walk" aria-label="정원 산책 상품 상세보기" draggable="false">
               <div class="p-photo">
                 <!-- 슬라이드 이미지 삽입 경로: images/palette-2.jpg -->
                 <img src="images/sec2-t2.png" alt="꽃잎을 블렌딩한 정원 산책 차" onerror="this.style.display='none'">
@@ -156,11 +160,11 @@
                 </dl>
                 <p class="p-desc">부드러운 녹차 위로 다채로운 꽃향이 차분하게 피어나는 산뜻한 플로럴 블렌드입니다.</p>
               </div>
-            </div>
+            </a>
           </div>
 
           <div class="p-slide">
-            <div class="p-frame">
+            <a class="p-frame" href="product.html?tea=sunshine-chamomile" aria-label="햇살 캐모마일 상품 상세보기" draggable="false">
               <div class="p-photo">
                 <!-- 슬라이드 이미지 삽입 경로: images/palette-3.jpg -->
                 <img src="images/sec2-t3.png" alt="캐모마일과 허브를 블렌딩한 햇살 캐모마일 차" onerror="this.style.display='none'">
@@ -174,11 +178,11 @@
                 </dl>
                 <p class="p-desc">포근한 캐모마일에 싱그러운 허브 향을 더해 하루의 긴장을 부드럽게 내려놓게 합니다.</p>
               </div>
-            </div>
+            </a>
           </div>
 
           <div class="p-slide">
-            <div class="p-frame">
+            <a class="p-frame" href="product.html?tea=afternoon-citrus" aria-label="오후의 시트러스 상품 상세보기" draggable="false">
               <div class="p-photo">
                 <!-- 슬라이드 이미지 삽입 경로: images/palette-4.jpg -->
                 <img src="images/sec2-t4.png" alt="시트러스와 꽃잎을 블렌딩한 오후의 시트러스 차" onerror="this.style.display='none'">
@@ -192,11 +196,11 @@
                 </dl>
                 <p class="p-desc">맑은 녹차에 상큼한 시트러스와 꽃향을 겹쳐 나른한 오후를 가볍게 깨우는 차입니다.</p>
               </div>
-            </div>
+            </a>
           </div>
 
           <div class="p-slide">
-            <div class="p-frame">
+            <a class="p-frame" href="product.html?tea=ruby-garden" aria-label="루비 가든 상품 상세보기" draggable="false">
               <div class="p-photo">
                 <!-- 슬라이드 이미지 삽입 경로: images/palette-5.jpg -->
                 <img src="images/sec2-t5.png" alt="히비스커스와 용과를 블렌딩한 루비 가든 차" onerror="this.style.display='none'">
@@ -210,7 +214,7 @@
                 </dl>
                 <p class="p-desc">새콤한 히비스커스와 달콤한 과일 향이 어우러져 선명하고 생기 있는 여운을 남깁니다.</p>
               </div>
-            </div>
+            </a>
           </div>
 
         </div>
@@ -227,6 +231,7 @@
   <div id="intro" class="pin-anchor"></div>
   <!-- 상단 네비게이션 '다도' 클릭 시 섹션3 커튼이 올라오는 지점으로 이동하기 위한 앵커 -->
   <div id="ritual" class="pin-anchor"></div>
+  <div id="blending" class="pin-anchor"></div>
 </div>
 
 <!-- 블렌딩을 고정한 채 브루잉이 아래에서 올라온 뒤 6단계를 진행하는 구간 -->

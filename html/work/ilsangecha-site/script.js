@@ -25,6 +25,7 @@
       link.addEventListener('click', () => setMobileMenu(false));
     });
   }
+  topNav?.querySelector('.brand')?.addEventListener('click', () => setMobileMenu(false));
 
   document.addEventListener('keydown', (event) => {
     if(event.key === 'Escape') setMobileMenu(false);
@@ -125,6 +126,19 @@
     // Reveal each tea card in sequence as the section enters after brewing.
     el.style.transitionDelay = i*0.22 + 's';
   });
+
+  // Let taller tea sections scroll fully into view before pinning for the footer.
+  const cardsSection = document.getElementById('menu-cards');
+  if (cardsSection) {
+    const updateCardsStickyTop = () => {
+      const top = Math.min(0, window.innerHeight - cardsSection.offsetHeight);
+      cardsSection.style.setProperty('--cards-sticky-top', `${top}px`);
+    };
+    new ResizeObserver(updateCardsStickyTop).observe(cardsSection);
+    window.addEventListener('resize', updateCardsStickyTop);
+    updateCardsStickyTop();
+  }
+
   // ---- Hero pin: phase A(영상 이동 + 패널) → phase C(소개 커튼) → phase E(블렌딩 슬라이더) ----
   const heroPin = document.getElementById('heroPin');
   const heroMedia = document.getElementById('heroMedia');
@@ -176,9 +190,12 @@
     const mobile = window.innerWidth <= 760;
     const phaseA = mobile ? 100 : 120;
     const phaseC = mobile ? 80 : 100;
-    const phaseD = mobile ? 20 : 220;
+    // Hold the completed 일상에차 introduction for two viewport scrolls.
+    const phaseD = 200;
     const phaseE = mobile ? 80 : 120;
-    const phaseF = 100;
+    // Keep the blending section fully pinned for 200vh, then use the last
+    // 100vh overlap for the following section to rise from the bottom.
+    const phaseF = 300;
     const total = phaseA + phaseC + phaseD + phaseE + phaseF;
 
     return {
@@ -221,7 +238,9 @@
       if(local > 0.05){ el.classList.add('in'); } else { el.classList.remove('in'); }
     });
     if(scrollCue){
-      scrollCue.style.opacity = progress < 0.03 ? 1 : 0;
+      const hidden = progress >= blendStart;
+      scrollCue.classList.toggle('is-hidden', hidden);
+      scrollCue.setAttribute('aria-hidden', String(hidden));
     }
 
     // ---- Phase C: 소개 커튼이 아래에서 위로 올라와 덮는다 ----
@@ -238,17 +257,35 @@
       if(local > 0.05){ el.classList.add('in'); } else { el.classList.remove('in'); }
     });
 
-    // ---- Phase E: 블렌딩 상품 커튼이 오른쪽에서 왼쪽으로 들어온다 ----
+    // ---- Phase E: 블렌딩 상품 커튼이 아래에서 위로 올라온다 ----
     const pE = Math.min(Math.max((progress - blendStart) / (blendEnd - blendStart), 0), 1);
     if(section4Curtain){
       const bgEased = smoothstep(pE);
-      section4Curtain.style.transform = `translateX(${(1 - bgEased) * 100}%)`;
+      section4Curtain.style.transform = `translateY(${(1 - bgEased) * 100}%)`;
     }
   }
 
   window.addEventListener('scroll', updateHero, {passive:true});
   window.addEventListener('resize', updateHero);
   updateHero();
+
+  // The blending section lives inside a scroll-driven curtain. Its return link
+  // must target the point where that curtain is fully visible.
+  function positionBlendingAnchor(){
+    const anchor = document.getElementById('blending');
+    if (!heroPin || !anchor) return;
+    anchor.style.top = `${(heroPin.offsetHeight - window.innerHeight) * getHeroPhaseSplits().blendEnd + 2}px`;
+  }
+  function restoreBlendingHash(){
+    if (window.location.hash !== '#blending') return;
+    positionBlendingAnchor();
+    document.getElementById('blending')?.scrollIntoView({behavior:'instant', block:'start'});
+    updateHero();
+  }
+  positionBlendingAnchor();
+  window.addEventListener('resize', positionBlendingAnchor);
+  window.addEventListener('hashchange', restoreBlendingHash);
+  window.addEventListener('load', restoreBlendingHash);
 
   // ---- Section4 palette slider: drag to scroll + arrow buttons ----
   const paletteSlider = document.getElementById('paletteSlider');
@@ -262,6 +299,7 @@
     let moved = false;
 
     paletteSlider.addEventListener('mousedown', (e) => {
+      if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       isDragging = true;
       moved = false;
       dragStartX = e.pageX;
@@ -282,21 +320,26 @@
     });
 
     paletteSlider.addEventListener('click', (e) => {
-      if(moved){ e.preventDefault(); e.stopPropagation(); }
+      if(moved && e.detail !== 0){ e.preventDefault(); e.stopPropagation(); }
+      moved = false;
     });
 
-    // 터치 드래그 지원
+    paletteSlider.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // Touch scrolling stays native; track the gesture only to suppress link clicks.
     paletteSlider.addEventListener('touchstart', (e) => {
       isDragging = true;
+      moved = false;
       dragStartX = e.touches[0].pageX;
       scrollStart = paletteSlider.scrollLeft;
     }, {passive:true});
     paletteSlider.addEventListener('touchmove', (e) => {
       if(!isDragging) return;
       const dx = e.touches[0].pageX - dragStartX;
-      paletteSlider.scrollLeft = scrollStart - dx;
+      if(Math.abs(dx) > 8) moved = true;
     }, {passive:true});
     paletteSlider.addEventListener('touchend', () => { isDragging = false; });
+    paletteSlider.addEventListener('touchcancel', () => { isDragging = false; moved = false; });
   }
 
   if(palettePrev){

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="매일의 첫 잔을, 맑고 가볍게. 여린 찻잎의 맑은 향과 담백한 감칠맛을 담은 일상에차 첫잎 녹차를 만나보세요.">
+  <meta name="theme-color" content="#f8f6ed">
+  <title>첫잎 녹차 | 일상에차</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="product.css">
+  <script src="product.js" defer></script>
+</head>
+<body>
+  <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="leaf" viewBox="0 0 56 76"><path d="M8 67C9 42 25 18 48 6c4 27-10 48-40 61Z M8 67 43 15 M17 49l2-15 M24 41l16-6 M31 29l-1-11"/></symbol>
+    <symbol id="bag" viewBox="0 0 28 32"><path d="m6 10-2 19h20l-2-19Z M10 10V6a4 4 0 0 1 8 0v4"/></symbol>
+  </svg>
+  <a class="skip-link" href="#product">상품 정보로 바로가기</a>
+  <header class="site-header">
+    <div class="page-width header-inner">
+      <a class="wordmark" href="index.html" aria-label="일상에차 홈"><img class="wordmark-logo" src="images/logo.png" alt=""></a>
+      <nav aria-label="주 메뉴">
+        <a href="index.html#intro">소개</a>
+        <a href="index.html#ritual">다도</a>
+        <a href="index.html#blending">메뉴</a>
+        <a href="index.html#contact">오시는 곳</a>
+      </nav>
+      <button class="cart-toggle" type="button" aria-label="장바구니 열기"><svg aria-hidden="true"><use href="#bag"/></svg><span id="cart-count" hidden>0</span></button>
+    </div>
+  </header>
+  <main>
+    <div class="page-width">
+      <nav class="breadcrumb" aria-label="현재 위치"><a href="index.html">홈</a><span>/</span><a href="index.html#blending">차 고르기</a><span>/</span><span data-bind="name" aria-current="page">첫잎 녹차</span></nav>
+      <section class="product-hero" id="product" aria-labelledby="product-name">
+        <div class="product-visual"><img id="product-image" src="images/first-leaf-product.png" alt="첫잎 녹차 패키지와 따뜻한 녹차 한 잔" width="1122" height="1402" fetchpriority="high"><span class="image-badge">DAILY TEA</span></div>
+        <div class="product-summary">
+          <p class="eyebrow" data-bind="eyebrow">NO. 01 / PURE GREEN TEA</p>
+          <h1 id="product-name" data-bind="name">첫잎 녹차</h1>
+          <p class="product-description" data-bind="description">여린 찻잎의 맑은 향과 담백한 감칠맛,<br>은은하게 이어지는 단맛을 담았습니다.</p>
+          <ul class="taste-tags" id="taste-tags" aria-label="맛과 향"><li>맑은 향</li><li>감칠맛</li><li>은은한 단맛</li></ul>
+          <div class="price-line"><strong id="unit-price">18,000 <small>원</small></strong><span id="product-weight">잎차 30 g</span></div>
+          <form id="product-form">
+            <div class="option-row"><label for="product-option">구성</label><select id="product-option" name="option"><option value="loose-30">첫잎 녹차 · 잎차 30 g</option></select></div>
+            <div class="option-row" id="quantity-row"><label for="quantity">수량</label><div class="quantity-control"><button type="button" id="decrease" aria-label="수량 줄이기" disabled>−</button><input id="quantity" name="quantity" type="number" min="1" max="99" step="1" value="1" inputmode="numeric"><button type="button" id="increase" aria-label="수량 늘리기">+</button></div></div>
+            <div class="total-line"><span>총 상품 금액</span><output id="total-price" for="quantity">18,000원</output></div>
+            <div class="purchase-actions"><button class="button button-outline" type="button" id="add-to-cart">장바구니</button><button class="button button-solid" type="submit" id="buy-button">첫잎 녹차 구매하기</button></div>
+          </form>
+          <p class="product-footnote" id="product-footnote">한 잔을 고르는 순간부터, 나를 위한 작은 쉼.</p>
+        </div>
+      </section>
+      <nav class="detail-nav" aria-label="상품 상세 안내"><a class="is-active" href="#story" aria-current="location">차 이야기</a><a href="#flavor">맛과 향</a><a href="#brewing">맛있게 우리는 법</a></nav>
+      <section class="story-section" id="story" aria-labelledby="story-title">
+        <div class="story-copy"><p class="eyebrow">A LITTLE PAUSE, EVERY DAY</p><h2 id="story-title">별일 없는 하루에도,<br>차 한 잔의 쉼.</h2><p>해야 할 일을 잠깐 내려두고,<br>따뜻한 잔을 두 손으로 감싸 보세요.<br>맑은 찻향이 익숙한 하루에<br>작은 여백을 만들어 줍니다.</p><svg class="story-leaf" aria-hidden="true"><use href="#leaf"/></svg></div>
+        <figure><img src="images/tea-pause.png" alt="햇살이 드는 창가의 유리 다관과 찻잔, 펼쳐진 책" width="1374" height="1146" loading="lazy"><figcaption>익숙한 공간에, 나만의 티타임.</figcaption></figure>
+      </section>
+    </div>
+    <section class="flavor-section" id="flavor" aria-labelledby="flavor-title">
+      <div class="page-width flavor-grid">
+        <img id="flavor-image" src="images/sec2-t1.png" alt="어린 녹차잎과 맑은 녹색 찻물" width="1200" height="1502" loading="lazy">
+        <div class="flavor-copy"><p class="eyebrow" data-bind="flavorEyebrow">MEET YOUR FIRST LEAF</p><h2 id="flavor-title" data-bind="flavorTitle">첫잎이 전하는<br>담백한 취향.</h2><p data-bind="flavorDescription">어린 녹차잎 본연의 맛을 천천히 만나 보세요.<br>복잡한 향을 더하지 않아도 충분한 한 잔.</p><ol class="flavor-notes" id="flavor-notes"><li><div><h3>맑은 향</h3><p>잔을 가까이할 때 느껴지는 어린 찻잎의 향.</p></div></li><li><div><h3>담백한 감칠맛</h3><p>입안에 부드럽게 퍼지는 녹차 본연의 맛.</p></div></li><li><div><h3>은은한 단맛</h3><p>마신 뒤에도 가볍게 이어지는 다정한 여운.</p></div></li></ol></div>
+      </div>
+    </section>
+    <aside class="brand-banner"><div class="page-width banner-inner"><div><p class="eyebrow">YOUR EVERYDAY TEA</p><h2>취향은 가볍게, 쉼은 충분하게.</h2><p>어려운 차 도구도, 특별한 이유도 필요 없어요.<br>아침의 책상에서, 점심 뒤의 짧은 틈에서, 오늘의 한 잔을 만나세요.</p></div><svg aria-hidden="true"><use href="#leaf"/></svg></div></aside>
+    <section class="brewing-section page-width" id="brewing" aria-labelledby="brewing-title"><p class="eyebrow">BREW YOUR PAUSE</p><h2 id="brewing-title">천천히 우릴수록, 가까워지는 쉼.</h2><p data-bind="brewIntro">녹차는 낮은 온도로 짧고 은은하게 우려 주세요.</p><ol class="brew-grid"><li><span class="step-number">01</span><h3 data-bind="waterTitle">물을 한 김 식혀요</h3><p class="brew-value"><span data-bind="temperature">70</span><small>°C</small></p><p data-bind="waterDescription">너무 뜨겁지 않은 물을 준비해요.</p></li><li><span class="step-number">02</span><h3>향이 피어나길 기다려요</h3><p class="brew-value"><span data-bind="brewTime">1–2</span><small>분</small></p><p data-bind="timeDescription">찻잎을 넣고 가볍게 우려 주세요.</p></li><li><span class="step-number">03</span><h3>나에게 맞는 맛을 찾아요</h3><p class="brew-value"><span>한 잔</span><small>의 쉼</small></p><p>찻잎을 건져내고 천천히 즐겨요.</p></li></ol></section>
+    <section class="related-section" aria-labelledby="related-title"><div class="page-width"><p class="eyebrow">FIND YOUR DAILY BLEND</p><h2 id="related-title">내일은, 또 다른 취향.</h2><p>맑은 녹차부터 꽃과 과일의 향까지, 오늘의 기분에 맞춰 골라 보세요.</p><div class="related-grid" id="related-products">
+      <a class="related-card" href="product.html?tea=garden-walk"><img src="images/sec2-t2.png" alt="정원 산책 블렌딩 티" loading="lazy" width="1500" height="1878"><span class="eyebrow">FLORAL BLEND</span><h3>정원 산책 <span aria-hidden="true">→</span></h3><p>녹차에 꽃향을 더한 산뜻한 한 잔</p></a>
+      <a class="related-card" href="product.html?tea=sunshine-chamomile"><img src="images/sec2-t3.png" alt="햇살 캐모마일 블렌딩 티" loading="lazy" width="1968" height="2464"><span class="eyebrow">HERBAL BLEND</span><h3>햇살 캐모마일 <span aria-hidden="true">→</span></h3><p>캐모마일과 허브의 포근한 만남</p></a>
+      <a class="related-card" href="product.html?tea=afternoon-citrus"><img src="images/sec2-t4.png" alt="오후의 시트러스 블렌딩 티" loading="lazy" width="1200" height="1502"><span class="eyebrow">CITRUS BLEND</span><h3>오후의 시트러스 <span aria-hidden="true">→</span></h3><p>나른한 오후를 깨우는 상큼한 향</p></a>
+    </div></div></section>
+    <section class="product-details page-width" aria-labelledby="details-title"><h2 id="details-title"><span data-bind="name">첫잎 녹차</span>, 더 알아보기</h2><dl><div><dt>차의 종류</dt><dd data-bind="ingredients">어린 녹차잎 그대로 즐기는 녹차</dd></div><div><dt>맛과 향</dt><dd data-bind="tasteSummary">맑은 향 · 담백한 감칠맛 · 은은한 단맛</dd></div><div><dt>카페인 안내</dt><dd data-bind="caffeine">녹차에는 카페인이 들어 있습니다.</dd></div><div><dt>보관 방법</dt><dd>직사광선과 습기를 피해 밀봉하여 보관해 주세요.</dd></div></dl></section>
+  </main>
+  <footer class="site-footer"><div class="page-width footer-inner"><div><a href="index.html" class="footer-brand">일상에차</a><p>바쁜 하루 속, 잠시 차 한 잔의 쉼.</p></div><div><a href="index.html#blending">오늘의 한 잔을 고르세요. <span aria-hidden="true">↗</span></a><p class="footer-en">ILSANGECHA / DAILY TEA, DAILY PAUSE</p></div></div></footer>
+  <p class="toast" id="toast" role="status"></p>
+  <dialog id="cart-dialog" aria-labelledby="cart-title"><div class="dialog-heading"><h2 id="cart-title">나의 장바구니</h2><button type="button" class="dialog-close" aria-label="장바구니 닫기">×</button></div><div id="cart-items"></div><div class="cart-total"><span>총 상품 금액</span><strong id="cart-total">0원</strong></div><p class="dialog-note">결제 서비스는 준비 중입니다.<br>담은 상품은 이 브라우저에 저장됩니다.</p><button type="button" class="button button-solid dialog-close">계속 둘러보기</button></dialog>
+  <dialog id="purchase-dialog" aria-labelledby="purchase-title"><div class="dialog-heading"><h2 id="purchase-title">선택하신 한 잔</h2><button type="button" class="dialog-close" aria-label="구매 안내 닫기">×</button></div><p id="purchase-summary"></p><p class="dialog-note">현재 결제 서비스는 준비 중입니다.<br>선택하신 상품을 장바구니에 담아둘 수 있어요.</p><button type="button" class="button button-solid" id="purchase-save">장바구니에 담기</button></dialog>
+  <noscript><p class="noscript-note">상품 선택과 장바구니 기능을 사용하려면 JavaScript를 켜 주세요.</p></noscript>
+</body>
+</html>

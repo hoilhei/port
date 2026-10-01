@@ -11,8 +11,9 @@
     --cream:#F8F3E7;
     --steel:#B9BEC2;
     --content-max:1400px;
-    --hero-phase-track:660vh;
-    --blend-brew-overlap:0vh;
+    --hero-phase-track:840vh;
+    --blend-brew-overlap:100vh;
+    --today-hold:70vh;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -52,7 +53,7 @@
   }
   .top-nav .brand{
     display:flex;align-items:center;gap:9px;
-    font-family:'Gowun Batang',serif;font-size:16px;color:#fff;letter-spacing:.05em;pointer-events:auto;
+    font-family:'Gowun Batang',serif;font-size:16px;color:#fff;letter-spacing:.05em;pointer-events:auto;text-decoration:none;
   }
   .top-nav .brand-logo{height:100px;width:auto;display:block;}
   .top-nav ul{list-style:none;display:flex;gap:28px;pointer-events:auto;}
@@ -106,15 +107,17 @@
   .hp-3{font-size:19px;color:rgba(248,243,231,.85);letter-spacing:.01em;}
   .hp-4{font-size:16.45px;line-height:1.85;color:rgba(248,243,231,.62);font-weight:300;max-width:340px;}
 
-  /* 우측 하단 회전 원형 배지 */
+  /* 소개 구간까지 화면 우측 하단에 유지되는 스크롤 안내 */
   .scroll-cue{
-    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
-    font-size:10px;letter-spacing:.3em;color:rgba(248,243,231,.55);
-    display:flex;flex-direction:column;align-items:center;gap:10px;z-index:5;
-    transition:opacity .4s ease;
+    position:fixed;right:clamp(28px,4vw,64px);bottom:34px;z-index:49;
+    width:118px;height:118px;border-radius:50%;background:#fff;color:#3c4e35;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    font-size:12px;line-height:1.4;box-shadow:0 3px 20px rgba(0,0,0,.08);
+    pointer-events:none;transition:opacity .3s ease,visibility .3s ease;
   }
-  .scroll-cue .bar{width:1px;height:34px;background:linear-gradient(180deg,rgba(248,243,231,.8),transparent);animation:scrollBar 1.8s ease-in-out infinite;}
-  @keyframes scrollBar{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+  .scroll-cue-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;}
+  .scroll-cue-arrow{font-size:24px;line-height:1;margin-top:3px;}
+  .scroll-cue.is-hidden{opacity:0;visibility:hidden;}
 
   /* ================= SOOTHE CURTAIN (섹션2 — 소개 위로 올라와 덮는 커튼, 좌측 이미지·영상 2분할 / 우측 텍스트) ================= */
   .soothe-curtain{
@@ -153,10 +156,10 @@
     radial-gradient(circle at 65% 75%, rgba(255,255,255,.12), transparent 50%),
     linear-gradient(200deg,#4d6e3f 0%,#2c4426 55%,#1a2b16 100%);}
 
-  /* ================= SECTION4 CURTAIN (섹션3 위로 오른쪽에서 왼쪽으로 들어오는 블렌딩 상품 슬라이더) ================= */
+  /* ================= SECTION4 CURTAIN (소개 섹션 위로 아래에서 올라오는 블렌딩 상품 슬라이더) ================= */
   .section4-curtain{
     position:absolute;inset:0;z-index:45;overflow:hidden;
-    transform:translateX(100%);will-change:transform;background:#1B140D;
+    transform:translateY(100%);will-change:transform;background:#1B140D;
   }
   .s4-bg{position:absolute;inset:0;z-index:0;}
   .s4-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -177,11 +180,15 @@
     margin:0 clamp(24px,4vw,72px);padding:0 0 12px;
     -ms-overflow-style:none;scrollbar-width:none;user-select:none;scroll-snap-type:x proximity;
   }
-  .p-slider.dragging{cursor:grabbing;scroll-behavior:auto;}
+  .p-slider.dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;}
   .p-slider::-webkit-scrollbar{display:none;}
   /* 데스크톱에서는 한 화면에 4장, 나머지는 오른쪽으로 이어서 슬라이드됨 */
   .p-slide{flex:0 0 calc((100% - 66px) / 4);scroll-snap-align:start;}
   .p-frame{height:100%;border:1px solid rgba(248,243,231,.45);padding:14px 16px;display:flex;flex-direction:column;gap:13px;background:rgba(27,17,13,.45);}
+  a.p-frame{color:inherit;text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s;}
+  a.p-frame:hover{border-color:var(--cream);background:rgba(27,17,13,.65);}
+  a.p-frame:focus-visible{outline:2px solid var(--cream);outline-offset:-4px;}
+  .p-photo img{pointer-events:none;}
   .p-photo{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:#000;}
   .p-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .p-info{display:flex;flex:1;flex-direction:column;padding:2px 2px 0;}
@@ -289,10 +296,10 @@
   }
 
   /* ================= TEA CARDS ================= */
-  /* 브루잉 6단계를 모두 지난 뒤 일반 문서 흐름으로 등장 */
+  /* 내용 높이를 확보하고, 화면보다 길면 끝까지 스크롤한 뒤 고정 */
   .cards-section{
-    position:sticky;top:0;z-index:2;
-    height:100vh;min-height:100vh;
+    position:sticky;top:var(--cards-sticky-top,0px);z-index:2;
+    height:auto;min-height:100vh;
     background:linear-gradient(180deg,#231910,var(--walnut-2));
     flex-direction:column;padding:clamp(24px,3vh,34px) 6vw 110px;
     box-shadow:0 -28px 60px rgba(20,13,8,.24);
@@ -335,7 +342,7 @@
   /* ================= FOOTER ================= */
   .footer{
     position:relative;z-index:3;background:#1B140D;overflow:hidden;padding:0;
-    margin-top:0;
+    margin-top:var(--today-hold);
     display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;height:100vh;min-height:100vh;
     box-shadow:0 -28px 60px rgba(10,7,4,.3);
   }
@@ -416,6 +423,9 @@
       --mobile-section-title-size:clamp(26px,7vw,30px);
       --mobile-section-label-size:10px;
     }
+    .scroll-cue{width:96px;height:96px;right:20px;bottom:24px;font-size:10px;gap:4px;}
+    .scroll-cue-label{font-size:9px;}
+    .scroll-cue-arrow{font-size:22px;}
     .top-nav{
       align-items:flex-start;
       padding:14px 18px;
@@ -451,12 +461,16 @@
     }
     .top-nav.is-open ul{transform:translateX(0);visibility:visible;pointer-events:auto;}
     .top-nav li{width:100%;border-bottom:1px solid rgba(255,255,255,.14);}
-    .top-nav a{display:block;width:100%;padding:18px 0;font-size:16px;letter-spacing:.08em;}
+    .top-nav ul a{display:block;width:100%;padding:18px 0;font-size:16px;letter-spacing:.08em;}
     body.nav-open{overflow:hidden;}
-    .hero-pin{height:calc(380vh + var(--blend-brew-overlap));}
+    .hero-pin{height:calc(760vh + var(--blend-brew-overlap));}
     .hero-video{object-fit:cover;object-position:center center;}
     .cards-grid{grid-template-columns:1fr;}
-    .cards-section{position:sticky;top:0;height:100vh;min-height:100vh;justify-content:flex-start;padding:var(--mobile-section-top) 6vw 90px;}
+    /* 고정 로고(상단 14px + 높이 96px)와 섹션 헤더가 겹치지 않도록 안전 여백을 보장 */
+    .cards-section{
+      justify-content:flex-start;
+      padding:max(var(--mobile-section-top),124px) 6vw 40px;
+    }
     .cards-head{margin-bottom:40px;}
     .tea-card:nth-child(n+2){display:none;}
     .soothe-grid{grid-template-columns:1fr;}
