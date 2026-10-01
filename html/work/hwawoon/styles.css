@@ -527,6 +527,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* 브랜드 소개 페이지 */
+.about-page { background: #fff; }
 .about-main { padding-top: 130px; }
 .about-page-heading { width: min(1200px, 100%); margin: 0 auto; padding-top: 32px; }
 .about-page-heading h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; color: var(--brand-deep); }

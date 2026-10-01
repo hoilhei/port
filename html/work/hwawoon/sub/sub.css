@@ -26,6 +26,10 @@ body {
     line-height: 1.6;
 }
 
+body.product-page {
+    background: #fff;
+}
+
 h1, h2, h3, h4 {
     font-family: var(--font-serif);
     font-weight: 500;
@@ -220,7 +224,7 @@ button { cursor: pointer; font-family: inherit; }
     text-align: center;
     background-color: #fff; 
 }
-.detailed-content-area picture { display: block; }
+.detailed-content-area picture { display: block; width: min(100%, 750px); margin: 0 auto; }
 .detailed-content-area picture img { width: 100%; height: auto; }
 .product-page .low-irritation-note { width: 100%; padding: 48px 60px 0; background: transparent; text-align: left; }
 
