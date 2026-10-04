@@ -100,6 +100,9 @@
 .lightbox.case-study .lightbox-media{display:block; height:auto; min-height:0; border:0;}
 .lightbox.case-study .lightbox-media::before{display:none;}
 .lightbox.case-study .lightbox-media img{display:block; width:100%; height:auto; max-height:none; object-fit:contain; padding:0;}
+.lightbox.case-study.is-daily-tea .lightbox-media img{width:89%; margin:0 auto;}
+.lightbox.is-web-popup.case-study.is-hwawoon .lightbox-media img{position:static; top:auto; left:auto; width:83%; height:auto; margin:0 auto; transform:none;}
+.lightbox.is-web-popup.case-study.is-lehnen .lightbox-media img{position:static; top:auto; left:auto; width:72%; height:auto; margin:0 auto; transform:none;}
 .lightbox.case-study .lightbox-info{display:flex; flex-direction:column; padding:0; max-height:none; overflow:visible; border:0; gap:0;}
 .lightbox.case-study .lightbox-info h3{order:0; min-height:0; padding:0; color:#24332f; font:32px/1.2 var(--mono); margin:0 0 18px;}
 .lightbox.case-study .lightbox-info p{order:1; color:#53615b; font-size:14px; line-height:1.8; margin:0 0 16px;}
@@ -116,7 +119,14 @@
 .lightbox.case-study .web-lightbox-action{width:auto; min-height:44px; height:auto; padding:12px 22px; border-radius:3px; color:#fff; background:#233a34; box-shadow:none; font:13px/1.5 'Reperipoint',sans-serif;}
 .lightbox.case-study .web-lightbox-action[hidden]{display:none;}
 .lightbox.case-study .lightbox-close{top:18px; right:20px; width:36px; height:36px; min-height:0; font-size:0; background:transparent; color:#24332f;}
-.lightbox.case-study .lightbox-nav{display:none;}
+.lightbox .lightbox-nav[hidden]{display:none;}
+.lightbox.has-navigation .lightbox-nav{display:flex; width:44px; height:64px; border:0; border-radius:0; background:transparent; color:rgba(250,246,236,.85); opacity:1; pointer-events:auto; box-shadow:none;}
+.lightbox.has-navigation .lightbox-nav-prev{left:-52px; right:auto;}
+.lightbox.has-navigation .lightbox-nav-next{left:auto; right:-52px;}
+.lightbox.has-navigation .lightbox-nav svg{width:30px; height:30px;}
+.lightbox.has-navigation .lightbox-nav:hover,
+.lightbox.has-navigation .lightbox-nav:focus-visible{color:#fff; background:transparent;}
+.lightbox.has-navigation .lightbox-nav:focus-visible{outline:1px solid currentColor; outline-offset:2px;}
 .lightbox.is-web-popup.case-study.is-delibirdy{width:min(1500px,calc(100vw - 48px)); max-height:calc(100dvh - 48px); background:#f3efe7;}
 .lightbox.case-study.is-delibirdy .lightbox-scroll{display:block; padding:0; overflow-y:auto;}
 .lightbox.case-study.is-delibirdy .lightbox-media{display:block; width:100%; height:auto; margin:0;}
@@ -129,6 +139,50 @@
 .case-study-body h4{font-size:16px; margin:0 0 12px; color:#24332f;}
 .case-study-body p,.case-study-body li{font-size:14px; line-height:1.9; color:#53615b; word-break:keep-all;}
 .case-study-body ol{list-style:decimal; padding-left:20px; margin:12px 0 0;}
+/* Narrow desktop, tablet and mobile: keep the mockup and copy in separate rows. */
+@media(max-width:1024px){
+  .lightbox.is-web-popup.case-study:not(.is-delibirdy){
+    width:calc(100vw - 48px);
+    max-height:calc(100dvh - 48px);
+  }
+  .lightbox.case-study:not(.is-delibirdy) .lightbox-scroll{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+    padding:68px 32px 32px;
+    overflow-x:hidden;
+    overflow-y:auto;
+  }
+  .lightbox.case-study:not(.is-delibirdy) .lightbox-media{
+    position:static;
+    flex:0 0 auto;
+    width:100%;
+    height:auto;
+    margin:0;
+  }
+  .lightbox.case-study:not(.is-delibirdy) .lightbox-media img{
+    position:static;
+    left:auto;
+    width:min(72%,520px);
+    height:auto;
+    margin:0 auto;
+    transform:none;
+  }
+  .lightbox.case-study.is-daily-tea .lightbox-media img{width:min(72%,520px);}
+  .lightbox.is-web-popup.case-study.is-hwawoon .lightbox-media img{width:min(68%,480px);}
+  .lightbox.is-web-popup.case-study.is-lehnen .lightbox-media img{width:min(68%,480px);}
+  .lightbox.case-study:not(.is-delibirdy) .lightbox-info{
+    flex:0 0 auto;
+    width:100%;
+    margin:0;
+  }
+  .lightbox.case-study:not(.is-delibirdy) .case-study-body{
+    flex:0 0 auto;
+    width:100%;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+}
 @media(max-width:1000px){
   #web .work-head{gap:40px;}
   #web .section-number{font-size:34px;}
@@ -166,6 +220,24 @@
   .lightbox.case-study .lightbox-scroll{grid-template-columns:1fr; gap:24px; padding:64px 22px 28px; max-height:none;}
   .lightbox.case-study .lightbox-info h3{font-size:28px;}
   .lightbox.case-study .case-study-body{grid-template-columns:1fr; gap:24px;}
+}
+/* Leave room for the arrows outside the panel; only its content scrolls. */
+.lightbox.has-navigation:not(.is-web-popup){max-width:min(1200px,calc(100vw - 120px)); overflow:visible;}
+.lightbox.has-navigation .lightbox-scroll{border-radius:inherit;}
+.lightbox.is-web-popup.case-study,
+.lightbox.is-web-popup.case-study:not(.is-delibirdy),
+.lightbox.is-web-popup.case-study.is-delibirdy{
+  max-width:calc(100vw - 120px);
+  overflow:visible;
+}
+@media(max-width:767px){
+  .lightbox.has-navigation:not(.is-web-popup){max-width:calc(100vw - 96px);}
+  .lightbox.is-web-popup.case-study,
+  .lightbox.is-web-popup.case-study:not(.is-delibirdy),
+  .lightbox.is-web-popup.case-study.is-delibirdy{max-width:calc(100vw - 96px);}
+  .lightbox.has-navigation .lightbox-nav-prev{left:-46px;}
+  .lightbox.has-navigation .lightbox-nav-next{right:-46px;}
+  .lightbox.has-navigation .lightbox-nav svg{width:26px; height:26px;}
 }
 @media(prefers-reduced-motion:reduce){
   #web .slide.is-active{animation:none;}

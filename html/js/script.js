@@ -539,7 +539,8 @@
     var overlayStyle = getComputedStyle(lightbox);
     var horizontalPadding = parseFloat(overlayStyle.paddingLeft) + parseFloat(overlayStyle.paddingRight);
     var verticalPadding = parseFloat(overlayStyle.paddingTop) + parseFloat(overlayStyle.paddingBottom);
-    var availableWidth = Math.max(1, window.innerWidth - horizontalPadding);
+    var navigationSpace = lightboxPanel.classList.contains('has-navigation') ? (window.innerWidth <= 767 ? 96 : 120) : 0;
+    var availableWidth = Math.max(1, window.innerWidth - Math.max(horizontalPadding, navigationSpace));
     var availableHeight = Math.max(1, window.innerHeight - verticalPadding);
     var scale = Math.min(
       1,
@@ -614,32 +615,35 @@
       lightboxTools.appendChild(item);
     });
   }
-  var webPopupTriggers = Array.prototype.slice.call(document.querySelectorAll('#web .slide:not([aria-hidden="true"]) .lightbox-trigger'));
+  var lightboxGroups = [{
+    triggers:Array.from(document.querySelectorAll('#web .slide .lightbox-trigger')),
+    open:openLightbox
+  }];
+  var lightboxGroup = null;
   var lightboxPopupIndex = -1;
   var lightboxPrev = document.getElementById('lightboxPrev');
   var lightboxNext = document.getElementById('lightboxNext');
   function getPopupTitle(btn){
     return btn.getAttribute('data-popup-title') || btn.getAttribute('data-lightbox-title') || '';
   }
-  function findWebPopupIndex(btn){
-    var index = webPopupTriggers.indexOf(btn);
-    if(index !== -1) return index;
-    var title = getPopupTitle(btn);
-    index = webPopupTriggers.findIndex(function(trigger){
-      return getPopupTitle(trigger) === title;
-    });
-    if(index !== -1) return index;
-    var image = btn.getAttribute('data-popup-image') || '';
-    return webPopupTriggers.findIndex(function(trigger){ return trigger.getAttribute('data-popup-image') === image; });
-  }
   function updateLightboxNavigation(btn){
-    var isWebPopup = !!btn.closest('#web');
-    lightboxPopupIndex = isWebPopup ? findWebPopupIndex(btn) : -1;
+    lightboxGroup = lightboxGroups.find(function(group){ return group.triggers.indexOf(btn) !== -1; }) || null;
+    lightboxPopupIndex = lightboxGroup ? lightboxGroup.triggers.indexOf(btn) : -1;
+    var canNavigate = !!lightboxGroup && lightboxGroup.triggers.length > 1;
+    lightboxPanel.classList.toggle('has-navigation', canNavigate);
+    if(lightboxPrev) lightboxPrev.hidden = !canNavigate;
+    if(lightboxNext) lightboxNext.hidden = !canNavigate;
   }
-  function moveWebPopup(step){
-    if(lightboxPopupIndex < 0 || !webPopupTriggers.length) return;
-    var nextIndex = (lightboxPopupIndex + step + webPopupTriggers.length) % webPopupTriggers.length;
-    openLightbox(webPopupTriggers[nextIndex]);
+  function moveLightbox(step){
+    if(lightboxPopupIndex < 0 || !lightboxGroup || lightboxGroup.triggers.length < 2) return;
+    var nextIndex = (lightboxPopupIndex + step + lightboxGroup.triggers.length) % lightboxGroup.triggers.length;
+    var returnFocus = lightboxReturnFocus;
+    var activeControl = document.activeElement;
+    lightboxGroup.open(lightboxGroup.triggers[nextIndex]);
+    lightboxReturnFocus = returnFocus;
+    if(activeControl === lightboxPrev || activeControl === lightboxNext){
+      activeControl.focus({preventScroll:true});
+    }
   }
   function updateWebLightboxLinks(btn){
     lightbox.querySelectorAll('.web-lightbox-action').forEach(function(link){
@@ -670,6 +674,8 @@
     updateLightboxNavigation(btn);
     lightboxPanel.classList.toggle('is-delibirdy', isWebPopup && popupTitle.indexOf('DELIBIRDY') !== -1);
     lightboxPanel.classList.toggle('is-daily-tea', isWebPopup && popupTitle.indexOf('DAILY TEA') !== -1);
+    lightboxPanel.classList.toggle('is-hwawoon', isWebPopup && popupTitle.indexOf('WHAWOON') !== -1);
+    lightboxPanel.classList.toggle('is-lehnen', isWebPopup && popupTitle.indexOf('LEHNEN') !== -1);
     lightboxImg.style.display = isVideo ? 'none' : 'block';
     lightboxVideo.hidden = !isVideo;
     lightboxVideo.pause();
@@ -752,6 +758,10 @@
   // The arrow owns its popup data directly, so SVG clicks and hover state cannot break it.
   var projectCards = document.querySelector('#project .cards');
   if(projectCards){
+    lightboxGroups.push({
+      triggers:Array.from(projectCards.querySelectorAll('.work-link')),
+      open:function(button){ openProjectCard(button.closest('.card'), button); }
+    });
     function openProjectCard(card, button){
       var image = card.querySelector('.card-photo img');
       var title = card.querySelector('h3');
@@ -794,8 +804,8 @@
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
-  if(lightboxPrev) lightboxPrev.addEventListener('click', function(){ moveWebPopup(-1); });
-  if(lightboxNext) lightboxNext.addEventListener('click', function(){ moveWebPopup(1); });
+  if(lightboxPrev) lightboxPrev.addEventListener('click', function(){ moveLightbox(-1); });
+  if(lightboxNext) lightboxNext.addEventListener('click', function(){ moveLightbox(1); });
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape') closeLightbox();
     if(!lightbox.classList.contains('is-open')) return;
@@ -807,8 +817,10 @@
       if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
       else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
     }
-    if(e.key === 'ArrowLeft') moveWebPopup(-1);
-    if(e.key === 'ArrowRight') moveWebPopup(1);
+    if(lightboxPopupIndex >= 0 && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')){
+      e.preventDefault();
+      moveLightbox(e.key === 'ArrowLeft' ? -1 : 1);
+    }
   });
 
   // The UI/UX subpage's Web link returns to this page and reopens the related popup.
@@ -829,6 +841,10 @@
       var currentLabel = document.getElementById('journalSliderCurrent');
       var totalLabel = document.getElementById('journalSliderTotal');
       var cards = Array.prototype.slice.call(scroller.querySelectorAll('.journal-card'));
+      lightboxGroups.push({
+        triggers:cards.filter(function(card){ return !!card.querySelector('.journal-photo img'); }),
+        open:openJournalCard
+      });
       var isDown = false, startX = 0, startScroll = 0, moved = false, suppressClickUntil = 0;
 
       function openJournalCard(card){
