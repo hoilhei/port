@@ -111,10 +111,8 @@ slides.forEach((slide, i) => {
   assert.equal(button.textContent, '프로젝트 자세히 보기');
   assert.equal(button.dataset.storyIndex, String(i));
   const actions = slide.nodes['.slide-panel'].children.at(-1);
-  if(i < 4) {
-    assert.equal(actions.children[1].href, button.getAttribute('data-popup-project'));
-    assert.equal(actions.children[1].target, '_blank');
-  } else assert.equal(actions.children[1].textContent, '사이트 제작 중');
+  assert.equal(actions.children[1].href, button.getAttribute('data-popup-project'));
+  assert.equal(actions.children[1].target, '_blank');
 });
 vm.runInContext(source.slice(source.indexOf('  function renderProjectStudy'), source.indexOf('  // Each project card')), context);
 slides.forEach(slide => {
