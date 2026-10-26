@@ -4,19 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>lehnen — 몸에 기대는 가구</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav class="nav" id="nav">
-    <div class="nav-menu">
-      <a href="#trackContent">브랜드</a>
-      <a href="#trackContent">컬렉션</a>
-      <a href="#trackContent">제작 과정</a>
-      <a href="#question">문의</a>
+  <nav class="nav" id="nav" data-menu-open="false">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainMenu">메뉴</button>
+    <div class="nav-menu" id="mainMenu">
+      <a href="#mBrandText">브랜드</a>
+      <a href="#c1Title">컬렉션</a>
+      <a href="#question">제작 과정</a>
+      <a href="#s6">문의</a>
     </div>
     <div class="nav-logo">
       <span class="logo-word">lehnen</span>
@@ -60,24 +59,26 @@
         <!-- BRAND -->
         <div class="s2-text" id="mBrandText">
           <div class="eyebrow">About lehnen</div>
-          <h2>기대다, 독일어로<br>&nbsp;&nbsp;몸을 맡긴다는 뜻</h2>
+          <h2>레넌, "기대다"<br>&nbsp;&nbsp;"몸을 맡기다."</h2>
           <p>lehnen은 <span class="word">몸이 온전히 기댈 수 있는</span> 가구를 만듭니다. 사람마다 다른 체형과 자세, 생활의 리듬을 세심히 측정하여 각자의 몸에 정확히 들어맞는 한 점의 가구로 완성합니다.</p>
-          <p>원목이 지닌 결과 온도를 그대로 살리고, 하늘을 닮은 옅은 청색을 더해 공간에 숨 쉴 자리를 남겨둡니다. 기능과 정서, 두 가지 모두를 함께 짜 맞추는 것이 lehnen의 방식입니다.</p>
+          <p>원목이 지닌 온도를 그대로 살리고, 몸을 맡기고 숨 쉴 자리를 남겨둡니다. 기능과 정서, 두 가지 모두를 함께 짜 맞추는 것이 lehnen의 방식입니다.</p>
         </div>
         <div class="s2-img" id="mBrandPhoto">
           <img src="images/brand.png" alt="원목 소파와 하늘색 쿠션">
-          <div class="frame-tag">Studio, Seoul</div>
+          <!-- <div class="frame-tag">Studio, Seoul</div> -->
         </div>
 
         <!-- COLLECTION TITLES -->
         <div class="titles-area">
           <div class="col-text" id="c1Title">
-            <div class="row">
-              <div>
-                <div class="eyebrow">Collection</div>
-                <h2>몸을 받치는 자세, 체어 &amp; 소파</h2>
-              </div>
-              <div class="count">01 — 03</div>
+            <div class="collection-index" aria-hidden="true">
+              <span>01</span>
+              <span class="collection-rule"></span>
+              <span>06</span>
+            </div>
+            <div class="collection-heading">
+              <div class="eyebrow">몸을 받치는 자세, 체어 &amp; 소파</div>
+              <h2 lang="en">COLLECTION</h2>
             </div>
             <div class="desc">
               <p>같은 도면이라도 앉는 사람의 골반 너비와 등의 곡선에 따라 목재의 각도는 매번 새로 계산됩니다.</p>
@@ -90,49 +91,109 @@
         <div class="cards-area">
 
           <div class="c1w1">
-            <div class="fly-card" style="top:3%; left:3%; width:32%; height:58%;">
+            <figure class="fly-card">
               <div class="fc-photo"><img src="images/col01.png" alt="그린소파"></div>
-            </div>
-            <div class="fly-card" style="top:34%; left:43%; width:36%; height:56%;">
+              <figcaption class="fc-caption">
+                <span class="fc-number">01.</span>
+                <div class="fc-info"><h3>그린 소파</h3><p>체어 &amp; 소파</p></div>
+              </figcaption>
+            </figure>
+            <figure class="fly-card">
               <div class="fc-photo"><img src="images/col02.png" alt="맞춤가죽체어"></div>
-            </div>
-            <div class="fly-card" style="top:8%; left:77%; width:20%; height:40%;">
+              <figcaption class="fc-caption">
+                <span class="fc-number">02.</span>
+                <div class="fc-info"><h3>맞춤 가죽 체어</h3><p>체어 &amp; 소파</p></div>
+              </figcaption>
+            </figure>
+            <figure class="fly-card">
               <div class="fc-photo"><img src="images/col06.jpeg" alt="원목 라운지 디테일"></div>
-            </div>
+              <figcaption class="fc-caption">
+                <span class="fc-number">03.</span>
+                <div class="fc-info"><h3>원목 라운지 디테일</h3><p>라운지 컬렉션</p></div>
+              </figcaption>
+            </figure>
           </div>
 
           <div class="c1w2">
-            <div class="fly-card" style="top:2%; left:3%; width:30%; height:56%;">
+            <figure class="fly-card">
               <div class="fc-photo"><img src="images/col03.png" alt="라운지체어"></div>
-            </div>
-            <div class="fly-card" style="top:7%; left:43%; width:34%; height:58%;">
+              <figcaption class="fc-caption">
+                <span class="fc-number">04.</span>
+                <div class="fc-info"><h3>라운지 체어</h3><p>체어 &amp; 소파</p></div>
+              </figcaption>
+            </figure>
+            <figure class="fly-card">
               <div class="fc-photo"><img src="images/col04.png" alt="가죽쿠션체어"></div>
-            </div>
-            <div class="fly-card accent" style="top:56%; left:74%; width:22%; height:32%;">
-              <div class="fc-photo"><img src="images/col05.jpeg" alt="수납 스툴"></div>
-            </div>
+              <figcaption class="fc-caption">
+                <span class="fc-number">05.</span>
+                <div class="fc-info"><h3>가죽 쿠션 체어</h3><p>체어 &amp; 소파</p></div>
+              </figcaption>
+            </figure>
+            <figure class="fly-card accent">
+              <div class="fc-photo"><img src="images/col05.jpeg" alt="원목 데스크"></div>
+              <figcaption class="fc-caption">
+                <span class="fc-number">06.</span>
+                <div class="fc-info"><h3>원목 데스크</h3><p>데스크 &amp; 테이블</p></div>
+              </figcaption>
+            </figure>
           </div>
 
         </div>
 
         <!-- PROCESS -->
         <div class="proc-bg" id="procBg"></div>
-        <div class="s5-text" id="mProcText">
-          <div class="eyebrow">The Process</div>
-          <h2>도면을 그리기 전에,<br>먼저 당신의 몸을 잽니다</h2>
-          <p><span class="num">01 —</span> 앉거나 눕는 자세를 관찰하고 신체 치수를 기록합니다.</p>
-          <p><span class="num">02 —</span> 원목을 고르고, 결의 방향을 몸의 하중에 맞춰 설계합니다.</p>
-          <p><span class="num">03 —</span> 장인의 손끝에서 마지막 마감까지, 오차 없이 짜 맞춥니다.</p>
-        </div>
-        <div class="s5-imgcol" id="mProcPhoto">
-          <div class="s5-stack" id="s5stack">
-            <div class="ph h1"><img src="images/pro01.png" alt="목재 재단 작업"></div>
-            <div class="ph h2"><img src="images/pro02.png" alt="가구 제작 공방"></div>
-            <div class="ph h3"><img src="images/pro03.png" alt="완성된 원목 가구"></div>
-            <div class="ph h4"><img src="images/pro04.png" alt="마감 디테일 작업"></div>
-            <div class="ph h5"><img src="images/pro05.png" alt="완성된 라운지 체어"></div>
+        <section class="process-layout" id="processMagazine" aria-labelledby="processTitle">
+          <header class="process-masthead">
+            <h2 id="processTitle" lang="en">PRODUCT</h2>
+            <span class="process-page" id="processPage" aria-label="페이지">001</span>
+          </header>
+          <div class="s5-imgcol" id="mProcPhoto">
+            <div class="s5-stack" id="s5stack">
+              <!-- Each SVG frames the photograph within an existing product spread. -->
+              <div class="ph" data-title="Leather Lounge" data-material="천연 소가죽 · 스테인리스" data-detail="detail.html?product=leather-lounge">
+                <svg viewBox="1358 0 1150 870" preserveAspectRatio="xMidYMid slice" role="img" aria-label="천연 소가죽과 스테인리스 프레임의 라운지 체어"><defs><clipPath id="processCrop1"><rect x="1358" y="0" width="1150" height="870" /></clipPath></defs><image href="images/pros/pro01.png" width="2508" height="1412" clip-path="url(#processCrop1)" /></svg>
+              </div>
+              <div class="ph" data-title="Wood &amp; Leather" data-material="오크 원목 · 레더 쿠션" data-detail="detail.html?product=wood-leather" aria-hidden="true">
+                <svg viewBox="1345 0 1163 754" preserveAspectRatio="xMidYMid slice" role="img" aria-label="오크 원목과 브라운 레더 쿠션의 라운지 체어"><defs><clipPath id="processCrop2"><rect x="1345" y="0" width="1163" height="754" /></clipPath></defs><image href="images/pros/pro02.png" width="2508" height="1412" clip-path="url(#processCrop2)" /></svg>
+              </div>
+              <div class="ph" data-title="Woven Armchair" data-material="애쉬 원목 · 천연 라탄" data-detail="detail.html?product=woven-armchair" aria-hidden="true">
+                <svg viewBox="1352 0 1156 829" preserveAspectRatio="xMidYMid slice" role="img" aria-label="곡선 원목 프레임과 라탄 짜임의 암체어"><defs><clipPath id="processCrop3"><rect x="1352" y="0" width="1156" height="829" /></clipPath></defs><image href="images/pros/pro03.png" width="2508" height="1412" clip-path="url(#processCrop3)" /></svg>
+              </div>
+              <div class="ph" data-title="Curved Dining" data-material="월넛 원목 · 올리브 패브릭" data-detail="detail.html?product=curved-dining" aria-hidden="true">
+                <svg viewBox="1260 0 1248 774" preserveAspectRatio="xMidYMid slice" role="img" aria-label="곡선 월넛 프레임과 올리브 쿠션의 다이닝 체어"><defs><clipPath id="processCrop4"><rect x="1260" y="0" width="1248" height="774" /></clipPath></defs><image href="images/pros/pro05.png" width="2508" height="1412" clip-path="url(#processCrop4)" /></svg>
+              </div>
+              <div class="ph" data-title="Bouclé Lounge" data-material="부클레 · 애쉬 원목 · 스틸" data-detail="detail.html?product=boucle-lounge" aria-hidden="true">
+                <svg viewBox="1368 0 1140 884" preserveAspectRatio="xMidYMid slice" role="img" aria-label="부클레 쿠션과 가는 스틸 프레임의 라운지 체어"><defs><clipPath id="processCrop5"><rect x="1368" y="0" width="1140" height="884" /></clipPath></defs><image href="images/pros/pro06.png" width="2508" height="1412" clip-path="url(#processCrop5)" /></svg>
+              </div>
+            </div>
           </div>
-        </div>
+          <aside class="s5-text" id="mProcText">
+            <div class="process-caption">
+              <div>
+                <h3 id="processProductName" lang="en">Leather Lounge</h3>
+                <p id="processMaterial">천연 소가죽 · 스테인리스</p>
+              </div>
+              <a class="process-detail-link" id="processDetailLink" href="detail.html?product=leather-lounge">DETAIL VIEW <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="process-copy">
+              <h3>도면을 그리기 전에,<br>먼저 당신의 몸을 잽니다</h3>
+              <p><span class="num">01 —</span> 앉거나 눕는 자세를 관찰하고 신체 치수를 기록합니다.</p>
+              <p><span class="num">02 —</span> 원목을 고르고, 결의 방향을 몸의 하중에 맞춰 설계합니다.</p>
+              <p><span class="num">03 —</span> 장인의 손끝에서 마지막 마감까지, 오차 없이 짜 맞춥니다.</p>
+            </div>
+          </aside>
+          <div class="process-footer">
+            <div class="process-signature">
+              <span class="process-label" lang="en">Fit Furniture Atelier</span>
+              <p lang="en">Made to<br>fit you.</p>
+            </div>
+            <div class="process-details" aria-label="소재 디테일">
+              <figure><img src="images/chair01.png" alt="곡선 원목 프레임 디테일"><figcaption lang="en">FRAME</figcaption></figure>
+              <figure><img src="images/chair02.png" alt="패브릭 쿠션의 질감"><figcaption lang="en">TEXTURE</figcaption></figure>
+              <figure><img src="images/chair03.png" alt="원목과 라탄의 짜임"><figcaption lang="en">WEAVE</figcaption></figure>
+            </div>
+          </div>
+        </section>
 
       </div>
     </div>
@@ -155,73 +216,57 @@
     </div>
   </section> -->
 
-  <!-- ===================== QUESTION / REQUEST SECTION ===================== -->
-  <section class="question-section" id="question">
-    <div class="q-image">
-      <img src="https://images.unsplash.com/photo-1449247666642-264389f5f5b1?auto=format&fit=crop&w=1600&q=80" alt="원목 가구 쇼룸 전경">
-    </div>
-    <div class="q-content">
-      <div class="q-top">
-        <div class="q-text">
-          <div class="eyebrow">Request</div>
-          <h2>궁금한 점이<br>있으신가요?</h2>
-          <p class="q-sub">무료 상담을 남겨주시면<br>담당 디자이너가 확인 후 연락드립니다.</p>
-        </div>
-        <div class="q-thumb">
-          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80" alt="원목 가구 디테일">
-        </div>
+  <!-- ===================== REQUEST / PROJECT PROCESS ===================== -->
+  <section class="question-section" id="question" aria-labelledby="requestTitle" lang="en">
+    <header class="request-header">
+      <h2 id="requestTitle">PROCESS</h2>
+    </header>
+    <div class="request-layout">
+      <div class="request-intro">
+        <p lang="ko">당신의 공간과 생활 방식을 살펴보고, 원하는 스타일과 필요한 기능을 함께 이야기합니다. 몸과 공간에 꼭 맞는 가구의 방향을 정합니다.</p>
+        <a class="request-contact" href="mailto:hello@lehnen.kr">CONTACT US</a>
       </div>
-      <form class="q-form" onsubmit="return false;">
-        <div class="q-form-grid">
-          <div class="q-field">
-            <label for="qName">이름</label>
-            <input id="qName" type="text" placeholder="성함을 입력해주세요" autocomplete="name" required>
-          </div>
-          <div class="q-field">
-            <label for="qPhone">연락처</label>
-            <input id="qPhone" type="tel" placeholder="010-0000-0000" autocomplete="tel" required>
-          </div>
-          <div class="q-field">
-            <label for="qEmail">E-mail</label>
-            <input id="qEmail" type="email" placeholder="이메일을 입력해주세요" autocomplete="email" required>
-          </div>
-          <div class="q-field">
-            <label for="qFurniture">상담 가구</label>
-            <select id="qFurniture" required>
-              <option value="" selected disabled>가구 종류를 선택해주세요</option>
-              <option>체어</option>
-              <option>소파</option>
-              <option>테이블</option>
-              <option>수납 가구</option>
-              <option>기타 맞춤 가구</option>
-            </select>
-          </div>
-          <div class="q-field">
-            <label for="qSize">설치 공간 / 크기</label>
-            <input id="qSize" type="text" placeholder="예: 거실, 2400 × 900mm">
-          </div>
-          <div class="q-field">
-            <label for="qBudget">예상 예산</label>
-            <select id="qBudget">
-              <option value="" selected disabled>예산 범위를 선택해주세요</option>
-              <option>100만원 이하</option>
-              <option>100–300만원</option>
-              <option>300–500만원</option>
-              <option>500만원 이상</option>
-              <option>상담 후 결정</option>
-            </select>
-          </div>
-          <div class="q-field full">
-            <label for="qMessage">상담 내용</label>
-            <textarea id="qMessage" rows="4" placeholder="원하는 형태, 소재, 사용 목적을 자유롭게 적어주세요"></textarea>
-          </div>
-        </div>
-        <label class="q-consent">
-          <input type="checkbox" required>
-          <span>상담을 위한 개인정보 수집 및 이용에 동의합니다.</span>
-        </label>
-        <button type="submit" class="q-submit">문의 남기기 <span class="arrow">→</span></button>
-      </form>
+      <ol class="request-steps" aria-label="Project stages">
+        <li>
+          <details name="project-process" open>
+            <summary><span class="request-step-number" aria-hidden="true">{01}</span><span>CONSULTATION</span><span class="request-step-toggle" aria-hidden="true"></span></summary>
+            <p lang="ko">당신이 앉고 쉬는 방식과 일상의 습관을 듣습니다. 용도와 스타일, 소재, 예산을 함께 살피며 몸과 생활에 맞는 가구의 방향을 정합니다.</p>
+          </details>
+        </li>
+        <li>
+          <details name="project-process">
+            <summary><span class="request-step-number" aria-hidden="true">{02}</span><span>PROJECT DEVELOPMENT</span><span class="request-step-toggle" aria-hidden="true"></span></summary>
+            <p lang="ko">원하는 형태와 기능을 스케치와 도면으로 구체화합니다. 비례와 소재, 세부 마감을 함께 조율하고 최종 디자인을 확정합니다.</p>
+          </details>
+        </li>
+        <li>
+          <details name="project-process">
+            <summary><span class="request-step-number" aria-hidden="true">{03}</span><span>ON-SITE MEASUREMENT</span><span class="request-step-toggle" aria-hidden="true"></span></summary>
+            <p lang="ko">공간의 크기와 반입 동선을 확인하고, 체형과 평소 자세를 세심하게 측정합니다. 기록한 치수는 몸과 공간에 꼭 맞는 가구를 만드는 기준이 됩니다.</p>
+          </details>
+        </li>
+        <li>
+          <details name="project-process">
+            <summary><span class="request-step-number" aria-hidden="true">{04}</span><span>MANUFACTURING</span><span class="request-step-toggle" aria-hidden="true"></span></summary>
+            <p lang="ko">장인이 원목을 고르고 부재를 다듬어 한 점씩 조립합니다. 짜임과 쿠션, 표면 마감까지 각 공정을 꼼꼼하게 확인합니다.</p>
+          </details>
+        </li>
+        <li>
+          <details name="project-process">
+            <summary><span class="request-step-number" aria-hidden="true">{05}</span><span>DELIVERY</span><span class="request-step-toggle" aria-hidden="true"></span></summary>
+            <p lang="ko">원하시는 일정에 맞춰 배송을 준비합니다. 완성된 가구를 안전하게 포장하고 운반해 당신의 공간까지 정성껏 전달합니다.</p>
+          </details>
+        </li>
+        <li>
+          <details name="project-process">
+            <summary><span class="request-step-number" aria-hidden="true">{06}</span><span>INSTALLATION</span><span class="request-step-toggle" aria-hidden="true"></span></summary>
+            <p lang="ko">공간에 맞춰 가구를 배치하고 조립한 뒤 안정성과 사용감을 최종 점검합니다. 오래 편안하게 사용하실 수 있도록 관리 방법도 안내합니다.</p>
+          </details>
+        </li>
+      </ol>
+      <figure class="request-image">
+        <img src="images/col05.jpeg" alt="원목 데스크에서 자료를 살펴보는 모습">
+      </figure>
     </div>
   </section>
 

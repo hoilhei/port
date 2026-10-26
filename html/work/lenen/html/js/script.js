@@ -16,9 +16,14 @@
   const c1w1Cards = Array.from(document.querySelectorAll('.c1w1 .fly-card'));
   const c1w2Cards = Array.from(document.querySelectorAll('.c1w2 .fly-card'));
   const procBg = document.getElementById('procBg');
-  const procText = document.getElementById('mProcText');
+  const procLayout = document.getElementById('processMagazine');
   const procPhoto = document.getElementById('mProcPhoto');
   const processSlides = Array.from(document.querySelectorAll('#s5stack .ph'));
+  const processPage = document.getElementById('processPage');
+  const processProductName = document.getElementById('processProductName');
+  const processMaterial = document.getElementById('processMaterial');
+  const processDetailLink = document.getElementById('processDetailLink');
+  let activeProcessIndex = -1;
 
   // ---- flying element helper -----------------------------------------------
   // s = 0 → in place. s = 1 → off to the left (either "not arrived yet" or
@@ -72,6 +77,18 @@
     const progress = clamp((p - start) / Math.max(end - start, 0.0001), 0, 0.999999);
     const step = 1 / slides.length;
     const transition = step * 0.34;
+    const activeIndex = Math.floor(progress * slides.length);
+
+    if (activeIndex !== activeProcessIndex){
+      const activeSlide = slides[activeIndex];
+      processPage.textContent = String(activeIndex + 1).padStart(3, '0');
+      processProductName.textContent = activeSlide.dataset.title;
+      processMaterial.textContent = activeSlide.dataset.material;
+      processDetailLink.href = activeSlide.dataset.detail;
+      processDetailLink.setAttribute('aria-label', `${activeSlide.dataset.title} 상세 페이지 보기`);
+      slides.forEach((el, i) => el.setAttribute('aria-hidden', String(i !== activeIndex)));
+      activeProcessIndex = activeIndex;
+    }
 
     slides.forEach((el, i)=>{
       const slideStart = i * step;
@@ -104,6 +121,29 @@
     procSlidesInS:0.50, procSlidesInE:0.98
   };
 
+  function pinnedScrollTop(progress){
+    const H = vh();
+    return trackContent.offsetTop + H + progress * Math.max(trackContent.offsetHeight - 2 * H, 1);
+  }
+
+  function scrollTopForHash(hash){
+    if (hash === '#mBrandText') return pinnedScrollTop(CB.brandOutS / 2);
+    if (hash === '#c1Title') return pinnedScrollTop((CB.c1w1InE + CB.c1w1OutS) / 2);
+
+    const productPage = hash.match(/^#process-(\d{3})$/);
+    if (productPage){
+      const index = clamp(Number(productPage[1]) - 1, 0, processSlides.length - 1);
+      const progress = CB.procSlidesInS + ((index + 0.65) / processSlides.length) * (CB.procSlidesInE - CB.procSlidesInS);
+      return pinnedScrollTop(progress);
+    }
+
+    if (hash === '#question' || hash === '#s6'){
+      const target = document.getElementById(hash.slice(1));
+      return target.getBoundingClientRect().top + window.scrollY;
+    }
+    return null;
+  }
+
   function update(){
     const scrollY = window.scrollY || window.pageYOffset;
     const H = vh();
@@ -132,7 +172,7 @@
     // process : the background fills the screen and images slide in one by one
     const bgState = flyState(p, CB.procInS, CB.procInS + 0.08, null, null);
     procBg.style.opacity = bgState.op;
-    applyFly(procText, flyState(p, CB.procInS, CB.procInS + 0.08, null, null), 120);
+    applyFly(procLayout, flyState(p, CB.procInS, CB.procInS + 0.08, null, null), 100);
     procPhoto.style.opacity = p < CB.procSlidesInS ? '0' : '1';
     procPhoto.style.transform = 'none';
     applyProcessSlides(processSlides, p, CB.procSlidesInS, CB.procSlidesInE);
@@ -164,6 +204,17 @@
 
   requestAnimationFrame(update);
 
+  // Restore section links and product returns after layout and browser history changes.
+  function restoreHashPosition(){
+    requestAnimationFrame(() => {
+      const top = scrollTopForHash(window.location.hash);
+      if (top !== null) window.scrollTo({top, behavior:'auto'});
+    });
+  }
+  window.addEventListener('hashchange', restoreHashPosition);
+  if (document.readyState === 'complete') restoreHashPosition();
+  else window.addEventListener('load', restoreHashPosition, {once:true});
+
   // craft video play/pause toggle
   const craftVideo = document.getElementById('craftVideo');
   const videoPlayBtn = document.getElementById('videoPlayBtn');
@@ -184,11 +235,30 @@
   }
 
   // smooth in-page nav
+  const nav = document.getElementById('nav');
+  const navToggle = document.querySelector('.nav-toggle');
+  function setMenuOpen(open){
+    nav.dataset.menuOpen = String(open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? '닫기' : '메뉴';
+  }
+  navToggle.addEventListener('click', () => setMenuOpen(nav.dataset.menuOpen !== 'true'));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.dataset.menuOpen === 'true'){
+      setMenuOpen(false);
+      navToggle.focus();
+    }
+  });
   document.querySelectorAll('.nav-menu a').forEach(a=>{
     a.addEventListener('click', e=>{
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const hash = a.getAttribute('href');
+      const top = scrollTopForHash(hash);
+      if (top === null) return;
       e.preventDefault();
-      const target = document.getElementById(a.getAttribute('href').slice(1));
-      if (target) window.scrollTo({top: target.offsetTop, behavior:'smooth'});
+      setMenuOpen(false);
+      if (window.location.hash !== hash) history.pushState(null, '', hash);
+      window.scrollTo({top, behavior:'smooth'});
     });
   });
 
