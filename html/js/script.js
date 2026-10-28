@@ -500,6 +500,7 @@
   var lightboxPanel = lightbox.querySelector('.lightbox');
   var lightboxScroll = lightbox.querySelector('.lightbox-scroll');
   var lightboxClose = document.getElementById('lightboxClose');
+  var lightboxSiteLink = document.getElementById('lightboxSiteLink');
   var lightboxImg = document.getElementById('lightboxImg');
   var lightboxVideo = document.getElementById('lightboxVideo');
   var lightboxTitle = document.getElementById('lightboxTitle');
@@ -646,6 +647,18 @@
     }
   }
   function updateWebLightboxLinks(btn){
+    var sitePath = btn.getAttribute('data-popup-project') || '';
+    var showSiteLink = btn.getAttribute('data-lightbox-kind') === 'banner-scroll' && !!sitePath;
+    lightboxSiteLink.hidden = !showSiteLink;
+    if(showSiteLink){
+      var label = getPopupTitle(btn) + ' 제작 사이트 바로가기 (새 창)';
+      lightboxSiteLink.href = sitePath;
+      lightboxSiteLink.setAttribute('aria-label', label);
+      lightboxSiteLink.title = label;
+    } else {
+      lightboxSiteLink.removeAttribute('href');
+      lightboxSiteLink.removeAttribute('title');
+    }
     lightbox.querySelectorAll('.web-lightbox-action').forEach(function(link){
       var action = link.getAttribute('data-lightbox-action');
       var path = action ? btn.getAttribute('data-popup-' + action) : '';

@@ -784,6 +784,8 @@
   .journal-card:focus-visible{outline:2px solid var(--accent-dark); outline-offset:5px;}
   .journal-photo{aspect-ratio:4/3; border-radius:18px 18px 0 0; overflow:hidden;}
   .journal-photo--top img{width:100%; height:100%; object-fit:cover; object-position:top center;}
+  .journal-photo--daily-tea img{object-position:center 4.5%;}
+  .journal-photo--lehnen img{object-position:center 4%;}
   .journal-body{
     flex:1 1 auto; min-height:0; padding:26px;
     border-radius:0 0 18px 18px;
@@ -952,6 +954,19 @@
     background:var(--paper); border:1px solid var(--line); font-size:20px; line-height:0; padding:0; color:var(--ink);
     display:flex; align-items:center; justify-content:center;
   }
+  .lightbox-site-link{
+    position:absolute; top:16px; left:16px; z-index:4;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    width:auto; height:40px; padding:0 12px; border:1px solid var(--line); border-radius:999px;
+    font-size:11px; font-weight:500; line-height:1.4; white-space:nowrap;
+    color:var(--ink); background:rgba(250,246,236,.94);
+    box-shadow:0 3px 12px rgba(21,21,15,.12);
+    transition:background .2s ease, color .2s ease;
+  }
+  .lightbox-site-link[hidden]{display:none;}
+  .lightbox-site-link svg{flex-shrink:0; width:20px; height:20px;}
+  .lightbox-site-link:hover{background:var(--ink); color:var(--paper);}
+  .lightbox-site-link:focus-visible{outline:2px solid var(--accent-dark); outline-offset:3px;}
   .lightbox-nav{
     position:absolute; top:50%; z-index:3; width:38px; height:38px; border-radius:50%;
     display:flex; align-items:center; justify-content:center; padding:0;
